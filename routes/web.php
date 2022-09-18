@@ -49,3 +49,7 @@ Route::get('/test', function(){
 Route::get('/admin', function(){
     return view('admins.index');
 })->name('admin');
+
+Route::get('/test2', function(){
+    return view('test');
+})->name('test2');
