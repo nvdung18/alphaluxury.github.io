@@ -50,6 +50,6 @@ Route::get('/admin', function(){
     return view('admins.index');
 })->name('admin');
 
-Route::get('/test2', function(){
+Route::get('/test3', function(){
     return view('test');
-})->name('test2');
+})->name('test3');
