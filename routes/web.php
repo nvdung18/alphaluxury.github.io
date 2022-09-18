@@ -18,30 +18,34 @@ use App\Http\Controllers\ShopController;
 Route::get('/', [HomeController::class,'getNewProduct'])->name('home');
 Route::get('/shop', [ShopController::class,'getNewProduct'])->name('shop');
 Route::get('/product-details', function(){
-    return view('product-details');
+    return view('users.product-details');
 })->name('product-details');
 
 Route::get('/shop-cart', function(){
-    return view('shop-cart');
+    return view('users.shop-cart');
 })->name('shop-cart');
 
 Route::get('/checkout', function(){
-    return view('checkout');
+    return view('users.checkout');
 })->name('checkout');
 
 Route::get('/blog', function(){
-    return view('blog');
+    return view('users.blog');
 })->name('blog');
 
 Route::get('/contact', function(){
-    return view('contact');
+    return view('users.contact');
 })->name('contact');
 
 Route::get('/blog-details', function(){
-    return view('blog-details');
+    return view('users.blog-details');
 })->name('blog-details');
 
 
 Route::get('/test', function(){
     return view('test');
 })->name('test');
+
+Route::get('/admin', function(){
+    return view('admins.index');
+})->name('admin');

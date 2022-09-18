@@ -13,6 +13,6 @@ class HomeController extends Controller
     public function getNewProduct(Request $request)
     {
         $listProduct=$this->product->getAllProduct();
-        return view('home',compact('listProduct'));
+        return view('users.home',compact('listProduct'));
     }
 }

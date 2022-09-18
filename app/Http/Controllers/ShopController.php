@@ -18,6 +18,6 @@ class ShopController extends Controller
         // echo "<pre>";
         // print_r ($listProduct);
         // echo "</pre>";
-        return view('shop',compact('listProduct'));
+        return view('users.shop',compact('listProduct'));
     }
 }
