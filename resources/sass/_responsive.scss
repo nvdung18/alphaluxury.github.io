@@ -1,0 +1,23 @@
+
+/*--------------------------------- Responsive Media Quaries -----------------------------*/
+@media only screen and (min-width: 1600px) and (max-width: 1900px) {
+    .header {
+      padding: 0 85px;
+    }
+  }
+  
+  @media only screen and (min-width: 1200px) and (max-width: 1599px) {
+    .header__menu ul li {
+      margin-right: 20px;
+    }
+  
+    .header {
+      padding: 0 30px;
+    }
+  }
+  
+  @media only screen and (min-width: 1200px) {
+    .container {
+      max-width: 1170px;
+    }
+  }
