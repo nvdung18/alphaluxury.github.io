@@ -53,7 +53,7 @@ Route::prefix('admin')->group(function(){
     })->name('admin');
     Route::get('/monthly-revenue', [RevenueController::class,'getRevenue'])->name('monthly-revenue');
 });
-Route::get('/revenue', function(){
+Route::get('/rev', function(){
     return view('test');
-})->name('test3');
+})->name('test2');
 
