@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\RevenueController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,10 +47,13 @@ Route::get('/test', function(){
     return view('test');
 })->name('test');
 
-Route::get('/admin', function(){
-    return view('admins.index');
-})->name('admin');
-
-Route::get('/test3', function(){
+Route::prefix('admin')->group(function(){
+    Route::get('/', function(){
+        return view('admins.index');
+    })->name('admin');
+    Route::get('/monthly-revenue', [RevenueController::class,'getRevenue'])->name('monthly-revenue');
+});
+Route::get('/revenue', function(){
     return view('test');
 })->name('test3');
+
