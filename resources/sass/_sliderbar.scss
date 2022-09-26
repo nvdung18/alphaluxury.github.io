@@ -1,0 +1,217 @@
+// Menu start
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: 2378px;
+    z-index: 100;
+    background-color: #e2deda;
+    top: 55px;
+    padding-left: 78px;
+    padding-bottom: 26px;
+    left: -1214px;
+    transition:  .4s;
+    &::before {
+        cursor: pointer;
+        content: "";
+        position: absolute;
+        border-width: 30px 60px;
+        left: 1187px;
+        top: -38px;
+        // border-width: 30px 45px;
+        // left: 1200px;
+        // top: -42px;
+        border-color: white;
+        border-style: solid;
+        border-color: transparent;
+    }
+    .column_content {
+        float: left;
+        width: 375px;
+        padding: 10px;
+        background-color: #e2deda;
+        height: 354px;
+        .column_a {
+         float: none;
+          color: #333;
+          padding: 16px;
+          text-decoration: none;
+          display: block;
+          text-align: left;
+          opacity: 0.6;
+          font-size: 18px;
+          width: 180px;
+          transition: box-shadow .4s, color .3s;
+          &::after {
+            background: none !important;
+          }
+        }
+        .column_a:hover {
+            background-color: #e2deda;
+            color: #000;
+            box-shadow: 0 3px #e4d19e;
+            opacity: 1;
+        }
+    }
+}
+
+.dropdown {
+    z-index: 25;
+} 
+
+.dropdown:hover {
+    // .dropdown-content:hover, 
+    .dropdown-content {
+        border-radius: 2px;
+        box-shadow: 0 1px 3.125rem 0 rgba(0, 0, 0, 0.2);
+        animation: fadeIn ease-in 0.2s;   
+        display: block;
+    }
+}
+
+
+.row_content {
+    padding: 0px 400px;
+}
+
+// @media screen and (max-width: 600px) {
+//     .column_content {
+//       width: 100%;
+//       height: auto;
+//     }
+//   }
+
+//   Menu end
+// Slider Start
+
+// .img-text {
+//     width: 100%;
+//     height: 300px;
+//     display: block;
+//     text-align: center;
+//     padding: 40% 5%;
+//     background-color: #262626;
+//     color: #fff;
+//     border-radius: 15px;
+//     h2 {
+//         font-size: 25px;
+//         text-transform: uppercase;
+//         letter-spacing: 2px;
+//     }
+//     p {
+//         font-size: 14px
+//     }
+// }
+
+// .img-area {
+//     position: absolute;
+//     width: 100%;
+//     height: 100px;
+//     border: 5px solid #fff;
+//     overflow: hidden;
+//     top: 15px;
+//     left: 125px;
+//     border-radius: 50%;
+//     img {
+//         width: 100%;
+//     }
+// }
+
+// .carousel-indicators {
+//     left: 0;
+//     top: auto;
+//     bottom: -70px;
+//     li {
+//         background-color: #000;
+//         border-radius: 50%;
+//         width: 15px;
+//         height: 15px;
+//     }
+//     .active {
+//         background: #fff;
+//     }
+// }
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+}
+
+.carousel-control-next, .carousel-control-prev {
+    margin: 0px -120px;
+    top: -82px;
+}
+
+.single-box {
+    display: inline-grid;
+}
+
+@keyframes fadeIn {
+    from {
+    opacity: 0;
+    } to {
+    opacity: 1;
+    }
+}
+
+.img-text {
+    display: inline-block;
+    text-align: center;
+    padding: 1px 20px 10px 10px;
+    position: relative;
+    top: 10px;
+    h5 {
+        font-size: 14px;
+        font-weight: bold;
+        color: #777;
+    }
+    span {
+        font-size: 16px;
+    }
+    p {
+        font-size: 18px;
+        // font-weight: bold;
+        color: #333;
+        opacity: 0.8;
+        font-weight: 500;
+    }
+}
+
+.icon-prev {
+    background-image: url('https://luxshopping.vn/images/large-arrow-left.png');
+}
+
+.icon-next {
+    background-image: url('https://luxshopping.vn/images/large-arrow-right.png');
+}
+
+.icon-next, 
+.icon-prev {
+    padding: 34px 16px;
+}
+
+.gray {
+    background-color: #63635c;
+    color: white;
+    text-transform: uppercase;
+    border: 1px solid#63635c;
+}
+
+.yellow-bright {
+    background-color: #dbb86f;
+    color: #000;
+    text-transform: uppercase;
+    border: 1px solid #dbb86f;
+}
+
+.gray:hover,
+.yellow-bright:hover {
+    background-color: #fff;
+    color: #000;
+    
+}
+
+@media only screen and (min-width: 1200px) {
+    .width-1500 {
+      max-width: 1500px;
+    }
+  }
