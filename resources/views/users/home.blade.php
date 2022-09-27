@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('frontend/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" type="text/css">
+
 </head>
 
 <body>
@@ -98,25 +99,170 @@
 
     {{-- Product Section Begin --}}
     <section class="product spad">
-        <div class="container">
+        <div class="container width-1500">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="section-title">
                         <h4>New product</h4>
                     </div>
                 </div>
-                <div class="col-lg-8 col-md-8">
-                    <ul class="filter__controls">
-                        <li class="active" data-filter="*">All</li>
-                        <li data-filter=".women">Women’s</li>
-                        <li data-filter=".men">Men’s</li>
-                        <li data-filter=".kid">Kid’s</li>
-                        <li data-filter=".accessories">Accessories</li>
-                        <li data-filter=".cosmetic">Cosmetics</li>
-                    </ul>
-                </div>
             </div>
-            <div class="row property__gallery">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators" style="display: none">
+                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-6 col-md-4">
+                            <div class="single-box">
+                                <div class="img-area"><img src="{{ asset('frontend/img/slider/images1.jpg') }}" alt=""></div>
+                                <div class="img-text">
+                                    <h5>Person One</h5>
+                                    <span>asdkjakdsjaskd</span>
+                                    <p>25,555</p>
+                                    <div>
+                                        <a href="" class="btn adjust btn-default btn-float btn-120 gray">Chi Tiết</a>
+                                        <a href="" class="btn adjust btn-orange-basic btn-float btn-120 btn-nudge-back yellow-bright">Đặt Hàng</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="single-box">
+                                <div class="img-area"><img src="{{ asset('frontend/img/slider/images1.jpg') }}" alt=""></div>
+                                <div class="img-text">
+                                    <h5>Person Two</h5>
+                                    <span>sdasdadasda</span>
+                                    <p>177,555,20</p>
+                                    <div>
+                                        <a href="" class="btn adjust btn-default btn-float btn-120 gray">Chi Tiết</a>
+                                        <a href="" class="btn adjust btn-orange-basic btn-float btn-120 btn-nudge-back yellow-bright">Đặt Hàng</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="single-box">
+                                <div class="img-area"><img src="{{ asset('frontend/img/slider/images1.jpg') }}" alt=""></div>
+                                <div class="img-text">
+                                    <h5>Person Three</h5>
+                                    <span>Person One</span>
+                                    <p>asdjasjdha</p>
+                                    <div>
+                                        <a href="" class="btn adjust btn-default btn-float btn-120 gray">Chi Tiết</a>
+                                        <a href="" class="btn adjust btn-orange-basic btn-float btn-120 btn-nudge-back yellow-bright">Đặt Hàng</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                   <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="single-box">
+                                <div class="img-area"><img src="{{ asset('frontend/img/slider/images1.jpg') }}" alt=""></div>
+                                <div class="img-text">
+                                    <h5>Person Four</h5>
+                                    <span>asdkjakdsjaskd</span>
+                                    <p>asdjasjdhassssssjdhajdshjsa</p>
+                                    <div>
+                                        <a href="" class="btn adjust btn-default btn-float btn-120 gray">Chi Tiết</a>
+                                        <a href="" class="btn adjust btn-orange-basic btn-float btn-120 btn-nudge-back yellow-bright">Đặt Hàng</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-box">
+                                <div class="img-area"><img src="{{ asset('frontend/img/slider/images1.jpg') }}" alt=""></div>
+                                <div class="img-text">
+                                    <h5>Person Five</h5>
+                                    <span>asdkjakdsjaskd</span>
+                                    <p>asdjasjdhassssssjdhajdshjs</p>
+                                    <div>
+                                        <a href="" class="btn adjust btn-default btn-float btn-120 gray">Chi Tiết</a>
+                                        <a href="" class="btn adjust btn-orange-basic btn-float btn-120 btn-nudge-back yellow-bright">Đặt Hàng</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-box">
+                                <div class="img-area"><img src="{{ asset('frontend/img/slider/images1.jpg') }}" alt=""></div>
+                                <div class="img-text">
+                                    <h5>Person Six</h5>
+                                    <span>asdkjakdsjaskd</span>
+                                    <p>asdjasjdhassssssjdhajdshjsa</p>
+                                    <div>
+                                        <a href="" class="btn adjust btn-default btn-float btn-120 gray">Chi Tiết</a>
+                                        <a href="" class="btn adjust btn-orange-basic btn-float btn-120 btn-nudge-back yellow-bright">Đặt Hàng</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                   <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="single-box">
+                                <div class="img-area"><img src="{{ asset('frontend/img/slider/images1.jpg') }}" alt=""></div>
+                                <div class="img-text">
+                                    <h5>Person Seven</h5>
+                                    <span>asdkjakdsjaskd</span>
+                                    <p>asdjasjdhassssssjdhajdshjsadh</p>
+                                    <div>
+                                        <a href="" class="btn adjust btn-default btn-float btn-120 gray">Chi Tiết</a>
+                                        <a href="" class="btn adjust btn-orange-basic btn-float btn-120 btn-nudge-back yellow-bright">Đặt Hàng</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-box">
+                                <div class="img-area"><img src="{{ asset('frontend/img/slider/images1.jpg') }}" alt=""></div>
+                                <div class="img-text">
+                                    <h5>Person Eight</h5>
+                                    <span>asdkjakdsjaskd</span>
+                                    <p>asdjasjdhassssssjdhajdshjs</p>
+                                    <div>
+                                        <a href="" class="btn adjust btn-default btn-float btn-120 gray">Chi Tiết</a>
+                                        <a href="" class="btn adjust btn-orange-basic btn-float btn-120 btn-nudge-back yellow-bright">Đặt Hàng</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-box">
+                                <div class="img-area"><img src="{{ asset('frontend/img/slider/images1.jpg') }}" alt=""></div>
+                                <div class="img-text">
+                                    <h5>Person Nine</h5>
+                                    <span>asdkjakdsjaskd</span>
+                                    <p>asdjasjdhassssssjdhajdsh</p>
+                                    <div>
+                                        <a href="" class="btn adjust btn-default btn-float btn-120 gray">Chi Tiết</a>
+                                        <a href="" class="btn adjust btn-orange-basic btn-float btn-120 btn-nudge-back yellow-bright">Đặt Hàng</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div> 
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon icon-prev" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon icon-next" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+            {{-- <div class="row property__gallery">
                 @foreach ($listProduct as $key => $item)
                     @if ($key < 8)
                         <div class="col-lg-3 col-md-4 col-sm-6 mix women">
@@ -148,7 +294,7 @@
                 @endforeach
                 {{-- Phan trang --}}
                 {{-- {{$listProduct->links()}} --}} 
-            </div>
+            {{-- </div> --}} 
         </div>
     </section>
 
