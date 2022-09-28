@@ -11,11 +11,50 @@
                 <nav class="header__menu">
                     <ul>
                         <li class="active"><a href="{{ route('home') }}">Home</a></li>
-                        <li><a href="{{ route('home') }}">Women's</a></li>
-                        <li><a href="{{ route('home') }}">Men's</a></li>
+                        <li><a href="#">Women's</a></li>
+                        <li><a href="#">Men's</a></li>
                         <li><a href="{{ route('shop') }}">Shop</a></li>
                         <li><a href="{{ route('blog') }}">Blog</a></li>
                         <li><a href="{{ route('contact') }}">Contact</a></li>
+                        <li class="dropdown">
+                            <a href="#" id="branch">Branch</a>
+                            <div class="dropdown-content">
+                                <div class="row_content">
+                                    <div class="column_content">
+                                    <a href="#" class="column_a">Link 1</a>
+                                    <a href="#" class="column_a">Link 2</a>
+                                    <a href="#" class="column_a">Link 3</a>
+                                    <a href="#" class="column_a">Link 1</a>
+                                    <a href="#" class="column_a">Link 2</a>
+                                    <a href="#" class="column_a">Link 3</a>
+                                    </div>
+                                    <div class="column_content">
+                                    <a href="#" class="column_a">Link 1</a>
+                                    <a href="#" class="column_a">mink 2</a>
+                                    <a href="#" class="column_a">Link 3</a>
+                                    <a href="#" class="column_a">Link 1</a>
+                                    <a href="#" class="column_a">Link 2</a>
+                                    <a href="#" class="column_a">Link 3</a>
+                                    </div>
+                                    <div class="column_content">
+                                    <a href="#" class="column_a">Link 1</a>
+                                    <a href="#" class="column_a">Link 2</a>
+                                    <a href="#" class="column_a">Link 3</a>
+                                    <a href="#" class="column_a">Link 1</a>
+                                    <a href="#" class="column_a">Link 2</a>
+                                    <a href="#" class="column_a">Link 3</a>
+                                    </div>
+                                    <div class="column_content">
+                                    <a href="#" class="column_a">Link 1</a>
+                                    <a href="#" class="column_a">Link 2</a>
+                                    <a href="#" class="column_a">Link 3</a>
+                                    <a href="#" class="column_a">Link 1</a>
+                                    <a href="#" class="column_a">Link 2</a>
+                                    <a href="#" class="column_a">Link 3</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </nav>
             </div>
