@@ -294,7 +294,7 @@
                 @endforeach
                 {{-- Phan trang --}}
                 {{-- {{$listProduct->links()}} --}} 
-            {{-- </div> --}}
+            {{-- </div> --}} 
         </div>
     </section>
 
