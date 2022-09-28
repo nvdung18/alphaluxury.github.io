@@ -14,8 +14,8 @@
                         <li><a href="#">Women's</a></li>
                         <li><a href="#">Men's</a></li>
                         <li><a href="{{ route('shop') }}">Shop</a></li>
-                        <li><a href="{{ route('blog') }}">Blog</a></li>
-                        <li><a href="{{ route('contact') }}">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
                         <li class="dropdown">
                             <a href="#" id="branch">Branch</a>
                             <div class="dropdown-content">
