@@ -99,7 +99,7 @@
 
     {{-- Product Section Begin --}}
     <section class="product spad">
-        <div class="container">
+        <div class="container width-1500">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="section-title">
