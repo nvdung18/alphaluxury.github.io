@@ -56,4 +56,3 @@ Route::prefix('admin')->group(function(){
 Route::get('/rev', function(){
     return view('test');
 })->name('test2');
-

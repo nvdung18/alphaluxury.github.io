@@ -58,6 +58,42 @@
                     </ul>
                 </nav>
             </div>
+            {{-- <div class="dropdown-content" id="dropdownid">
+                <div class="row_content">
+                    <div class="column_content">
+                    <a href="#" class="column_a">Link 1</a>
+                    <a href="#" class="column_a">Link 2</a>
+                    <a href="#" class="column_a">Link 3</a>
+                    <a href="#" class="column_a">Link 1</a>
+                    <a href="#" class="column_a">Link 2</a>
+                    <a href="#" class="column_a">Link 3</a>
+                    </div>
+                    <div class="column_content">
+                    <a href="#" class="column_a">Link 1</a>
+                    <a href="#" class="column_a">mink 2</a>
+                    <a href="#" class="column_a">Link 3</a>
+                    <a href="#" class="column_a">Link 1</a>
+                    <a href="#" class="column_a">Link 2</a>
+                    <a href="#" class="column_a">Link 3</a>
+                    </div>
+                    <div class="column_content">
+                    <a href="#" class="column_a">Link 1</a>
+                    <a href="#" class="column_a">Link 2</a>
+                    <a href="#" class="column_a">Link 3</a>
+                    <a href="#" class="column_a">Link 1</a>
+                    <a href="#" class="column_a">Link 2</a>
+                    <a href="#" class="column_a">Link 3</a>
+                    </div>
+                    <div class="column_content">
+                    <a href="#" class="column_a">Link 1</a>
+                    <a href="#" class="column_a">Link 2</a>
+                    <a href="#" class="column_a">Link 3</a>
+                    <a href="#" class="column_a">Link 1</a>
+                    <a href="#" class="column_a">Link 2</a>
+                    <a href="#" class="column_a">Link 3</a>
+                    </div>
+                </div>
+            </div> --}}
             <div class="col-lg-3">
                 <div class="header__right">
                     <div class="header__right__auth">
@@ -80,5 +116,20 @@
             <i class="fa fa-bars"></i>
         </div>
     </div>
+    <script>
+        // function addMenu() {
+        //     var menu = document.querySelector('.dropdown-content');
+        //     console.log("add Menu");
+        //     menu.style.display = 'block';
+        // } 
+        // function removeMenu() {
+        //     var menu = document.getElementById('dropdownid');
+        //     var menuitem = document.getElementByC
+        //     console.log("remove menu");
+        //     // menu.style.display = 'none';
+        // }
+        // document.getElementById("branch").onmouseover = function() {addMenu()};
+        // document.getElementById("dropdownid").onmouseout = function() {removeMenu()};
+    </script>
 </header>
 {{-- Header Section End --}}
