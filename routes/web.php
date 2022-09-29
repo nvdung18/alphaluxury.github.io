@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,3 +55,11 @@ Route::get('/admin', function(){
 Route::get('/test3', function(){
     return view('test');
 })->name('test3');
+
+// register
+
+Route::get('/register', function () {
+    return view('users.register');
+})->name('register');
+
+Route::post('/addUser', [UserController::class, 'add'])->name('addUser');
