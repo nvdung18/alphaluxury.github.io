@@ -5,6 +5,11 @@ use App\Models\User;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\RevenueController;
+use App\Http\Controllers\UserController;
+use Laravel\Socialite\Facades\Socialite;
+
+use function PHPUnit\Framework\returnSelf;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,6 +58,28 @@ Route::prefix('admin')->group(function(){
     })->name('admin');
     Route::get('/monthly-revenue', [RevenueController::class,'getRevenue'])->name('monthly-revenue');
 });
+
 Route::get('/rev', function(){
     return view('test');
 })->name('test2');
+
+//Login/register
+Route::get('/register', function(){
+    return view('users.register');
+})->name('register');
+
+Route::post('/addUser', [UserController::class, 'add'])->name('addUser');
+
+Route::get('/login',[UserController::class,'showlogin'])->name('user.login');
+Route::post('/checklogin',[UserController::class,'checklogin'])->name('user.checklogin');
+Route::get('/chinh-sach-rieng-tu', function(){
+    return '<h1>Chinh Sach Rieng Tu</h1>';
+});
+
+Route::get('/auth/facebook', function(){
+    return Socialite::driver('facebook')->redirect();;
+});
+
+Route::get('/auth/facebook/callback', function(){
+    return 'Callback Login Facebook';
+});

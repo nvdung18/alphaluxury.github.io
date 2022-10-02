@@ -126,6 +126,9 @@ form .input-box span.details{
    transition: all 0.3s ease;
    background: linear-gradient(135deg, #71b7e6, #9b59b6);
  }
+  .btn:hover {
+   color: blueviolet;
+ }
  form .button input:hover{
   /* transform: scale(0.99); */
   background: linear-gradient(-135deg, #71b7e6, #9b59b6);
@@ -155,42 +158,73 @@ form .user-details .input-box{
   }
 }
    </style>
-<body>
+<body> 
   <div class="container">
     <div class="title">Registration</div>
     <div class="content">
+        <span class="alert alert-danger" style="color: red; font-size: 20px">
+          @if (session('message'))
+          {{ session('message') }}
+          @endif
+        </span>
       <form action="{{ route('addUser') }}" method="POST">
         @csrf
+        <input type="text" placeholder="Enter your username" value="1" name="role" style="display: none">
+        <input type="text" placeholder="Enter your username" value="1" name="status" style="display: none">
         <div class="user-details">
           <div class="input-box">
             <span class="details">Username</span>
-            <input type="text" placeholder="Enter your username"  name="username" required>
+            <input type="text" placeholder="Enter your username" name="name">
+            <span class="alert alert-danger" style="color: red;">
+              @if ($errors->has('name'))
+                {{ $errors->first('name') }}
+              @endif
+            </span>
           </div>
           <div class="input-box">
             <span class="details">Email</span>
-            <input type="email" placeholder="Enter your email" name="email" required>
+            <input type="email" placeholder="Enter your email" name="email">
+            <span class="alert alert-danger" style="color: red;">
+              @if ($errors->has('email'))
+                {{ $errors->first('email') }}
+              @endif
+            </span>
           </div>
           <div class="input-box">
             <span class="details">Address</span>
-            <input type="text" placeholder="Enter your address" name="address" required>
+            <input type="text" placeholder="Enter your address" name="address">
+            <span class="alert alert-danger" style="color: red;">
+              @if ($errors->has('address'))
+                {{ $errors->first('address') }}
+              @endif
+            </span>
           </div>
           <div class="input-box">
             <span class="details">Phone Number</span>
-            <input type="password" placeholder="Enter your number" name="phonenumber" required>
+            <input type="password" placeholder="Enter your number" name="phone">
+            <span class="alert alert-danger" style="color: red;">
+              @if ($errors->has('phone'))
+                {{ $errors->first('phone') }}
+              @endif
+            </span>
           </div>
           <div class="input-box">
             <span class="details">Password</span>
-            <input type="password" placeholder="Enter your password" name="password" required>
+            <input type="password" placeholder="Enter your password" name="password">
+            <span class="alert alert-danger" style="color: red;">
+              @if ($errors->has('password'))
+                {{ $errors->first('password') }}
+              @endif
+            </span>
           </div>
           <div class="input-box">
             <span class="details">Confirm Password</span>
-            <input type="password" placeholder="Confirm your password" name="confirmpassword" required>
+            <input type="password" placeholder="Confirm your password" name="password_confirmation">
           </div>
         </div>
         <div class="gender-details">
           <input type="radio" name="gender" id="dot-1" value="1">
           <input type="radio" name="gender" id="dot-2" value="2">
-          <input type="radio" name="gender" id="dot-3" value="3">
           <span class="gender-title">Gender</span>
           <div class="category">
             <label for="dot-1">
@@ -201,16 +235,15 @@ form .user-details .input-box{
             <span class="dot two"></span>
             <span class="gender">Female</span>
           </label>
-          <label for="dot-3">
-            <span class="dot three"></span>
-            <span class="gender">Prefer not to say</span>
-            </label>
           </div>
         </div>
         <div class="button">
           <input type="submit" value="Register">
         </div>
       </form>
+    </div>
+    <div class="" style="font-size: 20px">
+      <a class="btn" href="{{ route('user.login') }}">Login</a>
     </div>
   </div>
 
