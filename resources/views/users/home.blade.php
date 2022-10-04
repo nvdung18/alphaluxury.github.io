@@ -30,6 +30,10 @@
     {{-- Page Preloader --}}
     @include('parts.pre_loader')
 
+    {{-- Off Canvas Menu Begin --}}
+    @include('parts.off_canvas_menu')
+    {{-- Off Canvas Menu End --}}
+
     {{-- Header Section Begin --}}
     @include('parts.header')
     {{-- Header Section End --}}
@@ -40,9 +44,9 @@
             <div class="row">
                 <div class="col-lg-6 p-0">
                     <div class="categories__item categories__large__item set-bg"
-                        data-setbg="{{ asset('frontend/img/categories/category-1.jpg') }}">
+                        data-setbg="{{ asset('frontend/img/banner/men-watches-luxshopping.png') }}">
                         <div class="categories__text">
-                            <h1>Women’s fashion</h1>
+                            <h1>Men's fashion</h1>
                             <p>Sitamet, consectetur adipiscing elit, sed do eiusmod tempor incidid-unt labore
                                 edolore magna aliquapendisse ultrices gravida.</p>
                             <a href="#">Shop now</a>
@@ -53,9 +57,9 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 p-0">
                             <div class="categories__item set-bg"
-                                data-setbg="{{ asset('frontend/img/categories/category-2.jpg') }}">
+                                data-setbg="{{ asset('frontend/img/banner/women-fashion.jpg') }}">
                                 <div class="categories__text">
-                                    <h4>Men’s fashion</h4>
+                                    <h4>Women's fashion</h4>
                                     <p>358 items</p>
                                     <a href="#">Shop now</a>
                                 </div>
@@ -63,9 +67,9 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 p-0">
                             <div class="categories__item set-bg"
-                                data-setbg="{{ asset('frontend/img/categories/category-3.jpg') }}">
+                                data-setbg="{{ asset('frontend/img/banner/couple.png') }}">
                                 <div class="categories__text">
-                                    <h4>Kid’s fashion</h4>
+                                    <h4>Couple fashion</h4>
                                     <p>273 items</p>
                                     <a href="#">Shop now</a>
                                 </div>
@@ -73,9 +77,9 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 p-0">
                             <div class="categories__item set-bg"
-                                data-setbg="{{ asset('frontend/img/categories/category-4.jpg') }}">
+                                data-setbg="{{ asset('frontend/img/banner/hotproduct.png') }}">
                                 <div class="categories__text">
-                                    <h4>Cosmetics</h4>
+                                    <h4>Hot product</h4>
                                     <p>159 items</p>
                                     <a href="#">Shop now</a>
                                 </div>
@@ -83,9 +87,9 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 p-0">
                             <div class="categories__item set-bg"
-                                data-setbg="{{ asset('frontend/img/categories/category-5.jpg') }}">
+                                data-setbg="{{ asset('frontend/img/banner/deal-sale-watches-luxshopping.png') }}">
                                 <div class="categories__text">
-                                    <h4>Accessories</h4>
+                                    <h4>Sale</h4>
                                     <p>792 items</p>
                                     <a href="#">Shop now</a>
                                 </div>
@@ -299,122 +303,9 @@
     </section>
 
     {{-- Banner Section Begin --}}
-    <section class="banner set-bg" data-setbg="{{ asset('frontend/img/banner/banner-1.jpg') }}">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-7 col-lg-8 m-auto">
-                    <div class="banner__slider owl-carousel">
-                        <div class="banner__item">
-                            <div class="banner__text">
-                                <span>The Chloe Collection</span>
-                                <h1>The Project Jacket</h1>
-                                <a href="#">Shop now</a>
-                            </div>
-                        </div>
-                        <div class="banner__item">
-                            <div class="banner__text">
-                                <span>The Chloe Collection</span>
-                                <h1>The Project Jacket</h1>
-                                <a href="#">Shop now</a>
-                            </div>
-                        </div>
-                        <div class="banner__item">
-                            <div class="banner__text">
-                                <span>The Chloe Collection</span>
-                                <h1>The Project Jacket</h1>
-                                <a href="#">Shop now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section class="banner set-bg" data-setbg="{{ asset('frontend/img/banner/women-day.jpg') }}">
     </section>
     {{-- Banner section end --}}
-
-    {{-- Trend Section Begin --}}
-    <section class="trend spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="trend__content">
-                        <div class="section-title">
-                            <h4>Hot Trend</h4>
-                        </div>
-                        @for ($i = 0; $i < 3; $i++)
-                            <div class="trend__item">
-                                <div class="trend__item__pic">
-                                    <img src="{{ asset('frontend/img/trend/ht-1.jpg') }}" alt="">
-                                </div>
-                                <div class="trend__item__text">
-                                    <h6>Chain bucket bag</h6>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <div class="product__price">$ 59.0</div>
-                                </div>
-                            </div>
-                        @endfor
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="trend__content">
-                        <div class="section-title">
-                            <h4>Best seller</h4>
-                        </div>
-                        @for ($i = 0; $i < 3; $i++)
-                            <div class="trend__item">
-                                <div class="trend__item__pic">
-                                    <img src="{{ asset('frontend/img/trend/bs-1.jpg') }}" alt="">
-                                </div>
-                                <div class="trend__item__text">
-                                    <h6>Cotton T-Shirt</h6>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <div class="product__price">$ 59.0</div>
-                                </div>
-                            </div>
-                        @endfor
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="trend__content">
-                        <div class="section-title">
-                            <h4>Feature</h4>
-                        </div>
-                        @for ($i = 0; $i < 3; $i++)
-                            <div class="trend__item">
-                                <div class="trend__item__pic">
-                                    <img src="{{ asset('frontend/img/trend/f-1.jpg') }}" alt="">
-                                </div>
-                                <div class="trend__item__text">
-                                    <h6>Bow wrap skirt</h6>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <div class="product__price">$ 59.0</div>
-                                </div>
-                            </div>
-                        @endfor
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    {{-- Trend Section End --}}
 
     {{-- Discount Section Begin --}}
     <section class="discount">
@@ -493,10 +384,6 @@
         </div>
     </section>
     {{-- Services Section End --}}
-
-    {{-- Instagram Begin --}}
-    @include('parts.instagram')
-    {{-- Instagram End --}}
 
     {{-- Footer Section Begin --}}
     @include('parts.footer')
