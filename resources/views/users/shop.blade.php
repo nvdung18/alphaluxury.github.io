@@ -40,11 +40,37 @@
     <!-- Breadcrumb Begin -->
     <div class="breadcrumb-option">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb__links">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="breadcrumb__links col-lg-8 col-md-8">
                         <a href="#"><i class="fa fa-home"></i> Home</a>
                         <span>Shop</span>
+                    </div>
+                    <div class="find-panel col-lg-4 col-md-4">
+                        <div class="style-select">
+                            <select class="custom-select" id="inputGroupSelect01">
+                                <option value="1">Branch</option>
+                                @for ($i=0;$i<30;$i++)
+                                    <option value="1">One</option>
+                                @endfor
+                            </select>
+                        </div>
+                        <div class="style-select">
+                            <select class="custom-select" id="inputGroupSelect01">
+                                <option value="1">Price</option>
+                                @for ($i=0;$i<30;$i++)
+                                    <option value="1">One</option>
+                                @endfor
+                            </select>
+                        </div>
+                        <div class="style-select">
+                            <select class="custom-select" id="inputGroupSelect01">
+                                <option value="1">Gender</option>
+                                @for ($i=0;$i<30;$i++)
+                                    <option value="1">One</option>
+                                @endfor
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,14 +81,28 @@
     <!-- Shop Section Begin -->
     <section class="shop spad">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-3">
-                    <div class="shop__sidebar">
-                        <div class="sidebar__categories">
-                            <div class="section-title">
+            {{-- <div class="col-lg-12 col-md-12">
+                <div class="shop__sidebar">
+                    <div class="sidebar__categories">
+                        <div class="row">
+                            <div class="section-title col-lg-8 col-md-8">
                                 <h4>Men's watch</h4>
                             </div>
-                            <div class="categories__accordion">
+                            <div class="find-panel col-lg-4 col-md-8">
+                                <div class="row">
+                                    <div class="style-select">
+                                        <span>Branch</span>
+                                    </div>
+                                    <div class="style-select">
+                                        <span>Branch</span>
+                                    </div>
+                                    <div class="style-select">
+                                        <span>Branch</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="categories__accordion">
                                 <div class="accordion" id="accordionExample">
                                     <div class="card">
                                         <div class="card-heading active">
@@ -100,49 +140,38 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </div>
-                <div class="col-lg-9 col-md-9">
-                    <div class="row">
-                        {{-- @foreach ($listProduct as $key => $item)
-                            @if ($key < 9)
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="product__item">
-                                        <div class="product__item__pic set-bg"
-                                            data-setbg="{{ asset('frontend/img/shop/shop-1.jpg') }}">
-                                            <div class="label new">New</div>
-                                            <ul class="product__hover">
-                                                <li><a href="{{ asset('frontend/img/shop/shop-1.jpg') }}"
-                                                        class="image-popup"><span class="arrow_expand"></span></a>
-                                                </li>
-                                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="product__item__text">
-                                            <h6><a href="{{ route('product-details') }}">{{ $item->name }}</a></h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="product__price">$ {{ $item->price }}</div>
-                                        </div>
+            </div> --}}
+            <div class="col-lg-12 col-md-12">
+                <div class="row">
+                    @for ($i = 0; $i < 9; $i++)
+                        <div class="col-6 col-md-4" style="margin-bottom: 30px;">
+                            <div class="single-box">
+                                <div class="img-area"><img src="{{ asset('frontend/img/slider/images1.jpg') }}"
+                                        alt=""></div>
+                                <div class="img-text">
+                                    <h5>Person One</h5>
+                                    <span>asdkjakdsjaskd</span>
+                                    <p>25,555</p>
+                                    <div>
+                                        <a href="" class="btn adjust btn-default btn-float btn-120 gray">Chi
+                                            Tiết</a>
+                                        <a href=""
+                                            class="btn adjust btn-orange-basic btn-float btn-120 btn-nudge-back yellow-bright">Đặt
+                                            Hàng</a>
                                     </div>
                                 </div>
-                            @endif
-                        @endforeach --}}
-                        <div class="col-lg-12 text-center">
-                            <div class="pagination__option">
-                                <a href="#">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#"><i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
+                    @endfor
+                </div>
+                <div class="col-lg-12 text-center">
+                    <div class="pagination__option">
+                        <a href="#">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#"><i class="fa fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>

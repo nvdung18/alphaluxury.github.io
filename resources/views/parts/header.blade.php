@@ -11,10 +11,6 @@
                 <nav class="header__menu">
                     <ul>
                         <li class="active"><a href="{{ route('home') }}">Home</a></li>
-                        <li><a href="#">Women's</a></li>
-                        <li><a href="#">Men's</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Contact</a></li>
                         <li class="dropdown">
                             <a href="#" id="branch">Branch</a>
                             <div class="dropdown-content">
@@ -54,6 +50,10 @@
                                 </div>
                             </div>
                         </li>
+                        <li><a href="#">Women's</a></li>
+                        <li><a href="#">Men's</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -65,9 +65,6 @@
                     </div>
                     <ul class="header__right__widget">
                         <li><span class="icon_search search-switch"></span></li>
-                        <li><a href="#"><span class="icon_bag_alt"></span>
-                                <div class="tip">2</div>
-                            </a></li>
                         <li><a href="#"><span class="icon_bag_alt"></span>
                                 <div class="tip">2</div>
                             </a></li>
