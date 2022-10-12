@@ -195,11 +195,28 @@
 
 .pagination__option {
 
-    a {
-        display: inline-block;
+    ul,
+    li {
+        display: flex;
+        list-style: none;
+
+        .active {
+            span {
+                border-color: #0d0d0d;
+                background: #0d0d0d;
+                color: $white-color;
+            }
+        }
+    }
+
+    a,
+    span {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         height: 40px;
         width: 40px;
-        border: 1px solid #f2f2f2;
+        border: 2px solid #f2f2f2;
         border-radius: 50%;
         font-size: 14px;
         color: $heading-color;
@@ -222,10 +239,23 @@
             border-color: #0d0d0d;
             color: $white-color;
         }
+
     }
 }
 
-.find-panel{
+.find-panel {
     display: flex;
     justify-content: space-between;
+
+    .style-select {
+        margin-right: 20px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        .style-select-element {
+            width: auto;
+        }
+    }
 }
