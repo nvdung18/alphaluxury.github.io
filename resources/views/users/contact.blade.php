@@ -96,10 +96,6 @@
     </section>
     <!-- Contact Section End -->
 
-    {{-- Instagram Begin --}}
-    @include('parts.instagram')
-    {{-- Instagram End --}}
-
     {{-- Footer Section Begin --}}
     @include('parts.footer')
     {{-- Footer Section End --}}

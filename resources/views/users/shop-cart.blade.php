@@ -29,6 +29,10 @@
     {{-- Page Preloader --}}
     @include('parts.pre_loader')
 
+    {{-- Off Canvas Menu Begin --}}
+    @include('parts.off_canvas_menu')
+    {{-- Off Canvas Menu End --}}
+
     {{-- Header Section Begin --}}
     @include('parts.header')
     {{-- Header Section End --}}
@@ -67,7 +71,7 @@
                             @for ($i = 0; $i < 4; $i++)
                                 <tr>
                                     <td class="cart__product__item">
-                                        <img src="{{ asset('frontend/img/shop-cart/cp-1.jpg') }}" alt="">
+                                        <img src="{{ asset('frontend/img/banner/UploadsNewscalvin-klein-infinite-automatic-silver-dial-men-s-watch-42mmjpg_540_660.jpg') }}" alt="" style="width: 50px; height: 50px;">
                                         <div class="cart__product__item__title">
                                             <h6>Chain bucket bag</h6>
                                             <div class="rating">
@@ -129,10 +133,6 @@
         </div>
     </section>
     <!-- Shop Cart Section End -->
-
-    {{-- Instagram Begin --}}
-    @include('parts.instagram')
-    {{-- Instagram End --}}
 
     {{-- Footer Section Begin --}}
     @include('parts.footer')

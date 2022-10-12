@@ -53,47 +53,39 @@
     <section class="product-details spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-7">
                     <div class="product__details__pic">
                         <div class="product__details__pic__left product__thumb nice-scroll">
                             <a class="pt active" href="#product-1">
-                                <img src="{{ asset('frontend/img/product/details/thumb-1.jpg') }}" alt="">
+                                <img src="{{ asset('frontend/img/product/88RUE_DU_RHONE/SP01.jpg') }}" alt="">
                             </a>
                             <a class="pt" href="#product-2">
-                                <img src="{{ asset('frontend/img/product/details/thumb-2.jpg') }}" alt="">
+                                <img src="{{ asset('frontend/img/product/88RUE_DU_RHONE/details/dt1.jpg') }}" alt="">
                             </a>
                             <a class="pt" href="#product-3">
-                                <img src="{{ asset('frontend/img/product/details/thumb-3.jpg') }}" alt="">
+                                <img src="{{ asset('frontend/img/product/88RUE_DU_RHONE/details/dt2.jpg') }}" alt="">
                             </a>
-                            <a class="pt" href="#product-4">
+                            {{-- <a class="pt" href="#product-4">
                                 <img src="{{ asset('frontend/img/product/details/thumb-4.jpg') }}" alt="">
-                            </a>
+                            </a> --}}
                         </div>
                         <div class="product__details__slider__content">
                             <div class="product__details__pic__slider owl-carousel">
                                 <img data-hash="product-1" class="product__big__img"
-                                    src="{{ asset('frontend/img/product/details/thumb-1.jpg') }}" alt="">
+                                    src="{{ asset('frontend/img/product/88RUE_DU_RHONE/SP01.jpg') }}" alt="">
                                 <img data-hash="product-2" class="product__big__img"
-                                    src="{{ asset('frontend/img/product/details/thumb-2.jpg') }}" alt="">
+                                    src="{{ asset('frontend/img/product/88RUE_DU_RHONE/details/dt1.jpg') }}" alt="">
                                 <img data-hash="product-3" class="product__big__img"
-                                    src="{{ asset('frontend/img/product/details/thumb-3.jpg') }}" alt="">
-                                <img data-hash="product-4" class="product__big__img"
-                                    src="{{ asset('frontend/img/product/details/thumb-4.jpg') }}" alt="">
+                                    src="{{ asset('frontend/img/product/88RUE_DU_RHONE/details/dt2.jpg') }}" alt="">
+                                {{-- <img data-hash="product-4" class="product__big__img"
+                                    src="{{ asset('frontend/img/product/details/thumb-4.jpg') }}" alt=""> --}}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <div class="product__details__text">
                         <h3>Essential structured blazer <span>Brand: SKMEIMore Men Watches from SKMEI</span></h3>
-                        <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <span>( 138 reviews )</span>
-                        </div>
                         <div class="product__details__price">$ 75.0 <span>$ 83.0</span></div>
                         <p>Nemo enim ipsam voluptatem quia aspernatur aut odit aut loret fugit, sed quia consequuntur
                             magni lores eos qui ratione voluptatem sequi nesciunt.</p>
@@ -124,46 +116,20 @@
                     <div class="product__details__tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1"
-                                    role="tab">Description</a>
+                                <a class="nav-link" data-toggle="tab" href="#tabs-1" role="tab">Write a review</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-2"
-                                    role="tab">Specification</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Reviews ( 2
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Reviews ( 2
                                     )</a>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <h6>Description</h6>
-                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed
-                                    quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt loret.
-                                    Neque porro lorem quisquam est, qui dolorem ipsum quia dolor si. Nemo enim ipsam
-                                    voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed quia ipsu
-                                    consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Nulla
-                                    consequat massa quis enim.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-                                    dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-                                    nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
-                                    quis, sem.</p>
+                                <h6>Write a review</h6>
+                                <textarea class="review-product" id="" style="width: 100%;" placeholder="Enter a product review..."></textarea>
+                                <button type="button" class="btn btn-outline-secondary send-review">Send review</button>
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
-                                <h6>Specification</h6>
-                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed
-                                    quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt loret.
-                                    Neque porro lorem quisquam est, qui dolorem ipsum quia dolor si. Nemo enim ipsam
-                                    voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed quia ipsu
-                                    consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Nulla
-                                    consequat massa quis enim.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-                                    dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-                                    nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
-                                    quis, sem.</p>
-                            </div>
-                            <div class="tab-pane" id="tabs-3" role="tabpanel">
                                 <h6>Reviews ( 2 )</h6>
                                 <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed
                                     quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt loret.
@@ -189,7 +155,7 @@
                 @for ($i = 0; $i < 4; $i++)
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="{{ asset('frontend/img/product/related/rp-1.jpg') }}">
+                            <div class="product__item__pic set-bg" data-setbg="{{ asset('frontend/img/product/88RUE_DU_RHONE/SP02.jpg') }}">
                                 <div class="label new">New</div>
                                 <ul class="product__hover">
                                     <li><a href="{{ asset('frontend/img/product/related/rp-1.jpg') }}" class="image-popup"><span
@@ -216,10 +182,6 @@
         </div>
     </section>
 
-
-    {{-- Instagram Begin --}}
-    @include('parts.instagram')
-    {{-- Instagram End --}}
 
     {{-- Footer Section Begin --}}
     @include('parts.footer')

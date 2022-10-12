@@ -322,23 +322,3 @@
         @include transition(all, .3s);
     }
 }
-
-.instagram__text {
-    text-align: center;
-    opacity: 0;
-    visibility: hidden;
-    @include transition(all, .3s);
-
-    i {
-        font-size: 30px;
-        color: #0d0d0d;
-    }
-
-    a {
-        font-size: 16px;
-        color: #0d0d0d;
-        font-weight: 500;
-        display: block;
-        margin-top: 10px;
-    }
-}
