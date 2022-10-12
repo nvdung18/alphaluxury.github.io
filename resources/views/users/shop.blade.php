@@ -42,33 +42,36 @@
         <div class="container">
             <div class="col-lg-12">
                 <div class="row">
-                    <div class="breadcrumb__links col-lg-8 col-md-8">
+                    <div class="breadcrumb__links col-lg-6 col-md-6">
                         <a href="#"><i class="fa fa-home"></i> Home</a>
                         <span>Shop</span>
                     </div>
-                    <div class="find-panel col-lg-4 col-md-4">
+                    <div class="find-panel col-lg-6 col-md-6">
                         <div class="style-select">
-                            <select class="custom-select" id="inputGroupSelect01">
-                                <option value="1">Branch</option>
-                                @for ($i=0;$i<30;$i++)
-                                    <option value="1">One</option>
-                                @endfor
+                            <select class="custom-select style-select-element" id="inputGroupSelect01">
+                                <option value="0">Branch</option>
+                                @foreach ($listTrademark as $key => $item)
+                                    <option value="{{ $key + 1 }}">{{ $item->nameTrademark }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="style-select">
-                            <select class="custom-select" id="inputGroupSelect01">
-                                <option value="1">Price</option>
-                                @for ($i=0;$i<30;$i++)
-                                    <option value="1">One</option>
-                                @endfor
+                            <select class="custom-select style-select-element" id="inputGroupSelect02">
+                                <option value="0">Price</option>
+                                <option value="1">
+                                    < 7 triệu</option>
+                                <option value="2">7 - 20 triệu</option>
+                                <option value="3">20 -50 triệu</option>
+                                <option value="4">50 - 200 triệu</option>
+                                <option value="1">200 - 500 triệu</option>
+                                <option value="1">> 500 triệu</option>
                             </select>
                         </div>
                         <div class="style-select">
-                            <select class="custom-select" id="inputGroupSelect01">
-                                <option value="1">Gender</option>
-                                @for ($i=0;$i<30;$i++)
-                                    <option value="1">One</option>
-                                @endfor
+                            <select class="custom-select style-select-element" id="inputGroupSelect03">
+                                <option value="0">Gender</option>
+                                <option value="1">Nam</option>
+                                <option value="2">Nữ</option>
                             </select>
                         </div>
                     </div>
@@ -81,99 +84,17 @@
     <!-- Shop Section Begin -->
     <section class="shop spad">
         <div class="container">
-            {{-- <div class="col-lg-12 col-md-12">
-                <div class="shop__sidebar">
-                    <div class="sidebar__categories">
-                        <div class="row">
-                            <div class="section-title col-lg-8 col-md-8">
-                                <h4>Men's watch</h4>
-                            </div>
-                            <div class="find-panel col-lg-4 col-md-8">
-                                <div class="row">
-                                    <div class="style-select">
-                                        <span>Branch</span>
-                                    </div>
-                                    <div class="style-select">
-                                        <span>Branch</span>
-                                    </div>
-                                    <div class="style-select">
-                                        <span>Branch</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="categories__accordion">
-                                <div class="accordion" id="accordionExample">
-                                    <div class="card">
-                                        <div class="card-heading active">
-                                            <a data-toggle="collapse" data-target="#collapseOne">Branch</a>
-                                        </div>
-                                        <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
-                                            <div class="card-body">
-                                                <ul>
-                                                    <li><a href="#">asdf</a></li>
-                                                    <li><a href="#">sdf</a></li>
-                                                    <li><a href="#">fd</a></li>
-                                                    <li><a href="#">fd</a></li>
-                                                    <li><a href="#">vsd</a></li>
-                                                    <li><a href="#">Jeans</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-heading">
-                                            <a data-toggle="collapse" data-target="#collapseTwo">Price</a>
-                                        </div>
-                                        <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
-                                            <div class="card-body">
-                                                <ul>
-                                                    <li><a href="#">asdjf</a></li>
-                                                    <li><a href="#">Jackets</a></li>
-                                                    <li><a href="#">Dresses</a></li>
-                                                    <li><a href="#">Shirts</a></li>
-                                                    <li><a href="#">T-shirts</a></li>
-                                                    <li><a href="#">Jeans</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-            </div> --}}
             <div class="col-lg-12 col-md-12">
                 <div class="row">
-                    @for ($i = 0; $i < 9; $i++)
-                        <div class="col-6 col-md-4" style="margin-bottom: 30px;">
-                            <div class="single-box">
-                                <div class="img-area"><img src="{{ asset('frontend/img/slider/images1.jpg') }}"
-                                        alt=""></div>
-                                <div class="img-text">
-                                    <h5>Person One</h5>
-                                    <span>asdkjakdsjaskd</span>
-                                    <p>25,555</p>
-                                    <div>
-                                        <a href="" class="btn adjust btn-default btn-float btn-120 gray">Chi
-                                            Tiết</a>
-                                        <a href=""
-                                            class="btn adjust btn-orange-basic btn-float btn-120 btn-nudge-back yellow-bright">Đặt
-                                            Hàng</a>
-                                    </div>
-                                </div>
-                            </div>
+                    @foreach ($listProduct as $key => $item)
+                        <div class="col-md-4 col-sm-6 mb-3 mt-5">
+                            @include('parts.product')
                         </div>
-                    @endfor
+                    @endforeach
                 </div>
-                <div class="col-lg-12 text-center">
-                    <div class="pagination__option">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#"><i class="fa fa-angle-right"></i></a>
-                    </div>
-                </div>
+            </div>
+            <div class="row col-lg-12 text-center d-flex justify-content-center mt-3">
+                {{ $listProduct->links('parts.pagination') }}
             </div>
         </div>
     </section>

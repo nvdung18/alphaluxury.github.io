@@ -16,11 +16,22 @@ use App\Http\Controllers\RevenueController;
 |
 */
 
-Route::get('/', [HomeController::class,'getNewProduct'])->name('home');
-Route::get('/shop', [ShopController::class,'getNewProduct'])->name('shop');
-Route::get('/product-details', function(){
-    return view('users.product-details');
-})->name('product-details');
+Route::get('/', [HomeController::class,'getProductSlider'])->name('home');
+Route::prefix('shop')->group(function () {
+    Route::name('shop.')->group(function () {
+        Route::prefix('/watch-men')->group(function () {
+            Route::get('/', [ShopController::class,'getProductMaleP'])->name('men');
+            Route::get('/product-details', function(){
+                return view('users.product-details');
+            })->name('product-details');
+        });
+        Route::get('/watch-female', [ShopController::class,'getProductFemaleP'])->name('women');
+    });
+});
+
+// Route::get('/product-details', function(){
+//     return view('users.product-details');
+// })->name('product-details');
 
 Route::get('/shop-cart', function(){
     return view('users.shop-cart');
