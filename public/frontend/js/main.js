@@ -42,8 +42,8 @@ Created: Colorib
     });
 
     /*------------------
-		Navigation
-	--------------------*/
+        Navigation
+    --------------------*/
     $(".header__menu").slicknav({
         prependTo: '#mobile-menu-wrap',
         allowParentLinks: true
@@ -74,21 +74,21 @@ Created: Colorib
     });
 
     /*-------------------
-		Range Slider
-	--------------------- */
-	var rangeSlider = $(".price-range"),
-    minamount = $("#minamount"),
-    maxamount = $("#maxamount"),
-    minPrice = rangeSlider.data('min'),
-    maxPrice = rangeSlider.data('max');
+        Range Slider
+    --------------------- */
+    var rangeSlider = $(".price-range"),
+        minamount = $("#minamount"),
+        maxamount = $("#maxamount"),
+        minPrice = rangeSlider.data('min'),
+        maxPrice = rangeSlider.data('max');
     rangeSlider.slider({
-    range: true,
-    min: minPrice,
-    max: maxPrice,
-    values: [minPrice, maxPrice],
-    slide: function (event, ui) {
-        minamount.val('$' + ui.values[0]);
-        maxamount.val('$' + ui.values[1]);
+        range: true,
+        min: minPrice,
+        max: maxPrice,
+        values: [minPrice, maxPrice],
+        slide: function (event, ui) {
+            minamount.val('$' + ui.values[0]);
+            maxamount.val('$' + ui.values[1]);
         }
     });
     minamount.val('$' + rangeSlider.slider("values", 0));
@@ -103,58 +103,58 @@ Created: Colorib
         items: 1,
         dots: false,
         nav: true,
-        navText: ["<i class='arrow_carrot-left'></i>","<i class='arrow_carrot-right'></i>"],
+        navText: ["<i class='arrow_carrot-left'></i>", "<i class='arrow_carrot-right'></i>"],
         smartSpeed: 1200,
         autoHeight: false,
         autoplay: false,
         mouseDrag: false,
         startPosition: 'URLHash'
-    }).on('changed.owl.carousel', function(event) {
+    }).on('changed.owl.carousel', function (event) {
         var indexNum = event.item.index + 1;
         product_thumbs(indexNum);
     });
 
-    function product_thumbs (num) {
+    function product_thumbs(num) {
         var thumbs = document.querySelectorAll('.product__thumb a');
         thumbs.forEach(function (e) {
             e.classList.remove("active");
-            if(e.hash.split("-")[1] == num) {
+            if (e.hash.split("-")[1] == num) {
                 e.classList.add("active");
             }
         })
     }
 
     /*------------------
-		Single Product
-	--------------------*/
-	$('.product__thumb .pt').on('click', function(){
-		var imgurl = $(this).data('imgbigurl');
-		var bigImg = $('.product__big__img').attr('src');
-		if(imgurl != bigImg) {
-			$('.product__big__img').attr({src: imgurl});
-		}
+        Single Product
+    --------------------*/
+    $('.product__thumb .pt').on('click', function () {
+        var imgurl = $(this).data('imgbigurl');
+        var bigImg = $('.product__big__img').attr('src');
+        if (imgurl != bigImg) {
+            $('.product__big__img').attr({ src: imgurl });
+        }
     });
 
     /*-------------------
-		Quantity change
-	--------------------- */
+        Quantity change
+    --------------------- */
     var proQty = $('.pro-qty');
-	proQty.prepend('<span class="dec qtybtn">-</span>');
-	proQty.append('<span class="inc qtybtn">+</span>');
-	proQty.on('click', '.qtybtn', function () {
-		var $button = $(this);
-		var oldValue = $button.parent().find('input').val();
-		if ($button.hasClass('inc')) {
-			var newVal = parseFloat(oldValue) + 1;
-		} else {
-			// Don't allow decrementing below zero
-			if (oldValue > 0) {
-				var newVal = parseFloat(oldValue) - 1;
-			} else {
-				newVal = 0;
-			}
-		}
-		$button.parent().find('input').val(newVal);
+    proQty.prepend('<span class="dec qtybtn">-</span>');
+    proQty.append('<span class="inc qtybtn">+</span>');
+    proQty.on('click', '.qtybtn', function () {
+        var $button = $(this);
+        var oldValue = $button.parent().find('input').val();
+        if ($button.hasClass('inc')) {
+            var newVal = parseFloat(oldValue) + 1;
+        } else {
+            // Don't allow decrementing below zero
+            if (oldValue > 0) {
+                var newVal = parseFloat(oldValue) - 1;
+            } else {
+                newVal = 0;
+            }
+        }
+        $button.parent().find('input').val(newVal);
     });
     //Canvas Menu
     $(".canvas__open").on('click', function () {
@@ -165,5 +165,38 @@ Created: Colorib
     $(".offcanvas-menu-overlay, .offcanvas__close").on('click', function () {
         $(".offcanvas-menu-wrapper").removeClass("active");
         $(".offcanvas-menu-overlay").removeClass("active");
+    });
+
+    // dropdowm scrollbar
+    const selectedBranch = document.querySelector(".selected-branch");
+    const optionsContainerBranch = document.querySelector(".options-container-branch");
+
+    const optionsListBranch = document.querySelectorAll(".option-branch");
+
+    selectedBranch.addEventListener("click", () => {
+        optionsContainerBranch.classList.toggle("active");
+    });
+
+    optionsListBranch.forEach(o => {
+        o.addEventListener("click", () => {
+            selectedBranch.innerHTML = o.querySelector("a").innerHTML;
+            optionsContainerBranch.classList.remove("active");
+        });
+    });
+
+    const selectedPrice = document.querySelector(".selected-price");
+    const optionsContainerPrice = document.querySelector(".options-container-price");
+
+    const optionsListPrice = document.querySelectorAll(".option-price");
+
+    selectedPrice.addEventListener("click", () => {
+        optionsContainerPrice.classList.toggle("active");
+    });
+
+    optionsListPrice.forEach(o => {
+        o.addEventListener("click", () => {
+            selectedPrice.innerHTML = o.querySelector("label").innerHTML;
+            optionsContainerPrice.classList.remove("active");
+        });
     });
 })(jQuery);

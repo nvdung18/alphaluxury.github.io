@@ -18,4 +18,8 @@ class Trademark extends Model
         $countTradematk=DB::table($this->table)->count();
         return $countTradematk;
     }
+    public function getTrademarkByID($branch){
+        $trademark=DB::table($this->table)->where('idTrademark','=',$branch)->get();
+        return $trademark;
+    }
 }

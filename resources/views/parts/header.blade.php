@@ -10,7 +10,7 @@
             <div class="col-xl-7 col-lg-7">
                 <nav class="header__menu">
                     <ul>
-                        <li class="{{$tag=="home" ? 'active' :''}}"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="{{ $tag == 'home' ? 'active' : '' }}"><a href="{{ route('home') }}">Home</a></li>
                         <li class="dropdown">
                             <a href="#" id="branch">Branch</a>
                             <div class="dropdown-content">
@@ -38,8 +38,9 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="{{$tag=="women" ? 'active' :''}}"><a href="{{ route('shop.women') }}">Women's</a></li>
-                        <li class="{{$tag=="men" ? 'active' :''}}"><a href="{{ route('shop.men') }}">Men's</a></li>
+                        <li class="{{ $tag == 'women' ? 'active' : '' }}"><a href="{{ route('shop.women') }}">Women's</a>
+                        </li>
+                        <li class="{{ $tag == 'men' ? 'active' : '' }}"><a href="{{ route('shop.men') }}">Men's</a></li>
                         <li><a href="#">Blog</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
