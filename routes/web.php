@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\RevenueController;
+use App\Http\Controllers\AdminShopController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -90,7 +91,26 @@ Route::prefix('admin')->group(function () {
     Route::get('/', function () {
         return view('admins.index');
     })->name('admin');
-    Route::get('/monthly-revenue', [RevenueController::class, 'getRevenue'])->name('monthly-revenue');
+    Route::name('ad.')->group(function () {
+    
+        // revenue
+        Route::get('/monthly-revenue', [RevenueController::class, 'getRevenue'])->name('monthly-revenue');
+    
+        // product
+        Route::prefix('product')->group(function () {
+            Route::get('/', [AdminShopController::class,'getAllProductPaginate'])->name('product');
+
+            Route::post('/add', [AdminShopController::class,'addProduct'])->name('add-product');
+
+            Route::get('/details', [AdminShopController::class,'detailsProduct'])->name('details-product');
+
+            Route::get('/edit', [AdminShopController::class,'editProduct'])->name('edit-product');
+
+            Route::post('/edit', [AdminShopController::class,'confirmEdit'])->name('edit-product');
+
+            Route::get('/delete', [AdminShopController::class,'deleteProduct'])->name('delete-product');
+        });
+    });
 });
 Route::get('/rev', function () {
     return view('test');

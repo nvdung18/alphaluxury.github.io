@@ -17,6 +17,20 @@ class product extends Model
         // $product=DB::table($this->table)->paginate(8); => Phan trang
         return $product;
     }
+
+    public function getProductById($idProduct)
+    {
+        $product = DB::table($this->table)->where('idProduct', '=', $idProduct)->get();
+        // $product=DB::table($this->table)->paginate(8); => Phan trang
+        return $product;
+    }
+
+    public function getAllProductPaginate()
+    {
+        $product = DB::table($this->table)->paginate(9);
+        // $product=DB::table($this->table)->paginate(8); => Phan trang
+        return $product;
+    }
     public function getProductMalePaginate()
     {
         $product = DB::table($this->table)->where('type', '=', 'male')->paginate(9);
@@ -49,7 +63,7 @@ class product extends Model
                     ['price', $sign, $money . '000000'],
                     ['type', '=', $type],
                 ])->paginate(9);
-            }else{
+            } else {
                 $money = Str::of($realPrice)->matchAll('/[0-9]+/');
                 # code...
                 $product = DB::table($this->table)->where([
@@ -58,7 +72,7 @@ class product extends Model
                     ['type', '=', $type],
                 ])->paginate(9);
             }
-        }else{
+        } else {
             $realPrice = $listPrice[$price - 1];
             if ($price == 1 || $price == 6) {
                 $sign = (string)Str::of($realPrice)->match('/[^0-9]/');
@@ -69,7 +83,7 @@ class product extends Model
                     ['price', $sign, $money . '000000'],
                     ['type', '=', $type],
                 ])->paginate(9);
-            }else{
+            } else {
                 $money = Str::of($realPrice)->matchAll('/[0-9]+/');
                 # code...
                 $product = DB::table($this->table)->where([
@@ -78,8 +92,52 @@ class product extends Model
                     ['price', "<", $money[1] . '000000'],
                     ['type', '=', $type],
                 ])->paginate(9);
-            }   
+            }
         }
         return $product;
+    }
+
+    public function getLastRowProduct()
+    {
+        $product = DB::table($this->table)->orderBy('idPRoduct', 'desc')->limit(1)->get();
+        return $product;
+    }
+
+    // add new product
+    public function addNewProduct($productArr)
+    {
+        DB::table($this->table)->insert([
+            'idProduct' => $productArr['idProduct'],
+            'nameProduct' => $productArr['nameProduct'],
+            'image' => $productArr['image'],
+            'price' => $productArr['price'],
+            'description' => $productArr['description'],
+            'quantity' => $productArr['quantity'],
+            'type' => $productArr['type'],
+            'sale' => $productArr['sale'],
+            'idTrademark' => $productArr['idTrademark']
+        ]);
+    }
+
+    // update product
+    public function updateProduct($productArr)
+    {
+        $affected = DB::table($this->table)
+            ->where('idProduct', $productArr['idProduct'])
+            ->update([
+                'nameProduct' => $productArr['nameProduct'],
+                'image' => $productArr['image'],
+                'price' => $productArr['price'],
+                'description' => $productArr['description'],
+                'quantity' => $productArr['quantity'],
+                'type' => $productArr['type'],
+                'sale' => $productArr['sale'],
+                'idTrademark' => $productArr['idTrademark']
+            ]);
+    }
+
+    // delete product
+    public function deleteProduct($idProduct){
+        $deleted = DB::table($this->table)->where('idProduct', '=', $idProduct)->delete();
     }
 }
