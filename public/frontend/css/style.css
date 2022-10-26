@@ -268,7 +268,8 @@ ol {
 -----------------------*/
 .header {
   background: #ffffff;
-  box-shadow: 0px 5px 10px rgba(91, 91, 91, 0.1); }
+  box-shadow: 0px 5px 10px rgba(91, 91, 91, 0.1);
+  position: relative; }
 
 .header__logo {
   padding: 17px 0; }
@@ -431,6 +432,72 @@ ol {
 
 .row_content {
   padding: 0px 500px; }
+
+/*# sourceMappingURL=style.css.map */
+.select-box {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  top: 0px; }
+  .select-box .options-container {
+    background: #2f3640;
+    color: #f5f6fa;
+    max-height: 0;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.4s;
+    border-radius: 8px;
+    overflow: hidden;
+    order: 1;
+    position: absolute; }
+    .select-box .options-container::-webkit-scrollbar {
+      width: 8px;
+      background: #0d141f;
+      border-radius: 0 8px 8px 0; }
+    .select-box .options-container::-webkit-scrollbar-thumb {
+      background: #525861;
+      border-radius: 0 8px 8px 0; }
+  .select-box .options-container.active {
+    max-height: 240px;
+    opacity: 1;
+    top: 62px; }
+    .select-box .options-container.active + .selected::after {
+      transform: rotateX(180deg);
+      top: -6px; }
+  .select-box .option {
+    padding: 12px 12px 8px 12px;
+    cursor: pointer;
+    text-align: center; }
+    .select-box .option:hover {
+      background: #414b57; }
+    .select-box .option .radio {
+      display: none; }
+  .select-box label {
+    cursor: pointer; }
+
+.selected {
+  background: #2f3640;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  color: #f5f6fa;
+  order: 0;
+  bottom: -25px;
+  padding: 12px 12px 8px 12px;
+  cursor: pointer;
+  text-align: center; }
+  .selected::after {
+    content: "";
+    background: url("arrow-down.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    height: 100%;
+    width: 32px;
+    right: 10px;
+    top: 5px;
+    transition: all 0.4s; }
 
 /*---------------------
   Categories

@@ -49,8 +49,38 @@
             <div class="col-lg-3">
                 <div class="header__right">
                     <div class="header__right__auth">
-                        <a href="#">Login</a>
-                        <a href="#">Register</a>
+                          @if (Auth::check())
+                        <div class="select-box">
+                            <div class="options-container">
+                                <div class="option">
+                                    <input type="radio" class="radio" id="automobiles" name="category" />
+                                    <label for="automobiles">Personel Page</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" id="film" name="category" />
+                                    <label for="film">Change Password</label>
+                                </div>
+                
+                                <div class="option">
+                                    <input type="radio" class="radio" id="science" name="category" />
+                                    <label for="science">
+                                        <button class="btn" style="color: white" onclick="Redirect()">
+                                            Log out
+                                        </button>
+                                    </label>
+                                </div>
+                            </div>
+                
+                            <div class="selected">
+                                @if (Auth::user())
+                                   {{ Auth::user()->nameUser }}
+                                @endif
+                            </div>
+                        </div>
+                        @else
+                            <a href="{{ route('user.login') }}">Login</a>
+                            <a href="{{ route('register') }}">Register</a>
+                        @endif
                     </div>
                     <ul class="header__right__widget">
                         <li><span class="icon_search search-switch"></span></li>
@@ -65,5 +95,10 @@
             <i class="fa fa-bars"></i>
         </div>
     </div>
+    <script type="text/javascript">
+     function Redirect() {
+        window.location="http://127.0.0.1:8000/logout";        
+     }       
+    </script>
 </header>
 {{-- Header Section End --}}
