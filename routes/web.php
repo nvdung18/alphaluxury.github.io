@@ -5,6 +5,11 @@ use App\Models\User;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\RevenueController;
+use App\Http\Controllers\UserController;
+use Laravel\Socialite\Facades\Socialite;
+
+use function PHPUnit\Framework\returnSelf;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -92,10 +97,23 @@ Route::prefix('admin')->group(function () {
     })->name('admin');
     Route::get('/monthly-revenue', [RevenueController::class, 'getRevenue'])->name('monthly-revenue');
 });
-Route::get('/rev', function () {
+
+Route::get('/rev', function(){
     return view('test');
 })->name('test2');
 
-// Route::get('/', function(){
-//     return view('test');
-// })->name('test');
+//Login/register
+Route::get('/register', function(){
+    return view('users.register');
+})->name('register');
+Route::post('/addUser', [UserController::class, 'add'])->name('addUser');
+
+Route::get('/login',[UserController::class,'showlogin'])->name('user.login');
+Route::post('/checklogin',[UserController::class,'checklogin'])->name('user.checklogin');
+
+Route::get('/resetpassword', [UserController::class, 'formresetpw'])->name('resetpw');
+
+Route::post('/recover-pass',[UserController::class, 'resetpasswordCallback'])->name('recover_pass');
+Route::post('/newpw', [UserController::class, 'newpassword'])->name('changepassword');
+Route::get('/forgotpassword', [UserController::class, 'forgotpw'])->name('forgotpassword');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');

@@ -172,10 +172,13 @@ Created: Colorib
     const optionsContainerBranch = document.querySelector(".options-container-branch");
 
     const optionsListBranch = document.querySelectorAll(".option-branch");
+    
+    if(selectedBranch) {
+        selectedBranch.addEventListener("click", () => {
+                optionsContainerBranch.classList.toggle("active");
+        });
 
-    selectedBranch.addEventListener("click", () => {
-        optionsContainerBranch.classList.toggle("active");
-    });
+    }
 
     optionsListBranch.forEach(o => {
         o.addEventListener("click", () => {
@@ -188,10 +191,12 @@ Created: Colorib
     const optionsContainerPrice = document.querySelector(".options-container-price");
 
     const optionsListPrice = document.querySelectorAll(".option-price");
-
-    selectedPrice.addEventListener("click", () => {
-        optionsContainerPrice.classList.toggle("active");
-    });
+    
+    if(selectedPrice) {
+        selectedPrice.addEventListener("click", () => {
+            optionsContainerPrice.classList.toggle("active");
+        });
+    }
 
     optionsListPrice.forEach(o => {
         o.addEventListener("click", () => {
@@ -199,4 +204,23 @@ Created: Colorib
             optionsContainerPrice.classList.remove("active");
         });
     });
+
+    const selected = document.querySelector(".selected");
+    const optionsContainer = document.querySelector(".options-container");
+
+    const optionsList = document.querySelectorAll(".option");
+    
+    if(selected) {
+        selected.addEventListener("click", () => {
+        optionsContainer.classList.toggle("active");
+        });
+    }
+    
+    optionsList.forEach(o => {
+    o.addEventListener("click", () => {
+        selected.innerHTML = o.querySelector("label").innerHTML;
+        optionsContainer.classList.remove("active");
+        });
+    });
+
 })(jQuery);
