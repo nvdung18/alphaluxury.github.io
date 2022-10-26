@@ -76,4 +76,9 @@ class ShopController extends Controller
         return view('users.shop', compact('listProduct', 'tag', 'nameTrademark', 'branch', 'price'), ['listTrademark' => $this->listTrademark, 'countTrademark' => $this->countTrademark]);
         // return redirect('shop/watch-men');
     }
+
+    public function test(Request $request){
+        $tag=$request->tag;
+        return view('users.product-details', compact('tag'),['listTrademark' => $this->listTrademark, 'countTrademark' => $this->countTrademark]);
+    }
 }

@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\RevenueController;
+use App\Http\Controllers\AdminShopController;
 use App\Http\Controllers\UserController;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -30,9 +31,7 @@ Route::prefix('shop')->group(function () {
 
             Route::get('/', [ShopController::class, 'getProductMaleP'])->name('men');
 
-            Route::get('/product-details', function () {
-                return view('users.product-details');
-            })->name('product-details');
+            Route::get('/product-details', [ShopController::class,'test'])->name('product-details');
 
             // route for filter
             Route::prefix('/')->group(function () {
@@ -95,7 +94,26 @@ Route::prefix('admin')->group(function () {
     Route::get('/', function () {
         return view('admins.index');
     })->name('admin');
-    Route::get('/monthly-revenue', [RevenueController::class, 'getRevenue'])->name('monthly-revenue');
+    Route::name('ad.')->group(function () {
+    
+        // revenue
+        Route::get('/monthly-revenue', [RevenueController::class, 'getRevenue'])->name('monthly-revenue');
+    
+        // product
+        Route::prefix('product')->group(function () {
+            Route::get('/', [AdminShopController::class,'getAllProductPaginate'])->name('product');
+
+            Route::post('/add', [AdminShopController::class,'addProduct'])->name('add-product');
+
+            Route::get('/details', [AdminShopController::class,'detailsProduct'])->name('details-product');
+
+            Route::get('/edit', [AdminShopController::class,'editProduct'])->name('edit-product');
+
+            Route::post('/edit', [AdminShopController::class,'confirmEdit'])->name('edit-product');
+
+            Route::get('/delete', [AdminShopController::class,'deleteProduct'])->name('delete-product');
+        });
+    });
 });
 
 Route::get('/rev', function(){
