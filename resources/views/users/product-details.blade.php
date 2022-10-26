@@ -60,10 +60,10 @@
                                 <img src="{{ asset('frontend/img/product/88RUE_DU_RHONE/SP01.jpg') }}" alt="">
                             </a>
                             <a class="pt" href="#product-2">
-                                <img src="{{ asset('frontend/img/product/88RUE_DU_RHONE/details/dt1.jpg') }}" alt="">
+                                <img src="{{ asset('frontend/img/product/88RUE_DU_RHONE/details/SP01_dt1.jpg') }}" alt="">
                             </a>
                             <a class="pt" href="#product-3">
-                                <img src="{{ asset('frontend/img/product/88RUE_DU_RHONE/details/dt2.jpg') }}" alt="">
+                                <img src="{{ asset('frontend/img/product/88RUE_DU_RHONE/details/SP01_dt2.jpg') }}" alt="">
                             </a>
                             {{-- <a class="pt" href="#product-4">
                                 <img src="{{ asset('frontend/img/product/details/thumb-4.jpg') }}" alt="">
@@ -74,9 +74,9 @@
                                 <img data-hash="product-1" class="product__big__img"
                                     src="{{ asset('frontend/img/product/88RUE_DU_RHONE/SP01.jpg') }}" alt="">
                                 <img data-hash="product-2" class="product__big__img"
-                                    src="{{ asset('frontend/img/product/88RUE_DU_RHONE/details/dt1.jpg') }}" alt="">
+                                    src="{{ asset('frontend/img/product/88RUE_DU_RHONE/details/SP01_dt1.jpg') }}" alt="">
                                 <img data-hash="product-3" class="product__big__img"
-                                    src="{{ asset('frontend/img/product/88RUE_DU_RHONE/details/dt2.jpg') }}" alt="">
+                                    src="{{ asset('frontend/img/product/88RUE_DU_RHONE/details/SP01_dt2.jpg') }}" alt="">
                                 {{-- <img data-hash="product-4" class="product__big__img"
                                     src="{{ asset('frontend/img/product/details/thumb-4.jpg') }}" alt=""> --}}
                             </div>

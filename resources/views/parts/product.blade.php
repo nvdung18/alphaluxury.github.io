@@ -10,7 +10,7 @@
             @endphp</p>
         </div>
         <div class="img-text-bottom">
-            <a href="{{ route('shop.product-details') }}" class="btn adjust btn-default btn-float btn-120 gray">Chi
+            <a href="{{ route('shop.product-details',['tag'=>$tag]) }}" class="btn adjust btn-default btn-float btn-120 gray">Chi
                 Tiết</a>
             <a href=""
                 class="btn adjust btn-orange-basic btn-float btn-120 btn-nudge-back yellow-bright">Đặt

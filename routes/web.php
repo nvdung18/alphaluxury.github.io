@@ -31,9 +31,7 @@ Route::prefix('shop')->group(function () {
 
             Route::get('/', [ShopController::class, 'getProductMaleP'])->name('men');
 
-            Route::get('/product-details', function () {
-                return view('users.product-details');
-            })->name('product-details');
+            Route::get('/product-details', [ShopController::class,'test'])->name('product-details');
 
             // route for filter
             Route::prefix('/')->group(function () {
