@@ -45,47 +45,41 @@
                     </ul>
                 </nav>
             </div>
-            {{-- <div class="dropdown-content" id="dropdownid">
-                <div class="row_content">
-                    <div class="column_content">
-                    <a href="#" class="column_a">Link 1</a>
-                    <a href="#" class="column_a">Link 2</a>
-                    <a href="#" class="column_a">Link 3</a>
-                    <a href="#" class="column_a">Link 1</a>
-                    <a href="#" class="column_a">Link 2</a>
-                    <a href="#" class="column_a">Link 3</a>
-                    </div>
-                    <div class="column_content">
-                    <a href="#" class="column_a">Link 1</a>
-                    <a href="#" class="column_a">mink 2</a>
-                    <a href="#" class="column_a">Link 3</a>
-                    <a href="#" class="column_a">Link 1</a>
-                    <a href="#" class="column_a">Link 2</a>
-                    <a href="#" class="column_a">Link 3</a>
-                    </div>
-                    <div class="column_content">
-                    <a href="#" class="column_a">Link 1</a>
-                    <a href="#" class="column_a">Link 2</a>
-                    <a href="#" class="column_a">Link 3</a>
-                    <a href="#" class="column_a">Link 1</a>
-                    <a href="#" class="column_a">Link 2</a>
-                    <a href="#" class="column_a">Link 3</a>
-                    </div>
-                    <div class="column_content">
-                    <a href="#" class="column_a">Link 1</a>
-                    <a href="#" class="column_a">Link 2</a>
-                    <a href="#" class="column_a">Link 3</a>
-                    <a href="#" class="column_a">Link 1</a>
-                    <a href="#" class="column_a">Link 2</a>
-                    <a href="#" class="column_a">Link 3</a>
-                    </div>
-                </div>
-            </div> --}}
             <div class="col-lg-3">
                 <div class="header__right">
                     <div class="header__right__auth">
-                        <a href="{{ route('user.login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                          @if (Auth::check())
+                        <div class="select-box">
+                            <div class="options-container">
+                                <div class="option">
+                                    <input type="radio" class="radio" id="automobiles" name="category" />
+                                    <label for="automobiles">Personel Page</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" id="film" name="category" />
+                                    <label for="film">Change Password</label>
+                                </div>
+                
+                                <div class="option">
+                                    <input type="radio" class="radio" id="science" name="category" />
+                                    <label for="science">
+                                        <button class="btn" style="color: white" onclick="Redirect()">
+                                            Log out
+                                        </button>
+                                    </label>
+                                </div>
+                            </div>
+                
+                            <div class="selected">
+                                @if (Auth::user())
+                                   {{ Auth::user()->nameUser }}
+                                @endif
+                            </div>
+                        </div>
+                        @else
+                            <a href="{{ route('user.login') }}">Login</a>
+                            <a href="{{ route('register') }}">Register</a>
+                        @endif
                     </div>
                     <ul class="header__right__widget">
                         <li><span class="icon_search search-switch"></span></li>
@@ -100,20 +94,10 @@
             <i class="fa fa-bars"></i>
         </div>
     </div>
-    <script>
-        // function addMenu() {
-        //     var menu = document.querySelector('.dropdown-content');
-        //     console.log("add Menu");
-        //     menu.style.display = 'block';
-        // } 
-        // function removeMenu() {
-        //     var menu = document.getElementById('dropdownid');
-        //     var menuitem = document.getElementByC
-        //     console.log("remove menu");
-        //     // menu.style.display = 'none';
-        // }
-        // document.getElementById("branch").onmouseover = function() {addMenu()};
-        // document.getElementById("dropdownid").onmouseout = function() {removeMenu()};
+    <script type="text/javascript">
+     function Redirect() {
+        window.location="http://127.0.0.1:8000/logout";        
+     }       
     </script>
 </header>
 {{-- Header Section End --}}

@@ -78,19 +78,14 @@ Route::get('/rev', function(){
 Route::get('/register', function(){
     return view('users.register');
 })->name('register');
-
 Route::post('/addUser', [UserController::class, 'add'])->name('addUser');
 
 Route::get('/login',[UserController::class,'showlogin'])->name('user.login');
 Route::post('/checklogin',[UserController::class,'checklogin'])->name('user.checklogin');
-Route::get('/chinh-sach-rieng-tu', function(){
-    return '<h1>Chinh Sach Rieng Tu</h1>';
-});
 
-Route::get('/auth/facebook', function(){
-    return Socialite::driver('facebook')->redirect();;
-});
+Route::get('/resetpassword', [UserController::class, 'formresetpw'])->name('resetpw');
 
-Route::get('/auth/facebook/callback', function(){
-    return 'Callback Login Facebook';
-});
+Route::post('/recover-pass',[UserController::class, 'resetpasswordCallback'])->name('recover_pass');
+Route::post('/newpw', [UserController::class, 'newpassword'])->name('changepassword');
+Route::get('/forgotpassword', [UserController::class, 'forgotpw'])->name('forgotpassword');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
