@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use App\Models\Account;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -83,6 +84,15 @@ class UserController extends Controller
                 $newUser->status = $request->status;
                 // $newUser->email_verified_at = $timestamp;
                 $newUser->save();
+                
+                $newAccount = Account::create([
+                    'idAccount' => 'Ac_'.$us,
+                    'method' => 'Default',
+                    'userName' => $newUser->nameUser,
+                    'password' => $newUser->password,
+                    'idUser' => $newUser->idUser
+                ]);
+
                 return redirect()->route('register')->with([
                     'message' => 'You did create a account successfully.',
                 ]);
@@ -99,6 +109,17 @@ class UserController extends Controller
                   $newUser->status = $request->status;
                   // $newUser->email_verified_at = $timestamp;
                   $newUser->save();
+                  $lastaccount = DB::table('account')->get()->last()->idAccount;
+                  if($lastaccount != '' || $lastaccount != null) {
+                        $data = explode('_', $lastaccount);
+                         $newAccount = Account::create([
+                        'idAccount' => 'Ac_'.++$data[1],
+                        'method' => 'Default',
+                        'userName' => $newUser->nameUser,
+                        'password' => $newUser->password,
+                        'idUser' => $newUser->idUser
+                    ]);
+                  }
                   return redirect()->route('register')->with([
                       'message' => 'You did create a account successfully.',
                   ]);

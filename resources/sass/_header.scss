@@ -372,13 +372,12 @@
   $color_1: #f5f6fa;
 
   .select-box {
-      display: flex;
-      width: 155px;
-      flex-direction: column;
-      position: absolute;
-      z-index: 2;
-      top: 18px;
-      left: 0;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    top: 0px;
       .options-container {
           background: #2f3640;
           color: $color_1;

@@ -436,12 +436,11 @@ ol {
 /*# sourceMappingURL=style.css.map */
 .select-box {
   display: flex;
-  width: 155px;
+  width: 100%;
   flex-direction: column;
-  position: absolute;
-  z-index: 2;
-  top: 18px;
-  left: 0; }
+  position: relative;
+  z-index: 1;
+  top: 0px; }
   .select-box .options-container {
     background: #2f3640;
     color: #f5f6fa;
