@@ -1,6 +1,6 @@
 <div class="single-box card">
     <div class="img-area zoom-img-product">
-        <img src="{{ asset('frontend/img/product/' . $item->image . '.jpg') }}" alt="">
+        <img src="{{ asset('frontend/img/product/' . $item->image) }}" alt="">
     </div>
     <div class="img-text card-body">
         <div class="img-text-top">

@@ -66,7 +66,7 @@
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $item->nameProduct }}</td>
                                                 <td><img class="card-img"
-                                                        src="{{ asset('frontend/img/product/' . $item->image . '.jpg') }}"
+                                                        src="{{ asset('frontend/img/product/' . $item->image) }}"
                                                         alt="" style="width: 50%; padding-left: 0;"></td>
                                                 <td>@php
                                                     echo number_format($item->price);
@@ -197,6 +197,16 @@
                     <div class="form_wrap">
                         <div class="form_item">
                             <label>Image</label> <input type="file" name="imageProduct">
+                        </div>
+                    </div>
+                    <div class="form_wrap">
+                        <div class="form_item">
+                            <label>Image details 1</label> <input type="file" name="imageProduct_details1">
+                        </div>
+                    </div>
+                    <div class="form_wrap">
+                        <div class="form_item">
+                            <label>Image details 2</label> <input type="file" name="imageProduct_details2">
                         </div>
                     </div>
                     <!--Description no input-->

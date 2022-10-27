@@ -43,7 +43,17 @@ class AdminShopController extends Controller
             $nameTrademark = $value->nameTrademark;
         }
         // get name image and upload image
-        $nameImg = $this->uploadFileImg($nameTrademark);
+        $nameImg = $this->uploadFileImg($nameTrademark,'imageProduct');
+        $nameImgDetail1=$this->uploadFileImg($nameTrademark,'imageProduct_details1');
+        $nameImgDetail2=$this->uploadFileImg($nameTrademark,'imageProduct_details2');
+
+        // Create array imgae details to encode json
+        $imgDetailArr=array(
+            'nameImgDetail1'=>$nameImgDetail1,
+            'nameImgDetail2'=>$nameImgDetail2
+        );
+        // encode json
+        $detailsImg=json_encode($imgDetailArr);
 
         // get last row to get last id, then auto create new id for new product
         $lastRowProduct = $this->product->getLastRowProduct();
@@ -65,7 +75,8 @@ class AdminShopController extends Controller
             'price' => $price,
             'type' => $type,
             'sale' => $sale,
-            'description' => $description
+            'description' => $description,
+            'detailsImg'=>$detailsImg
         );
 
         // dd($nameImg);
@@ -73,17 +84,20 @@ class AdminShopController extends Controller
         return redirect()->route('ad.product');
     }
 
-    public function uploadFileImg($nameTrademark)
+    public function uploadFileImg($nameTrademark,$fileName=null)
     {
         $trademark = $nameTrademark;
         $trademark = Str::slug($trademark, '_');
+        if($fileName=='imageProduct_details1'||$fileName=='imageProduct_details2'){
+            $trademark=$trademark.'/details';
+        } 
         $target_dir = public_path('frontend/img/product/' . $trademark . '/');
-        $target_file = $target_dir . basename($_FILES["imageProduct"]["name"]);
+        $target_file = $target_dir . basename($_FILES[$fileName]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
         // Check if image file is a actual image or fake image
         if (isset($_GET["submit"])) {
-            $check = getimagesize($_FILES["imageProduct"]["tmp_name"]);
+            $check = getimagesize($_FILES[$fileName]["tmp_name"]);
             if ($check !== false) {
                 // echo "File is an image - " . $check["mime"] . ".";
                 $uploadOk = 1;
@@ -109,19 +123,21 @@ class AdminShopController extends Controller
         }
 
         // Check if $uploadOk is set to 0 by an error
-        if ($uploadOk == 0) {
-            echo "Sorry,your file was not upload";
-        } else {
-            if (move_uploaded_file($_FILES["imageProduct"]["tmp_name"], $target_file)) {
-                echo "The File" . basename($_FILES["imageProduct"]["name"]) . " has been uploaded";
-            } else {
-                echo "Sorry,there was an error uploading your file";
-            }
-        }
+        // if ($uploadOk == 0) {
+        //     echo "Sorry,your file was not upload";
+        // } else {
+        //     if (move_uploaded_file($_FILES[$fileName]["tmp_name"], $target_file)) {
+        //         echo "The File" . basename($_FILES[$fileName]["name"]) . " has been uploaded";
+        //     } else {
+        //         echo "Sorry,there was an error uploading your file";
+        //     }
+        // }
 
-        $nameImg = $trademark . '/' . basename($_FILES["imageProduct"]["name"]);
-        $nameImg = Str::replace('.jpg', '', $nameImg);
+        $nameImg = $trademark . '/' . basename($_FILES[$fileName]["name"]);
+        // $nameImg = Str::replace('.jpg', '', $nameImg);
         // dd($nameImg);
+        // echo $nameImg;
+        // echo'<pre>';var_dump($nameImg);echo'</pre>';
         return $nameImg;
     }
 
@@ -136,7 +152,7 @@ class AdminShopController extends Controller
         }
 
         $nameTrademark = $this->getNameTrademark($idTrademark);
-        // dd($product[0]);
+
         return view('admins.details-product', compact('product', 'nameTrademark'));
     }
 
@@ -167,6 +183,7 @@ class AdminShopController extends Controller
 
     public function confirmEdit(Request $request)
     {
+        // dd($request->all());
         // Get all information of product 
         $idProduct=$request->idProduct;
         $nameProduct = $request->nameProduct;
@@ -180,14 +197,39 @@ class AdminShopController extends Controller
         // get name branch and id branch
         $idTrademark = $request->trademark;
         $nameTrademark = $this->getNameTrademark($idTrademark);
+
+        // Check if imgae was changed, we upload new image. If not change we don't upload new img
         $nameImg="";
+        $nameImgDetail1="";
+        $nameImgDetail2="";
         if (isset($request->imageProduct)) {
             // get name image and upload image
-            $nameImg = $this->uploadFileImg($nameTrademark);
+            $nameImg = $this->uploadFileImg($nameTrademark,'imageProduct');
         } else {
             $nameImg=$request->img_p_old;
         }
-        // dd($request->all());
+
+        if (isset($request->imageProduct_details1)) {
+            // get name image and upload image
+            $nameImgDetail1 = $this->uploadFileImg($nameTrademark,'imageProduct_details1');
+        } else {
+            $nameImgDetail1=$request->img_p_old_dt1;
+        }
+
+        if (isset($request->imageProduct_details2)) {
+            // get name image and upload image
+            $nameImgDetail2 = $this->uploadFileImg($nameTrademark,'imageProduct_details2');
+        } else {
+            $nameImgDetail2=$request->img_p_old_dt2;
+        }
+
+        // Create array imgae details to encode json
+        $imgDetailArr=array(
+            'nameImgDetail1'=>$nameImgDetail1,
+            'nameImgDetail2'=>$nameImgDetail2
+        );
+        $detailsImg=json_encode($imgDetailArr);
+
         // create arr contains information of product to insert into database
         $productArr = array(
             'idProduct'=>$idProduct,
@@ -198,7 +240,8 @@ class AdminShopController extends Controller
             'price' => $price,
             'type' => $type,
             'sale' => $sale,
-            'description' => $description
+            'description' => $description,
+            'detailsImg'=>$detailsImg
         );
         // dd($productArr);
         // update product

@@ -56,8 +56,9 @@
                                 <div class="card">
                                     <div class="card-body ">
                                         @foreach ($product as $keyv => $value)
-                                            <form action="{{ route('ad.edit-product' ,['idProduct'=>$value->idProduct]) }}" method="post"
-                                                enctype="multipart/form-data">
+                                            <form
+                                                action="{{ route('ad.edit-product', ['idProduct' => $value->idProduct]) }}"
+                                                method="post" enctype="multipart/form-data">
                                                 @csrf
                                                 <h2>{{ $value->nameProduct }}</h2>
                                                 <div class="form-group">
@@ -75,7 +76,8 @@
                                                         <select class="custom-select" id="inputTrademark"
                                                             name="trademark">
                                                             @foreach ($listTrademark as $item)
-                                                                <option value="{{ $item->idTrademark }}" {{$idTrademark==$item->idTrademark ? 'selected' :''}}>
+                                                                <option value="{{ $item->idTrademark }}"
+                                                                    {{ $idTrademark == $item->idTrademark ? 'selected' : '' }}>
                                                                     {{ $item->nameTrademark }}</option>
                                                             @endforeach
                                                         </select>
@@ -113,13 +115,40 @@
                                                         aria-describedby="helpId" value="{{ $value->sale }}">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="">Curruent Image </label>
+                                                    <label for="">Curruent Main Image </label>
                                                     <img class=""
-                                                        src="{{ asset('frontend/img/product/' . $value->image . '.jpg') }}"
+                                                        src="{{ asset('frontend/img/product/' . $value->image ) }}"
                                                         alt="" style="width: 20%">
                                                     <input type="hidden" name="img_p_old"
                                                         value="{{ $value->image }}">
                                                     <input type="file" name="imageProduct" id=""
+                                                        class="form-control" placeholder=""
+                                                        aria-describedby="helpId">
+                                                </div>
+                                                @if ($value->detailsImg != null)
+                                                    @php
+                                                        $imgDetailArr = json_decode($value->detailsImg, true);
+                                                    @endphp
+                                                @endif
+                                                <div class="form-group">
+                                                    <label for="">Curruent Image Details 1</label>
+                                                    <img class=""
+                                                        src="{{$value->detailsImg!=null ? asset('frontend/img/product/' . $imgDetailArr['nameImgDetail1']):'' }}"
+                                                        alt="" style="width: 20%">
+                                                    <input type="hidden" name="img_p_old_dt1"
+                                                        value="{{$value->detailsImg!=null ? $imgDetailArr['nameImgDetail1']:'' }}">
+                                                    <input type="file" name="imageProduct_details1" id=""
+                                                        class="form-control" placeholder=""
+                                                        aria-describedby="helpId">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Curruent Image Details 2</label>
+                                                    <img class=""
+                                                        src="{{$value->detailsImg!=null ? asset('frontend/img/product/' . $imgDetailArr['nameImgDetail2']):'' }}"
+                                                        alt="" style="width: 20%">
+                                                    <input type="hidden" name="img_p_old_dt2"
+                                                        value="{{$value->detailsImg!=null ? $imgDetailArr['nameImgDetail1']:'' }}">
+                                                    <input type="file" name="imageProduct_details2" id=""
                                                         class="form-control" placeholder=""
                                                         aria-describedby="helpId">
                                                 </div>

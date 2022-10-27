@@ -110,6 +110,7 @@ class product extends Model
             'idProduct' => $productArr['idProduct'],
             'nameProduct' => $productArr['nameProduct'],
             'image' => $productArr['image'],
+            'detailsImg'=>$productArr['detailsImg'],
             'price' => $productArr['price'],
             'description' => $productArr['description'],
             'quantity' => $productArr['quantity'],
@@ -127,6 +128,7 @@ class product extends Model
             ->update([
                 'nameProduct' => $productArr['nameProduct'],
                 'image' => $productArr['image'],
+                'detailsImg'=>$productArr['detailsImg'],
                 'price' => $productArr['price'],
                 'description' => $productArr['description'],
                 'quantity' => $productArr['quantity'],

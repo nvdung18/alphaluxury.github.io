@@ -202,11 +202,17 @@ textarea {
   display: flex !important; }
   .detail-p .detail-p__elebasic .detail-p__elebasic__img {
     width: 32%; }
+.detail-p .details-p-middel {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column; }
+  .detail-p .details-p-middel .detail-p__imgDetails__d {
+    width: 32%; }
 .detail-p .details-p-bottom {
   margin-top: 20px; }
-  .detail-p .details-p-bottom .details-p-more__text {
+  .detail-p .details-p-bottom .details-p__more__text {
     display: flex; }
-    .detail-p .details-p-bottom .details-p-more__text p {
+    .detail-p .details-p-bottom .details-p__more__text p {
       margin-left: 5px;
       font-size: 16px; }
 
