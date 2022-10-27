@@ -58,8 +58,9 @@
                                         @foreach ($product as $key => $item)
                                             <div class="detail-p__elebasic details-p-top">
                                                 {{-- <div class="detail-p__elebasic__img col-md-4"> --}}
-                                                    <img class="detail-p__elebasic__img " src="{{ asset('frontend/img/product/' . $item->image . '.jpg') }}"
-                                                        alt="">
+                                                <img class="detail-p__elebasic__img "
+                                                    src="{{ asset('frontend/img/product/' . $item->image) }}"
+                                                    alt="">
                                                 {{-- </div> --}}
                                                 <div class="detail-p__elebasic__infor ">
                                                     <div class="detail-p__elebasic__name">
@@ -77,17 +78,36 @@
                                                         <h4 class="card-title">Trademark: {{ $nameTrademark }}</h4>
                                                     </div>
                                                 </div>
-
                                             </div>
-
-                                            <div class="details-p-more details-p-bottom">
+                                            @if ($item->detailsImg != null)
+                                                <div class="details-p-middel details-p__imgDetails">
+                                                    @php
+                                                        $imgDetailArr = json_decode($item->detailsImg, true);
+                                                    @endphp
+                                                    <img class="detail-p__imgDetails__d "
+                                                        src="{{ asset('frontend/img/product/' . $imgDetailArr['nameImgDetail1']) }}"
+                                                        alt="">
+                                                    <img class="detail-p__imgDetails__d "
+                                                        src="{{ asset('frontend/img/product/' . $imgDetailArr['nameImgDetail2']) }}"
+                                                        alt="">
+                                                </div>
+                                            @endif
+                                            <div class="details-p__more details-p-bottom">
                                                 <div class="detail-p__more__description-qunatity">
-                                                    <h4 class="card-title details-p-more__text">Quantity: <p class="font-weight-normal">{{ $item->quantity }}</p></h4>
-                                                    <h4 class="card-title details-p-more__text">Description: <p class="font-weight-normal">{{ $item->description }}</p></h4>
+                                                    <h4 class="card-title details-p__more__text">Quantity: <p
+                                                            class="font-weight-normal">{{ $item->quantity }}</p>
+                                                    </h4>
+                                                    <h4 class="card-title details-p__more__text">Description: <p
+                                                            class="font-weight-normal">{{ $item->description }}</p>
+                                                    </h4>
                                                 </div>
                                                 <div class="detail-p__more__sale-quantitySold">
-                                                    <h4 class="card-title details-p-more__text">Sale: <p class="font-weight-normal">{{ $item->sale }}</p></h4>
-                                                    <h4 class="card-title details-p-more__text">QuantitySold: <p class="font-weight-normal">{{ $item->quantitySold }}</p></h4>
+                                                    <h4 class="card-title details-p__more__text">Sale: <p
+                                                            class="font-weight-normal">{{ $item->sale }}</p>
+                                                    </h4>
+                                                    <h4 class="card-title details-p__more__text">QuantitySold: <p
+                                                            class="font-weight-normal">{{ $item->quantitySold }}</p>
+                                                    </h4>
                                                 </div>
                                             </div>
                                         @endforeach

@@ -237,10 +237,18 @@ textarea {
 		}
 	
 	}
+	.details-p-middel{
+		margin-top: 20px;
+		display: flex;
+		flex-direction: column;
+		.detail-p__imgDetails__d{
+			width: 32%;
+		}
+	}
 	.details-p-bottom{
 		margin-top: 20px;
 
-		.details-p-more__text{
+		.details-p__more__text{
 			display: flex;
 			p{
 				margin-left: 5px;
