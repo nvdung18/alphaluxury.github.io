@@ -142,4 +142,5 @@ class product extends Model
     public function deleteProduct($idProduct){
         $deleted = DB::table($this->table)->where('idProduct', '=', $idProduct)->delete();
     }
+
 }

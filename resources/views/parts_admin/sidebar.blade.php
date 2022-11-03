@@ -35,13 +35,13 @@
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="{{ route('ad.receipt') }}">
         <span class="menu-title">Receipt</span>
         <i class="mdi mdi-receipt menu-icon"></i>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="{{ route('ad.order') }}">
         <span class="menu-title">Order</span>
         <i class="mdi mdi-file-document menu-icon"></i>
       </a>
@@ -53,7 +53,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="{{ route('ad.trademark') }}">
         <span class="menu-title">Trademark</span>
         <i class="mdi mdi-source-branch menu-icon"></i>
       </a>

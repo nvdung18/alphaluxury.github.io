@@ -105,6 +105,13 @@ label {
 		visibility: visible;
 		transition: .4s;
 	}
+	&.show-modal-trademark{
+		top: 15%;
+		opacity: 1;
+		visibility: visible;
+		transition: .4s;
+	}
+
 	.fa-times {
 		position: absolute;
 		top: 0;

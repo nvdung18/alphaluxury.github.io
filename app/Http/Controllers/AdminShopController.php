@@ -123,15 +123,15 @@ class AdminShopController extends Controller
         }
 
         // Check if $uploadOk is set to 0 by an error
-        // if ($uploadOk == 0) {
-        //     echo "Sorry,your file was not upload";
-        // } else {
-        //     if (move_uploaded_file($_FILES[$fileName]["tmp_name"], $target_file)) {
-        //         echo "The File" . basename($_FILES[$fileName]["name"]) . " has been uploaded";
-        //     } else {
-        //         echo "Sorry,there was an error uploading your file";
-        //     }
-        // }
+        if ($uploadOk == 0) {
+            echo "Sorry,your file was not upload";
+        } else {
+            if (move_uploaded_file($_FILES[$fileName]["tmp_name"], $target_file)) {
+                echo "The File" . basename($_FILES[$fileName]["name"]) . " has been uploaded";
+            } else {
+                echo "Sorry,there was an error uploading your file";
+            }
+        }
 
         $nameImg = $trademark . '/' . basename($_FILES[$fileName]["name"]);
         // $nameImg = Str::replace('.jpg', '', $nameImg);
