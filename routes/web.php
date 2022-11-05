@@ -100,7 +100,11 @@ Route::prefix('admin')->group(function () {
     Route::name('ad.')->group(function () {
     
         // revenue
-        Route::get('/monthly-revenue', [RevenueController::class, 'getRevenue'])->name('monthly-revenue');
+        Route::prefix('revenue')->group(function () {
+            Route::get('/daily-revenue', [RevenueController::class, 'getDailyRevenue'])->name('daily-revenue');
+
+            Route::get('/filter-rev', [RevenueController::class, 'filterRev'])->name('filter-revenue');
+        });
     
         // product
         Route::prefix('product')->group(function () {

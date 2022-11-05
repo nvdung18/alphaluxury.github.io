@@ -11,13 +11,39 @@ class RevenueController extends Controller
     {
         $this->revenue=new Revenue();
     }
-    public function getRevenue(Request $request)
+    public function getDailyRevenue(Request $request)
     {
-        $listRev=$this->revenue->getAllRev();
-        
-        // echo "<pre>";
-        // print_r ($listProduct);
-        // echo "</pre>";
+        $exitdailyRev=$this->checkDaiylyRevExists($request);
+        if($exitdailyRev==null){
+            $idDailyRev=$this->revenue->createDailyRev(date("Y/m/d"));
+            $this->checkWeeklyRevExists($idDailyRev);
+        }
+        $listRev=$this->revenue->getAllDailyRevPaginate();        
         return view('admins.revenue',compact('listRev'));
+    }
+
+    public function filterRev(Request $request){
+        $listRev=$this->revenue->getFilterRev($request->filter_date_rev);
+        return view('admins.revenue',compact('listRev'));
+    }
+
+    // to check if dayli revenue exists or not, then we crete new dayily revenue if it not exists.
+    public function checkDaiylyRevExists(Request $request){
+        $nowDate=date("Y/m/d");
+        $exit=$this->revenue->checkDailyRevExit($nowDate);
+        if($exit->first()!=null){
+            return $exit;
+        }else{
+            return null;
+        }
+        // dd(date("Y/m/d"));
+    }
+
+    public function checkWeeklyRevExists($position){
+        $nowDate=date("Y/m/d");
+        $rev=$this->revenue->getAllWeeklyRevPaginate();
+        if($rev->first()==null){
+            $this->revenue->createWeeklyRev($nowDate,$position);
+        }
     }
 }

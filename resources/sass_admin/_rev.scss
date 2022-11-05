@@ -1,0 +1,15 @@
+
+.top-rev_filter{
+    form{
+        display: flex;
+        justify-content: space-around;
+
+        .filter-rev{
+            padding: 5px;
+        }
+
+        .btn-filter-rev{
+            padding: 10px 40px;
+        }
+    }
+}
