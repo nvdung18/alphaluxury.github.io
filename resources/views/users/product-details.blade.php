@@ -7,12 +7,14 @@
     <meta name="keywords" content="Ashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>LWatch</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}" type="text/css">
@@ -40,10 +42,10 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
                         <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-                        <a href="#">Women’s </a>
-                        <span>Essential structured blazer</span>
+                        <a href="#">{{ $tag }}’s </a>
+                        <span>{{ $productdetails->nameProduct }}</span>
                     </div>
-                </div>
+                </div> 
             </div>
         </div>
     </div>
@@ -57,13 +59,17 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__left product__thumb nice-scroll">
                             <a class="pt active" href="#product-1">
-                                <img src="{{ asset('frontend/img/product/88RUE_DU_RHONE/SP01.jpg') }}" alt="">
+                                <img src="{{ asset('frontend/img/product/'.$productdetails->image) }}" alt="No Image">
                             </a>
                             <a class="pt" href="#product-2">
-                                <img src="{{ asset('frontend/img/product/88RUE_DU_RHONE/details/SP01_dt1.jpg') }}" alt="">
+                                @if ($product['nameImgDetail1'] != null || $product['nameImgDetail1'] != '')
+                                <img src="{{ asset('frontend/img/product/'.$product['nameImgDetail1']) }}" alt="No Image">
+                                @endif
                             </a>
                             <a class="pt" href="#product-3">
-                                <img src="{{ asset('frontend/img/product/88RUE_DU_RHONE/details/SP01_dt2.jpg') }}" alt="">
+                                @if ($product['nameImgDetail2'] != null || $product['nameImgDetail2'] != '')
+                                <img src="{{ asset('frontend/img/product/'.$product['nameImgDetail2']) }}" alt="No Image">
+                                @endif
                             </a>
                             {{-- <a class="pt" href="#product-4">
                                 <img src="{{ asset('frontend/img/product/details/thumb-4.jpg') }}" alt="">
@@ -72,11 +78,15 @@
                         <div class="product__details__slider__content">
                             <div class="product__details__pic__slider owl-carousel">
                                 <img data-hash="product-1" class="product__big__img"
-                                    src="{{ asset('frontend/img/product/88RUE_DU_RHONE/SP01.jpg') }}" alt="">
+                                    src="{{ asset('frontend/img/product/'.$productdetails->image) }}" alt="No Image">
+                                @if ($product['nameImgDetail1'] != null || $product['nameImgDetail1'] != '')
                                 <img data-hash="product-2" class="product__big__img"
-                                    src="{{ asset('frontend/img/product/88RUE_DU_RHONE/details/SP01_dt1.jpg') }}" alt="">
+                                    src="{{ asset('frontend/img/product/'.$product['nameImgDetail1']) }}" alt="No Image">
+                                @endif
+                                @if ($product['nameImgDetail2'] != null || $product['nameImgDetail2'] != '')
                                 <img data-hash="product-3" class="product__big__img"
-                                    src="{{ asset('frontend/img/product/88RUE_DU_RHONE/details/SP01_dt2.jpg') }}" alt="">
+                                    src="{{ asset('frontend/img/product/'.$product['nameImgDetail2']) }}" alt="No Image">
+                                @endif
                                 {{-- <img data-hash="product-4" class="product__big__img"
                                     src="{{ asset('frontend/img/product/details/thumb-4.jpg') }}" alt=""> --}}
                             </div>
@@ -85,18 +95,19 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="product__details__text">
-                        <h3>Essential structured blazer <span>Brand: SKMEIMore Men Watches from SKMEI</span></h3>
-                        <div class="product__details__price">$ 75.0 <span>$ 83.0</span></div>
-                        <p>Nemo enim ipsam voluptatem quia aspernatur aut odit aut loret fugit, sed quia consequuntur
-                            magni lores eos qui ratione voluptatem sequi nesciunt.</p>
+                        <h3>{{ $productdetails->nameProduct }}<span>Brand: {{ $productdetails->nameTrademark }}</span></h3>
+                        <div class="product__details__price"> {{ number_format($productdetails->price, 0 ,".", ".") }} VND<span> {{ number_format(12630000, 0, ".", ".") }}VND</span></div>
+                        <p>{{ $productdetails->description }}</p>
                         <div class="product__details__button">
                             <div class="quantity">
                                 <span>Quantity:</span>
                                 <div class="pro-qty">
-                                    <input type="text" value="1">
+                                    <span class="dec qtybtn">-</span>
+                                    <input name="quantity" type="text" value="1">
+                                    <span class="inc qtybtn">+</span>
                                 </div>
                             </div>
-                            <a href="#" class="cart-btn"><span class="icon_bag_alt"></span> Add to cart</a>
+                            <a href="#" class="cart-btn btn-cart" idProduct={{ $productdetails->idProduct }} data-url="{{ route('add_product_to_cart') }}"><span class="icon_bag_alt"></span> Add to cart</a>
                             <ul>
                                 <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                                 <li><a href="#"><span class="icon_adjust-horiz"></span></a></li>

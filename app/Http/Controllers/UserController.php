@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Product;
+use App\Models\Trademark;
+
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
@@ -17,11 +20,21 @@ use Illuminate\Support\Facades\View as FacadesView;
 use Symfony\Component\Console\Input\Input;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use Illuminate\View\View as ViewView;
 
 use function PHPUnit\Framework\returnValueMap;
 
 class UserController extends Controller
 {
+    
+    public function __construct()
+    {
+        $this->product = new Product();
+        $this->trademark = new Trademark();
+        $this->listTrademark = $this->trademark->getAllTrademark();
+        $this->countTrademark = $this->trademark->countTrademark();
+    }
+
     public function check(Request $request) {
         
     }
@@ -255,4 +268,11 @@ class UserController extends Controller
         return redirect()->route('user.login');
     }
     
+    public function show_form_user_page(Request $request) {
+        $listProduct=$this->product->getAllProduct();
+        $listTrademark=$this->trademark->getAllTrademark();
+        $countTrademark=$this->trademark->countTrademark();
+        $tag="home";
+        return view('users.personel',compact('listProduct','listTrademark','countTrademark','tag'));
+    }
 }
