@@ -28,9 +28,9 @@
       </a>
       <div class="collapse" id="revenue">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="{{ route('monthly-revenue') }}">Monthly Revenue</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{ route('monthly-revenue') }}">Weekly Revenue</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{ route('monthly-revenue') }}">Daily Revenue</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('ad.monthly-revenue') }}">Monthly Revenue</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('ad.monthly-revenue') }}">Weekly Revenue</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('ad.monthly-revenue') }}">Daily Revenue</a></li>
         </ul>
       </div>
     </li>
@@ -47,7 +47,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="{{ route('ad.product') }}">
         <span class="menu-title">Product</span>
         <i class="mdi mdi-table-large menu-icon"></i>
       </a>

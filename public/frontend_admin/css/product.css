@@ -1,0 +1,272 @@
+body {
+	position: relative;
+	z-index: 0;
+}
+
+.edit {
+	margin-right: 5px;
+}
+
+/* .wr-popup {
+	position: absolute;
+	visibility: hidden;
+	top: 0;
+	z-index: 99;
+	width: 100%;
+	background-color: #7c7b7c2b;
+	height: 100%;
+	top: 0;
+} */
+.wr-add-popup {
+	position: absolute;
+	visibility: none;
+	top: 0;
+	z-index: 99;
+	width: 100%;
+	background-color: #7c7b7c2b;
+	height: 100%;
+}
+
+.wr-manage {
+	margin-top: 20px;
+}
+
+.wr-ct-manage {
+	background-color: #ececec57;
+	padding: 20px 0;
+}
+
+.card-content h4,
+p,
+.btn-action {
+	display: flex;
+	/* justify-content: center; */
+	align-items: center;
+	margin: 0;
+}
+
+.btn-action {
+	padding: 0 15px;
+}
+
+.btn-action i {
+	/* margin-left: 5px; */
+	cursor: pointer;
+	font-size: 22px;
+
+}
+
+.card-content p {
+	width: 200px;
+	justify-self: flex-start;
+}
+
+.card-head-infor p {
+	width: 150px;
+	justify-items: flex-start;
+}
+
+.card-name {
+	padding-left: 110px;
+	overflow: hidden;
+}
+
+.card-img {
+	padding-left: 32px;
+}
+
+label {
+	margin: 0;
+}
+
+.btn-number {
+	margin-top: -7px;
+	border: 1px solid #eee;
+}
+
+.card-product:hover {
+	background-color: rgb(247 247 247/ 60%);
+}
+
+/* Add new product */
+.center {
+	position: absolute;
+	top: 6%;
+	left: 28%;
+	/* 	transform: translate(-50%, -50%); */
+}
+
+/* homepage popup button */
+.start-btn a {
+	font-size: 22px;
+	border-radius: 5px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: 600;
+	background: white;
+	color: #02242b;
+	padding: 15px 18px;
+	letter-spacing: 1px;
+}
+
+/* popup box */
+.modal-box {
+	/* 	top: 40%; */
+	opacity: 0;
+	width: 645px;
+	padding: 18px 10px;
+	border-radius: 5px;
+	visibility: hidden;
+	background: white;
+	height: auto;
+	position: absolute;
+	z-index: 99;
+	box-shadow: 5px 5px 30px rgba(0, 0, 0, .2);
+}
+
+.start-btn.show-modal {
+	opacity: 0;
+	visibility: hidden;
+}
+
+.modal-box.show-modal {
+		top: 4%;
+	opacity: 1;
+	visibility: visible;
+	transition: .4s;
+}
+
+/* cancle button */
+.modal-box .fa-times {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: #0569d4;
+	font-size: 18px;
+	border-radius: 100%;
+	text-align: center;
+	cursor: pointer;
+	height: 40px;
+	width: 40px;
+	line-height: 40px;
+	margin: 10px;
+	color: white;
+}
+
+.fa-times:hover {
+	font-size: 22px;
+}
+
+/* design the form */
+.form_container {
+	background: #fff;
+	padding: 30px;
+	border-radius: 3px;
+}
+
+.form_container .form_item {
+	margin-bottom: 25px;
+}
+
+.form_container .form_wrap.form_grp {
+	display: flex;
+}
+
+.form_container .form_wrap.form_grp .form_item {
+	width: 50%;
+}
+
+.form_container .form_wrap.form_grp .form_item:first-child {
+	margin-right: 4%;
+}
+
+.form_container .form_item label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+/* input box and select box */
+.form_container .form_item input,
+.form_container .form_item select,
+textarea {
+	width: 100%;
+	border: 1px solid #dadce0;
+	border-radius: 3px;
+	padding: 10px;
+	font-size: 16px;
+}
+
+.form_container .form_item textarea {
+	height: 109px;
+	resize: none;
+}
+
+/* submit button */
+.form_container .btn-submit input[type="submit"] {
+	background: #6271f0;
+	cursor: pointer;
+	color: #fff;
+	border: 1px solid #6271f0;
+	padding: 10px;
+	width: 100%;
+	border-radius: 3px;
+}
+.btn-submit{
+	padding: 0;
+}
+.btn-item-page {
+	padding: 0;
+}
+
+.pagination__option ul,
+.pagination__option li {
+	display: flex;
+	list-style: none;
+}
+
+.pagination__option ul .active span,
+.pagination__option li .active span {
+	border-color: #0d0d0d;
+	background: #0d0d0d;
+	color: #ffffff;
+}
+
+.pagination__option a,
+.pagination__option span {
+	text-decoration: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 40px;
+	width: 40px;
+	border: 2px solid #f2f2f2;
+	border-radius: 50%;
+	font-size: 14px;
+	color: #111111;
+	font-weight: 600;
+	line-height: 40px;
+	text-align: center;
+	-webkit-transition: all, 0.3s;
+	-moz-transition: all, 0.3s;
+	-ms-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+	margin-right: 6px;
+}
+
+.pagination__option a:last-child,
+.pagination__option span:last-child {
+	margin-right: 0;
+}
+
+.pagination__option a i,
+.pagination__option span i {
+	font-weight: 600;
+}
+
+.pagination__option a:hover,
+.pagination__option span:hover {
+	background: #0d0d0d;
+	border-color: #0d0d0d;
+	color: #ffffff;
+}

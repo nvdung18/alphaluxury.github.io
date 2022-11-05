@@ -80,6 +80,11 @@ use PhpParser\NodeVisitor\FirstFindingVisitor;
             // return redirect('shop/watch-men');
         }
 
+    public function test(Request $request){
+        $tag=$request->tag;
+        return view('users.product-details', compact('tag'),['listTrademark' => $this->listTrademark, 'countTrademark' => $this->countTrademark]);
+    }
+
         public function productDetails($nameproduct, $gender) {
             $listProduct=$this->product->getAllProduct();
             $listTrademark=$this->trademark->getAllTrademark();
