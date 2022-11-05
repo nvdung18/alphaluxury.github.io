@@ -50,17 +50,20 @@
                 <div class="header__right">
                     <div class="header__right__auth">
                           @if (Auth::check())
-                        <div class="select-box">
+                        <div class="select-box select-index">
                             <div class="options-container">
                                 <div class="option">
                                     <input type="radio" class="radio" id="automobiles" name="category" />
-                                    <label for="automobiles">Personel Page</label>
+                                    <label for="automobiles">
+                                        <button class="btn" style="color: white" onclick="showPersonelPage()">
+                                        User Page
+                                        </button>
+                                </label>
                                 </div>
-                                <div class="option">
+                                {{-- <div class="option">
                                     <input type="radio" class="radio" id="film" name="category" />
                                     <label for="film">Change Password</label>
-                                </div>
-                
+                                </div> --}}
                                 <div class="option">
                                     <input type="radio" class="radio" id="science" name="category" />
                                     <label for="science">
@@ -84,9 +87,31 @@
                     </div>
                     <ul class="header__right__widget">
                         <li><span class="icon_search search-switch"></span></li>
-                        <li><a href="#"><span class="icon_bag_alt"></span>
+                        <li><div>
+                            {{-- <a href="{{ asset('') }}"></a> --}}
+                                <a href="#"><span class="icon_bag_alt"></span>
                                 <div class="tip">2</div>
-                            </a></li>
+                                <div class="header__cart-list">
+                                    <img src="./assets/img/no-cart.png" alt="" class="header__cart-no-cart-img">
+                                    <span class="header__cart-list-no-cart-msg">
+                                        Chưa có sản phẩm
+                                    </span>
+        
+                                    <h4 class="header__cart-heading">
+                                        Sản phẩm đã thêm
+                                    </h4>
+                                    <ul class="header__cart-list-item">
+                                    {{-- <div class="header_list">
+                                    
+                                    </div> --}}
+                                   </ul>
+                                    <a class="header__cart-view-cart btn--default btn--primary link-cart" href="{{ route('shop-cart', ['tag' => $tag]) }}">
+                                        Xem giỏ hàng
+                                    </a>
+                                </div>
+                                </a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -99,6 +124,9 @@
      function Redirect() {
         window.location="http://127.0.0.1:8000/logout";        
      }       
+     function showPersonelPage() {
+        window.location="http://127.0.0.1:8000/user/userpage";
+     }
     </script>
 </header>
 {{-- Header Section End --}}

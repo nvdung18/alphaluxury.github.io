@@ -34,7 +34,7 @@ Route::prefix('shop')->group(function () {
 
             Route::get('/', [ShopController::class, 'getProductMaleP'])->name('men');
 
-            Route::get('/product-details', [ShopController::class,'test'])->name('product-details');
+            Route::get('/product-details/{nameproduct}/{gender}', [ShopController::class, 'productDetails'])->name('product-details');
 
             // route for filter
             Route::prefix('/')->group(function () {
@@ -50,7 +50,8 @@ Route::prefix('shop')->group(function () {
         // product for women
         Route::prefix('/watch-women')->group(function () {
             Route::get('/', [ShopController::class, 'getProductFemaleP'])->name('women');
-
+            
+            Route::get('/product-details/{nameproduct}/{gender}', [ShopController::class, 'productDetails'])->name('product-details');
             // route for filter
             Route::prefix('/')->group(function () {
 
@@ -68,9 +69,7 @@ Route::prefix('shop')->group(function () {
 //     return view('users.product-details');
 // })->name('product-details');
 
-Route::get('/shop-cart', function () {
-    return view('users.shop-cart');
-})->name('shop-cart');
+Route::get('/shop-cart', [ShopController::class, 'show_shop_cart'])->name('shop-cart');
 
 Route::get('/checkout', function () {
     return view('users.checkout');
@@ -166,11 +165,27 @@ Route::get('/register', function(){
 Route::post('/addUser', [UserController::class, 'add'])->name('addUser');
 
 Route::get('/login',[UserController::class,'showlogin'])->name('user.login');
+
 Route::post('/checklogin',[UserController::class,'checklogin'])->name('user.checklogin');
 
 Route::get('/resetpassword', [UserController::class, 'formresetpw'])->name('resetpw');
 
 Route::post('/recover-pass',[UserController::class, 'resetpasswordCallback'])->name('recover_pass');
+
 Route::post('/newpw', [UserController::class, 'newpassword'])->name('changepassword');
+
 Route::get('/forgotpassword', [UserController::class, 'forgotpw'])->name('forgotpassword');
+
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+
+Route::prefix('user')->group(function () {
+    Route::get('/userpage',[UserController::class, 'show_form_user_page'])->name('user.page');
+});
+
+Route::prefix('cart')->group(function () {
+    Route::post('/add_product',[ShopController::class, 'addproducttocart'])->name('add_product_to_cart');
+    Route::post('/check_cart',[ShopController::class, 'checkcart'])->name('checkcart');
+    // Route::post('/check_cart_account', [ShopController::class, 'check_cart_account'])->name('checkcartaccount');
+    Route::post('/update_cart', [ShopController::class, 'update_cart'])->name('update_cart');
+    Route::post('/delete_cart',[ShopController::class, 'delete_cart'])->name('delete_cart');
+});

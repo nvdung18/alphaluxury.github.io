@@ -7,14 +7,16 @@
     <meta name="keywords" content="Ashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>LWatch</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <!-- Css Styles -->
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('frontend/css/font-awesome.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('frontend/css/elegant-icons.css') }}" type="text/css">
@@ -34,7 +36,7 @@
     {{-- Off Canvas Menu End --}}
 
     {{-- Header Section Begin --}}
-    {{-- @include('parts.header') --}}
+    @include('parts.header')
     {{-- Header Section End --}}
 
     <!-- Breadcrumb Begin -->
@@ -67,32 +69,10 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @for ($i = 0; $i < 4; $i++)
-                                <tr>
-                                    <td class="cart__product__item">
-                                        <img src="{{ asset('frontend/img/banner/UploadsNewscalvin-klein-infinite-automatic-silver-dial-men-s-watch-42mmjpg_540_660.jpg') }}" alt="" style="width: 50px; height: 50px;">
-                                        <div class="cart__product__item__title">
-                                            <h6>Chain bucket bag</h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ 150.0</td>
-                                    <td class="cart__quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="1">
-                                        </div>
-                                    </td>
-                                    <td class="cart__total">$ 300.0</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>
-                            @endfor
+                        <tbody class="table-body">
+                           @if(Auth::check())
+                             
+                           @endif
                         </tbody>
                     </table>
                 </div>
