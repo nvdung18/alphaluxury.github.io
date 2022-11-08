@@ -7,6 +7,9 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\RevenueController;
 use App\Http\Controllers\AdminShopController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminTrademarkController;
+use App\Http\Controllers\AdminOrderController;
+use App\Http\Controllers\AdminReceiptController;
 use Laravel\Socialite\Facades\Socialite;
 
 use function PHPUnit\Framework\returnSelf;
@@ -96,7 +99,19 @@ Route::prefix('admin')->group(function () {
     Route::name('ad.')->group(function () {
     
         // revenue
-        Route::get('/monthly-revenue', [RevenueController::class, 'getRevenue'])->name('monthly-revenue');
+        Route::prefix('revenue')->group(function () {
+            Route::get('/daily-revenue', [RevenueController::class, 'getDailyRevenue'])->name('daily-revenue');
+
+            Route::get('/filter-rev', [RevenueController::class, 'filterRev'])->name('filter-revenue');
+
+            Route::get('/weekly-revenue', [RevenueController::class, 'getWeeklyRevenue'])->name('weekly-revenue');
+
+            Route::get('/monthly-revenue', [RevenueController::class, 'getMonthlyRevenue'])->name('monthly-revenue');
+
+            Route::get('/chart-weekly-revenue', [RevenueController::class, 'getChartWeeklyRevenut'])->name('chart-weekly-revenue');
+
+            Route::get('/chart-monthly-revenue', [RevenueController::class, 'getChartMonthlyRevenut'])->name('chart-monthly-revenue');
+        });
     
         // product
         Route::prefix('product')->group(function () {
@@ -111,6 +126,38 @@ Route::prefix('admin')->group(function () {
             Route::post('/edit', [AdminShopController::class,'confirmEdit'])->name('edit-product');
 
             Route::get('/delete', [AdminShopController::class,'deleteProduct'])->name('delete-product');
+        });
+
+        // trademark
+        Route::prefix('trademark')->group(function () {
+
+            Route::get('/', [AdminTrademarkController::class,'getAllTrademark'])->name('trademark');
+
+            Route::get('/edit', [AdminTrademarkController::class,'editTrademark'])->name('edit-trademark');
+
+            Route::post('/edit', [AdminTrademarkController::class,'confirmEdit'])->name('edit-trademark');
+
+            Route::get('/delete', [AdminTrademarkController::class,'deleteTrademark'])->name('delete-trademark');
+
+            Route::post('/add', [AdminTrademarkController::class,'addTrademark'])->name('add-trademark');
+        });
+
+        // order
+        Route::prefix('order')->group(function () {
+
+            Route::get('/', [AdminOrderController::class,'getAllOrderPaginate'])->name('order');
+
+            Route::get('/details', [AdminOrderController::class,'getDetailsOrder'])->name('details-order');
+
+            Route::post('/update-order', [AdminOrderController::class,'updateStatus'])->name('update-order');
+        });
+
+        // receipt
+        Route::prefix('receipt')->group(function () {
+
+            Route::get('/', [AdminReceiptController::class,'getAllReceiptPaginate'])->name('receipt');
+
+            Route::get('/details', [AdminReceiptController::class,'getAllReceiptPaginate'])->name('receipt-details');
         });
     });
 });
