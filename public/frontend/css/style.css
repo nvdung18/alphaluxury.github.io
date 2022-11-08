@@ -804,6 +804,9 @@ ol {
 .header__right__widget li:last-child:hover .header__cart-list {
   display: block; }
 
+.btn:focus {
+  box-shadow: none; }
+
 /*---------------------
   Categories
 -----------------------*/
@@ -3237,8 +3240,14 @@ ol {
     .menu .menu_item.active {
       color: red; }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 .form {
-  display: none; }
+  display: none;
+  animation: fadeIn ease-in 0.2s; }
   .form.active {
     display: block; }
   .form .label_form {
@@ -3252,7 +3261,8 @@ ol {
     border: none; }
 
 .order {
-  display: none; }
+  display: none;
+  animation: fadeIn ease-in 0.2s; }
   .order.active {
     display: block; }
   .order .order-header {
@@ -3278,5 +3288,20 @@ ol {
     .order .order-product-item img {
       max-width: 140px;
       margin-right: 24px; }
+
+.changepassword {
+  display: none;
+  animation: fadeIn ease-in 0.2s; }
+  .changepassword.active {
+    display: block; }
+  .changepassword .label_form {
+    margin: 10px 0px 10px 0px;
+    font-size: 25px; }
+  .changepassword .btn_form {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    background-color: red;
+    color: white;
+    border: none; }
 
 /*# sourceMappingURL=style.css.map */

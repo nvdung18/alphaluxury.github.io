@@ -18,9 +18,19 @@
         }
     }
 }
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
 .form {    
     display: none;
-    
+    animation: fadeIn ease-in 0.2s;
     &.active {
         display: block;
     }
@@ -40,6 +50,7 @@
 
 .order {
     display: none;
+    animation: fadeIn ease-in 0.2s;
     &.active {
         display: block;
     }
@@ -77,4 +88,24 @@
             margin-right: 24px;
           }
         }
+}
+
+.changepassword {    
+  display: none;
+  animation: fadeIn ease-in 0.2s;
+  &.active {
+      display: block;
+  }
+
+  .label_form {
+      margin: 10px 0px 10px 0px;
+      font-size: 25px;
+  }
+  .btn_form {
+      margin-top: 15px;
+      margin-bottom: 30px;
+      background-color: red;
+      color: white;
+      border: none;
+  }
 }

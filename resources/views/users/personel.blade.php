@@ -38,9 +38,9 @@
         <div class="container">
             <div class="row">
                 <ul class="menu col-lg-2">
-                    <li class="menu_item" data-index="1">My Profile</li>
+                    <li class="menu_item active" data-index="1">My Profile</li>
                     <li class="menu_item" data-index="2">My Order</li>
-                    <li class="menu_item">Discount</li>
+                    <li class="menu_item" data-index="3">Change Password</li>
                 </ul>
                 <div class="form col-lg-10 active">
                     <label for="" class="label_form">
@@ -73,7 +73,7 @@
                         <button type="submit" class="btn btn-primary btn_form">Submit</button>
                       </form>
                 </div>
-                     <div class="order col-lg-10">
+                  <div class="order col-lg-10">
                         <div class="order-header">
                             <div class="order-header-items">
                                 <div>
@@ -170,6 +170,22 @@
                                     </div>
                                 </div>    
                         </div>
+                    </div>
+                    <div class="changepassword col-lg-10">
+                        <label for="" class="label_form">
+                            Change Password
+                        </label>
+                        <form>
+                            <div class="form-group">
+                                <label for="username">New Password</label>
+                                <input type="text" class="form-control" id="" placeholder="Enter New Password" name="password">
+                              </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Confirm Password</label>
+                                <input type="text" class="form-control" id="" placeholder="Confirm New Password " name="password_confirmation">
+                            </div>        
+                            <button type="submit" class="btn btn-primary btn_form">Submit</button>
+                          </form>
                     </div>
             </div>
         </div>

@@ -66,7 +66,7 @@ Route::prefix('shop')->group(function () {
 //     return view('users.product-details');
 // })->name('product-details');
 
-Route::get('/shop-cart', [ShopController::class, 'show_shop_cart'])->name('shop-cart');
+Route::get('/shop-cart', [ShopController::class, 'show_shop_cart'])->name('shop-cart')->middleware('auth.roles');
 
 Route::get('/checkout', function () {
     return view('users.checkout');
@@ -144,9 +144,9 @@ Route::prefix('user')->group(function () {
 });
 
 Route::prefix('cart')->group(function () {
-    Route::post('/add_product',[ShopController::class, 'addproducttocart'])->name('add_product_to_cart');
-    Route::post('/check_cart',[ShopController::class, 'checkcart'])->name('checkcart');
-    // Route::post('/check_cart_account', [ShopController::class, 'check_cart_account'])->name('checkcartaccount');
-    Route::post('/update_cart', [ShopController::class, 'update_cart'])->name('update_cart');
-    Route::post('/delete_cart',[ShopController::class, 'delete_cart'])->name('delete_cart');
+        Route::post('/add_product',[ShopController::class, 'addproducttocart'])->name('add_product_to_cart')->middleware('auth.roles');
+        Route::post('/check_cart',[ShopController::class, 'checkcart'])->name('checkcart');
+        // Route::post('/check_cart_account', [ShopController::class, 'check_cart_account'])->name('checkcartaccount');
+        Route::post('/update_cart', [ShopController::class, 'update_cart'])->name('update_cart');
+        Route::post('/delete_cart',[ShopController::class, 'delete_cart'])->name('delete_cart');
 });

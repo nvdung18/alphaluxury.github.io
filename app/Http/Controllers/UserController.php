@@ -172,6 +172,10 @@ class UserController extends Controller
         // Auth ma hoa bang bcrypt
         if(Auth::attempt($request->only('nameUser', 'password'), true)) {
            if(Auth::user()->status != 1) {
+                Auth::user()->tokens->each(function($token, $key) {
+                    $token->delete();
+                });
+                Auth::logout();
                 return redirect()->route('user.login')->with([
                     'message' => 'Account has been locked'
                 ]);
@@ -181,7 +185,15 @@ class UserController extends Controller
                Auth::user()->setRememberToken($user->remember_token);
                Auth::loginUsingId($user->idUser, true);;
                return redirect()->route('home');
-           } 
+           } else if(Auth::user()->role != 1) {
+               Auth::user()->tokens->each(function($token, $key) {
+               $token->delete();
+               });
+               Auth::logout();
+               return redirect()->route('user.login')->with([
+                   'message' => "You cant access to use website"
+                ]);
+           }
         } else {
             return redirect()->route('user.login')->with([
                 'message' => 'Account is not exist'
