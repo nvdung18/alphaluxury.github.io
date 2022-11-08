@@ -107,7 +107,7 @@
                                     <span class="inc qtybtn">+</span>
                                 </div>
                             </div>
-                            <a href="#" class="cart-btn btn-cart" idProduct={{ $productdetails->idProduct }} data-url="{{ route('add_product_to_cart') }}"><span class="icon_bag_alt"></span> Add to cart</a>
+                            <a href="#" class="cart-btn btn-cart" idproduct={{ $productdetails->idProduct }} data-url="{{ route('add_product_to_cart') }}"><span class="icon_bag_alt"></span> Add to cart</a>
                             <ul>
                                 <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                                 <li><a href="#"><span class="icon_adjust-horiz"></span></a></li>

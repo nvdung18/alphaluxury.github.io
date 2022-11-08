@@ -154,6 +154,7 @@ use PhpParser\NodeVisitor\FirstFindingVisitor;
             $quantity = $request->quantity;
             $idProduct = $request->idProduct;
             $product = DB::table('product')->where('idProduct', '=', $idProduct)->get()->first();
+            // return response()->json($product);
             if(Auth::check()) {
                 $idUser = Auth::user()->idUser;
                 // return response()->json($idUser);
@@ -180,6 +181,7 @@ use PhpParser\NodeVisitor\FirstFindingVisitor;
                             'idProduct' => $idProduct,
                             'quantity' => $quantity
                     ]);
+                    // return response()->json(['Success']);
                     return response()->json([
                         'icon' => 'success',
                         'text' => 'Success Please Check Your Cart'
@@ -198,6 +200,7 @@ use PhpParser\NodeVisitor\FirstFindingVisitor;
                                 ->where('idAccount', '=', $account->idAccount)
                                 ->get()
                                 ->first();
+                                
                     if(!isset($checkcart) || $checkcart == null) {
                         $addpd = DB::table('cart')->insert([
                             'idCart' => 'Cart_'.$datapl,

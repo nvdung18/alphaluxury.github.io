@@ -225,12 +225,12 @@ Created: Colorib
         });
     }
     
-    optionsList.forEach(o => {
-        o.addEventListener("click", () => {
-        selected.innerHTML = o.querySelector("label").innerHTML;
-        optionsContainer.classList.remove("active");
-        });
-    });
+    // optionsList.forEach(o => {
+    //     o.addEventListener("click", () => {
+    //     // selected.innerHTML = o.querySelector("label").innerHTML;
+    //     // optionsContainer.classList.remove("active");
+    //     });
+    // });
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -241,63 +241,52 @@ Created: Colorib
     $('.menu_item').on('click',function() {
        const checkindex = $(this).attr('data-index');
        const selected = $(this);
-       console.log($(this).navText);
+    //    console.log($(this).navText);
        var tag = 1;
        if(checkindex == 1) {
         $('.order').removeClass('active');
+        $('.changepassword').removeClass('active');
         $('.form').addClass('active');
         $("[data-index=1]").addClass('active');
         $("[data-index=2]").removeClass('active');
-        // if(selected.attr('data-index') != 2) {
-        //     $(this).removeClass('active');
-        // }
-        // if(selected.attr('data-index') == 1) {
-            //     $(this).addClass('active');
-            // }
-            // if(tag == 1) {
-                //   $(this).addClass('active');  
-                // } else {
-                    //     $(this).removeClass('active');
-                    // }
-                } else if(checkindex == 2) {
-                    $('.order').addClass('active');
-                    $('.form').removeClass('active');
-                    $("[data-index=2]").addClass('active');
-                    $("[data-index=1]").removeClass('active');
-                    // tag = 2;
-                    // if(tag == 2) {
-        //     $(this).addClass('active');  
-        //   }
-        // if(selected.attr('data-index') != 1) {
-            //     $(this).removeClass('active');
-            // }
-            // if(selected.attr('data-index') == 2) {
-                //     $(this).addClass('active');
-                // }
+        $("[data-index=3]").removeClass('active');
+
+            } else if(checkindex == 2) {
+                $('.order').addClass('active');
+                $('.changepassword').removeClass('active');
+                $('.form').removeClass('active');
+                $("[data-index=2]").addClass('active');
+                $("[data-index=1]").removeClass('active');
+                $("[data-index=3]").removeClass('active');
+
+            } else if(checkindex == 3) {
+                $('.changepassword').addClass('active');
+                $('.order').removeClass('active');
+                $('.form').removeClass('active');
+                $("[data-index=2]").removeClass('active');
+                $("[data-index=1]").removeClass('active');
+                $("[data-index=3]").addClass('active');
+
             }
         });
-        
-        
-    // $('.menu_item').click(function() {
-    //     $('.order').addClass('active');
-    //     $('.form').removeClass('active');
-    //  }); 
-    // $.ajaxSetup({
-    //     headers: {
-        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //         }
-        //     });
     
+
         $(".btn-cart").on('click',function(e){
             //etc
             e.preventDefault(); 
+            console.log(1);
             var quantity = 1;
-            if($('input[name=quantity]').val() !== 1) {
-                quantity = $('input[name=quantity]').val();
-                console.log(quantity, 'interface');
+            const getquantity = $('input[name=quantity]');
+            console.log(getquantity);
+            if(getquantity.length != 0 || typeof quantity === "undefined") {
+                if($('input[name=quantity]').val() !== 1) {
+                    quantity = $('input[name=quantity]').val();
+                    console.log(quantity, 'interface');
+                }
             }
             var idProduct = $(this).attr('idproduct');
             var url = $(this).attr('data-url');
+            console.log(idProduct, url);
             // console.log('success');
             // console.log(url);
             // console.log(idProduct);
@@ -328,6 +317,9 @@ Created: Colorib
                        fetch_data();
                        fetch_data_cart_in_cart();   
                     }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    window.location.assign('http://127.0.0.1:8000/login');
                 }
             });
         });
@@ -375,6 +367,7 @@ Created: Colorib
              url: 'http://127.0.0.1:8000/cart/check_cart',
              dataType: 'json',
              success: function(data) {
+                console.log(data);
                 const checkdata = $.isEmptyObject(data);
                 if(checkdata != true) {
                     var itemproduct = ``;
@@ -421,7 +414,7 @@ Created: Colorib
                     // registerEvents(proQty, deleteproduct);
                 } else if(checkdata == true){
                     $('.table-body').html('');
-                    $('.tip').text(0);
+                    $('.tip').text('0');
                 }
              }
            });
@@ -433,6 +426,7 @@ Created: Colorib
                 url: "http://127.0.0.1:8000/cart/check_cart",
                 dataType: "json",
                 success:function(data) {
+                    console.log(data);
                     const check = $.isEmptyObject(data);
                     if(check != true) {
                         var sum = ``;
@@ -467,10 +461,10 @@ Created: Colorib
                                        $('.header__cart-list-item').html(sum);
                                        $('.tip').text(data.length);
 
-                    } else if(check == true) {
+                    } else {
                         $('.header__cart-list-item').html('');
-                        $('.tip').text(0);
-
+                        $('.tip').text('0');
+                        console.log(data);
                     }
                                     // deleteproduct = $('.delete');
                                     // registerEventsHeader(deleteproduct);
@@ -536,7 +530,7 @@ Created: Colorib
                 const idProduct = $button.parent().find('input').attr('idProduct');
                 const idCart = $button.parent().find('input').attr('idCart');
                 console.log(quantity, idProduct, idCart);
-                if(idProduct !== undefined && idCart !== undefined) {
+                if(typeof idProduct !== "undefined" &&typeof idCart !== "undefined") {
                     // console.log('da o trong');
                     // arr = [quantity, idProduct, idCart];
                     // if($.isEmptyObject(arr) != true) {

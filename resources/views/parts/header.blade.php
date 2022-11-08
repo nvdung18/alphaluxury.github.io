@@ -122,10 +122,10 @@
     </div>
     <script type="text/javascript">
      function Redirect() {
-        window.location="http://127.0.0.1:8000/logout";        
+        window.location.assign('http://127.0.0.1:8000/logout');
      }       
      function showPersonelPage() {
-        window.location="http://127.0.0.1:8000/user/userpage";
+        window.location.assign('http://127.0.0.1:8000/user/userpage');
      }
     </script>
 </header>

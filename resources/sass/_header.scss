@@ -800,3 +800,7 @@ $background-color_5: #c3c3c3;
 .header__right__widget li:last-child:hover .header__cart-list {
     display: block;
 }
+
+.btn:focus {
+    box-shadow: none;
+}
