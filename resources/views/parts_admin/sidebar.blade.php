@@ -28,8 +28,8 @@
       </a>
       <div class="collapse" id="revenue">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="{{ route('ad.daily-revenue') }}">Monthly Revenue</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{ route('ad.daily-revenue') }}">Weekly Revenue</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('ad.monthly-revenue') }}">Monthly Revenue</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('ad.weekly-revenue') }}">Weekly Revenue</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{ route('ad.daily-revenue') }}">Daily Revenue</a></li>
         </ul>
       </div>

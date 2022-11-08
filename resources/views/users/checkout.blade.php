@@ -32,7 +32,7 @@
     @include('parts.pre_loader')
 
     {{-- Header Section Begin --}}
-    @include('parts.header')
+    {{-- @include('parts.header') --}}
     {{-- Header Section End --}}
 
     <!-- Breadcrumb Begin -->

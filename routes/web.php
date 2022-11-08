@@ -103,6 +103,14 @@ Route::prefix('admin')->group(function () {
             Route::get('/daily-revenue', [RevenueController::class, 'getDailyRevenue'])->name('daily-revenue');
 
             Route::get('/filter-rev', [RevenueController::class, 'filterRev'])->name('filter-revenue');
+
+            Route::get('/weekly-revenue', [RevenueController::class, 'getWeeklyRevenue'])->name('weekly-revenue');
+
+            Route::get('/monthly-revenue', [RevenueController::class, 'getMonthlyRevenue'])->name('monthly-revenue');
+
+            Route::get('/chart-weekly-revenue', [RevenueController::class, 'getChartWeeklyRevenut'])->name('chart-weekly-revenue');
+
+            Route::get('/chart-monthly-revenue', [RevenueController::class, 'getChartMonthlyRevenut'])->name('chart-monthly-revenue');
         });
     
         // product

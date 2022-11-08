@@ -363,4 +363,9 @@ textarea {
   .top-rev_filter form .btn-filter-rev {
     padding: 10px 40px; }
 
+.btn-rev-more {
+  list-style: none;
+  text-decoration: none;
+  color: aliceblue; }
+
 /*# sourceMappingURL=ad_style.css.map */

@@ -57,8 +57,10 @@
                                         <h4 class="card-title col-md-9">Revenue Table</h4>
                                         <div class="top-rev_filter col-md-3">
                                             <form action="{{ route('ad.filter-revenue') }}" method="get">
-                                                <input type="date" class="filter-rev" name="filter_date_rev" id="">
-                                                <input type="submit" name="" id="" class="btn btn-success btn-filter-rev" value="Filter">
+                                                <input type="date" class="filter-rev" name="filter_date_rev"
+                                                    id="">
+                                                <input type="submit" name="" id=""
+                                                    class="btn btn-success btn-filter-rev" value="Filter">
                                             </form>
                                         </div>
                                     </div>
@@ -83,7 +85,22 @@
                                                         <td>{{ $item->quantity }}</td>
                                                         <td>{{ $item->releaseDate }}</td>
                                                         <td>
-                                                            <div class="btn btn-primary">Detail</div>
+                                                            @if ($tag == 'day')
+                                                                <a href="#" class="btn-rev-more">
+                                                                    <div class="btn btn-primary">
+                                                                        Detail
+                                                                    </div>
+                                                                </a>
+                                                            @else
+                                                                <a class="btn-rev-more"
+                                                                    href="{{ $tag == 'week' 
+                                                                    ? route('ad.chart-weekly-revenue', ['position' => $item->position]) 
+                                                                    : route('ad.chart-monthly-revenue', ['position' => $item->position]) }}">
+                                                                    <div class="btn btn-primary">
+                                                                        Statistical
+                                                                    </div>
+                                                                </a>
+                                                            @endif
                                                         </td>
                                                     </tr>
                                                 @endif
@@ -123,8 +140,9 @@
     <!-- Custom js for this page -->
     <script src="{{ asset('frontend_admin/js/dashboard.js') }}"></script>
     <script src="{{ asset('frontend_admin/js/todolist.js') }}"></script>
+    {{-- chart --}}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <!-- End custom js for this page -->
-    <script src=""></script>
 </body>
 
 </html>
