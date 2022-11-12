@@ -91,6 +91,7 @@ class UserController extends Controller
                 $us = 1;
                 $newUser->idUser = 'Us_'.$us;
                 $newUser->nameUser = $request->name;
+                $newUser->fullname = uniqid();
                 $newUser->email = $request->email;
                 $newUser->password = bcrypt($request->password);
                 $newUser->role = $request->role;
@@ -116,6 +117,7 @@ class UserController extends Controller
                   $newUser = new Customer();
                   $newUser->idUser = 'Us_'.++$data[1];
                   $newUser->nameUser = $request->name;
+                  $newUser->fullname = uniqid();
                   $newUser->email = $request->email;
                   $newUser->password = bcrypt($request->password);
                   $newUser->role = $request->role;

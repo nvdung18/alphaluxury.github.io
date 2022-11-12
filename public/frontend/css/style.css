@@ -2515,6 +2515,8 @@ ol {
     border-radius: 50px;
     text-align: center;
     padding: 12px 0 10px; }
+    .cart__total__procced .primary-btn:hover {
+      opacity: 0.8; }
 
 .cart__btn {
   margin-bottom: 50px; }
@@ -2558,6 +2560,9 @@ ol {
     position: absolute;
     right: 4px;
     top: 4px; }
+
+.site-btn:hover {
+  opacity: 0.8; }
 
 /*---------------------
   Checkout
@@ -2742,6 +2747,24 @@ ol {
         transform: rotate(127deg);
         opacity: 0;
         content: ""; }
+
+.productcheckout {
+  font-size: 16px;
+  line-height: 24px;
+  max-height: 4rem;
+  overflow: hidden;
+  font-weight: 400;
+  color: var(--text-color);
+  margin: 0;
+  flex: 1;
+  text-align: left;
+  padding-right: 16px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; }
+
+.notification {
+  padding: 0px 14px; }
 
 /*---------------------
     Blog
