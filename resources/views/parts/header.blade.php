@@ -90,7 +90,7 @@
                         <li><div>
                             {{-- <a href="{{ asset('') }}"></a> --}}
                                 <a href="#"><span class="icon_bag_alt"></span>
-                                <div class="tip">2</div>
+                                <div class="tip"></div>
                                 <div class="header__cart-list">
                                     <img src="./assets/img/no-cart.png" alt="" class="header__cart-no-cart-img">
                                     <span class="header__cart-list-no-cart-msg">

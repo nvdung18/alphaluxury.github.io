@@ -9,6 +9,8 @@ Created: Colorib
 
 'use strict';
 
+// const { functions } = require("lodash");
+
 (function ($) {
     
     $(window).on('load', function () {
@@ -274,9 +276,11 @@ Created: Colorib
         $(".btn-cart").on('click',function(e){
             //etc
             e.preventDefault(); 
-            console.log(1);
+            // console.log(1);
             var quantity = 1;
             const getquantity = $('input[name=quantity]');
+            var currLoc = $(location).attr('href');
+            console.log(currLoc);
             console.log(getquantity);
             if(getquantity.length != 0 || typeof quantity === "undefined") {
                 if($('input[name=quantity]').val() !== 1) {
@@ -302,7 +306,8 @@ Created: Colorib
                 data: {
                     // '_token' : '{{ csrf_token() }}',
                     "quantity": quantity,
-                    "idProduct": idProduct
+                    "idProduct": idProduct,
+                    "currLoc": currLoc
                 },
                 dataType: "json",
                 success: function(data) {
@@ -320,6 +325,7 @@ Created: Colorib
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     window.location.assign('http://127.0.0.1:8000/login');
+                    // console.log('ok');
                 }
             });
         });
@@ -360,7 +366,7 @@ Created: Colorib
         
         fetch_data_cart_in_cart();
         fetch_data();
-
+        var number;
         function fetch_data_cart_in_cart() {
            $.ajax({
              type: 'POST',
@@ -369,6 +375,8 @@ Created: Colorib
              success: function(data) {
                 console.log(data);
                 const checkdata = $.isEmptyObject(data);
+                // var subtotal = '';
+                number = 0;
                 if(checkdata != true) {
                     var itemproduct = ``;
                     for (let index = 0; index < data.length; index++) {
@@ -398,10 +406,16 @@ Created: Colorib
                         <td class="cart__total">${number_format(data[index].price * data[index].quantity, 0, '.', '.')}</td>
                         <td class="cart__close"><span class="icon_close delete" idProduct="${data[index].idProduct}" idCart="${data[index].idCart}"></span></td>
                     </tr>
-                        `; 
+                        `;
+                        number += data[index].price * data[index].quantity;
                     }
+                    // console.log(subtotal);
                     $('.table-body').html(itemproduct);
                     $('.tip').text(data.length);
+                    $('.sub-total').text(number_format(number,0,'.', '.')+'VND');
+                    $('.total').text(number_format(number,0,'.', '.')+'VND');
+                    $('input[name=total]').val(number);
+                    // $('.total').text(subtotal);
                     // const paremeter = document.createRange().createContextualFragment(itemproduct);
                     // document.getElementsByClassName('table-body')[0].appendChild(paremeter);
                     // $("#someparentelement").on("mousedown", "div.window", function() {
@@ -415,6 +429,8 @@ Created: Colorib
                 } else if(checkdata == true){
                     $('.table-body').html('');
                     $('.tip').text('0');
+                    $('.sub-total').text('');
+                    $('.total').text('');
                 }
              }
            });
@@ -461,9 +477,10 @@ Created: Colorib
                                        $('.header__cart-list-item').html(sum);
                                        $('.tip').text(data.length);
 
-                    } else {
+                    } else if(check == true){
+                        console.log('null');
                         $('.header__cart-list-item').html('');
-                        $('.tip').text('0');
+                        $('.tip').text(0);
                         console.log(data);
                     }
                                     // deleteproduct = $('.delete');
@@ -582,4 +599,78 @@ Created: Colorib
                 } 
             })
         }
+
+        // const form_discount = $('.form-discount'); 
+        // const promodecode = $('.site-btn');
+        //default promodecode = 0;
+
+
+        $('.form-discount').submit(function(e){
+            const discount = $('input[name="discount"]').val();
+            $.ajax({
+                type: 'POST',
+                url: 'http://127.0.0.1:8000/cart/discount',
+                data: {
+                   'discount': discount    
+                },
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data);
+                    console.log('daxong');
+                    if(data != 'You have not entered the code' && data != 'null' && $.isEmptyObject(data) != true) {
+                        // console.log(number_format(number-((number*data.discountPercent)/100), 0, '.', '.'));
+                        $('.total').text(number_format(number-((number*data.discountPercent)/100), 0, '.', '.')+'VND');
+                        $('.empty-cart').text('Discounted with '+data.discountPercent+'%');
+                        $('.empty-cart').css('display','block');
+                        // console.log(data.idPromoCode, '31231');
+                        $('input[name=discount]').val(data.idPromoCode);
+                        $('input[name=total]').val(number-((number*data.discountPercent)/100));
+                        console.log($('input[name=total]').val());
+                        // console.log('111');
+                        // fetch_data_cart_in_cart()
+                        // fetch_data();
+                    } else if(data == 'You have not entered the code') {
+                        $('.empty-cart').text(data);
+                        $('.empty-cart').css('display','block');
+                        $('input[name=discount]').val('prcode_01');
+                    } else if(data == 'null') {
+                        $('.empty-cart').text('Invalid discount code');
+                        $('.empty-cart').css('display','block');
+                        $('input[name=discount]').val('prcode_01');
+                    }
+                } 
+            })
+            return false;
+        });
+
+        // $('.checkout__form').submit(function(e){
+
+        //     return false;
+        // });
+
+        //     promodecode.on('click', function() {
+        //      e.preventDefault();
+        //      console.log('vao dc roi');
+        // }); 
+
+        // const checkout = $('.primary-btn');
+        // checkout.on('click', function(e) {
+        //    e.preventDefault();
+        //    const discount = $('input[name=discount]').val();
+        //    const total = $('.total').text();
+        //    $.post("http://127.0.0.1:8000/checkout", {'discount': discount,'total': total});
+        // })
+
+        // const noti = {!! json_encode($success) !!};
+        // console.log($('input[name=messageorder]').val());
+        if(typeof $('input[name=messageorder]').val() !== "undefined" ) {
+             swal({
+                    title: "Success",
+                    text: "Order Success",
+                    icon: "success",
+                    button: "Close!",
+                });   
+        }
+
 })(jQuery);
+
