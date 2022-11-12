@@ -56,7 +56,8 @@
                                     <div class="top-rev d-flex flex-row">
                                         <h4 class="card-title col-md-9">Revenue Table</h4>
                                         <div class="top-rev_filter col-md-3">
-                                            <form action="{{ route('ad.filter-revenue') }}" method="get">
+                                            <form action="{{ route('ad.filter-revenue')}}" method="get">
+                                                <input type="text" name="table_filter" value="{{$tag}}" hidden>
                                                 <input type="date" class="filter-rev" name="filter_date_rev"
                                                     id="">
                                                 <input type="submit" name="" id=""

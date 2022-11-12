@@ -10,7 +10,7 @@ Created: Colorib
 'use strict';
 
 (function ($) {
-    
+
     $(window).on('load', function () {
         /*------------------
         Preloader
@@ -145,8 +145,8 @@ Created: Colorib
         Quantity change
     --------------------- */
     //Canvas Menu
-    
-    
+
+
     // var proQty = $('.pro-qty');
     // // proQty.prepend('<span class="dec qtybtn">-</span>');
     // // proQty.append('<span class="inc qtybtn">+</span>');
@@ -166,7 +166,7 @@ Created: Colorib
     //     $button.parent().find('input').val(newVal);
     // });
 
-        $(".canvas__open").on('click', function () {
+    $(".canvas__open").on('click', function () {
         $(".offcanvas-menu-wrapper").addClass("active");
         $(".offcanvas-menu-overlay").addClass("active");
     });
@@ -181,10 +181,10 @@ Created: Colorib
     const optionsContainerBranch = document.querySelector(".options-container-branch");
 
     const optionsListBranch = document.querySelectorAll(".option-branch");
-    
-    if(selectedBranch) {
+
+    if (selectedBranch) {
         selectedBranch.addEventListener("click", () => {
-                optionsContainerBranch.classList.toggle("active");
+            optionsContainerBranch.classList.toggle("active");
         });
 
     }
@@ -200,8 +200,8 @@ Created: Colorib
     const optionsContainerPrice = document.querySelector(".options-container-price");
 
     const optionsListPrice = document.querySelectorAll(".option-price");
-    
-    if(selectedPrice) {
+
+    if (selectedPrice) {
         selectedPrice.addEventListener("click", () => {
             optionsContainerPrice.classList.toggle("active");
         });
@@ -218,13 +218,13 @@ Created: Colorib
     const optionsContainer = document.querySelector(".options-container");
 
     const optionsList = document.querySelectorAll(".option");
-    
-    if(selected) {
+
+    if (selected) {
         selected.addEventListener("click", () => {
-        optionsContainer.classList.toggle("active");
+            optionsContainer.classList.toggle("active");
         });
     }
-    
+
     // optionsList.forEach(o => {
     //     o.addEventListener("click", () => {
     //     // selected.innerHTML = o.querySelector("label").innerHTML;
@@ -238,138 +238,137 @@ Created: Colorib
     });
 
 
-    $('.menu_item').on('click',function() {
-       const checkindex = $(this).attr('data-index');
-       const selected = $(this);
-    //    console.log($(this).navText);
-       var tag = 1;
-       if(checkindex == 1) {
-        $('.order').removeClass('active');
-        $('.changepassword').removeClass('active');
-        $('.form').addClass('active');
-        $("[data-index=1]").addClass('active');
-        $("[data-index=2]").removeClass('active');
-        $("[data-index=3]").removeClass('active');
+    $('.menu_item').on('click', function () {
+        const checkindex = $(this).attr('data-index');
+        const selected = $(this);
+        //    console.log($(this).navText);
+        var tag = 1;
+        if (checkindex == 1) {
+            $('.order').removeClass('active');
+            $('.changepassword').removeClass('active');
+            $('.form').addClass('active');
+            $("[data-index=1]").addClass('active');
+            $("[data-index=2]").removeClass('active');
+            $("[data-index=3]").removeClass('active');
+        } else if (checkindex == 2) {
+            $('.order').addClass('active');
+            $('.changepassword').removeClass('active');
+            $('.form').removeClass('active');
+            $("[data-index=2]").addClass('active');
+            $("[data-index=1]").removeClass('active');
+            $("[data-index=3]").removeClass('active');
 
-            } else if(checkindex == 2) {
-                $('.order').addClass('active');
-                $('.changepassword').removeClass('active');
-                $('.form').removeClass('active');
-                $("[data-index=2]").addClass('active');
-                $("[data-index=1]").removeClass('active');
-                $("[data-index=3]").removeClass('active');
+        } else if (checkindex == 3) {
+            $('.changepassword').addClass('active');
+            $('.order').removeClass('active');
+            $('.form').removeClass('active');
+            $("[data-index=2]").removeClass('active');
+            $("[data-index=1]").removeClass('active');
+            $("[data-index=3]").addClass('active');
 
-            } else if(checkindex == 3) {
-                $('.changepassword').addClass('active');
-                $('.order').removeClass('active');
-                $('.form').removeClass('active');
-                $("[data-index=2]").removeClass('active');
-                $("[data-index=1]").removeClass('active');
-                $("[data-index=3]").addClass('active');
-
-            }
-        });
-    
-
-        $(".btn-cart").on('click',function(e){
-            //etc
-            e.preventDefault(); 
-            console.log(1);
-            var quantity = 1;
-            const getquantity = $('input[name=quantity]');
-            console.log(getquantity);
-            if(getquantity.length != 0 || typeof quantity === "undefined") {
-                if($('input[name=quantity]').val() !== 1) {
-                    quantity = $('input[name=quantity]').val();
-                    console.log(quantity, 'interface');
-                }
-            }
-            var idProduct = $(this).attr('idproduct');
-            var url = $(this).attr('data-url');
-            console.log(idProduct, url);
-            // console.log('success');
-            // console.log(url);
-            // console.log(idProduct);
-            // swal({
-            //     title: "Added",
-            //     text: "Please check you cart",
-            //     icon: "success",
-            //     button: "Close!",
-            // });   
-            jQuery.ajax({
-                url: url,
-                type: "POST",
-                data: {
-                    // '_token' : '{{ csrf_token() }}',
-                    "quantity": quantity,
-                    "idProduct": idProduct
-                },
-                dataType: "json",
-                success: function(data) {
-                    console.log(data);
-                    if(data['text'] != '') {
-                        swal({
-                           title: "Added",
-                           text: data['text'],
-                           icon: data['icon'],
-                           button: "Close!",
-                       });  
-                       fetch_data();
-                       fetch_data_cart_in_cart();   
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    window.location.assign('http://127.0.0.1:8000/login');
-                }
-            });
-        });
-    
-        function number_format (number, decimals, dec_point, thousands_sep) {
-            // Strip all characters but numerical ones.
-            number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
-            var n = !isFinite(+number) ? 0 : +number,
-                prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-                sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-                dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-                s = '',
-                toFixedFix = function (n, prec) {
-                    var k = Math.pow(10, prec);
-                    return '' + Math.round(n * k) / k;
-                };
-            // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-            s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-            if (s[0].length > 3) {
-                s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-            }
-            if ((s[1] || '').length < prec) {
-                s[1] = s[1] || '';
-                s[1] += new Array(prec - s[1].length + 1).join('0');
-            }
-            return s.join(dec);
         }
-        
-        // $('.delete').on('click', function(e){
-        //    e.preventDefault();
-        //    console.log('vao dc r');
-        //    var idproduct = $(this).attr('idproduct');
-        //    var idcart = $(this).attr('idcart');
-        //    deletecart(idproduct, idcart);
-        //    fetch_data_cart_in_cart();
-        //    fetch_data();
-        // });
-        
-        fetch_data_cart_in_cart();
-        fetch_data();
+    });
 
-        function fetch_data_cart_in_cart() {
-           $.ajax({
-             type: 'POST',
-             url: 'http://127.0.0.1:8000/cart/check_cart',
-             dataType: 'json',
-             success: function(data) {
+
+    $(".btn-cart").on('click', function (e) {
+        //etc
+        e.preventDefault();
+        console.log(1);
+        var quantity = 1;
+        const getquantity = $('input[name=quantity]');
+        console.log(getquantity);
+        if (getquantity.length != 0 || typeof quantity === "undefined") {
+            if ($('input[name=quantity]').val() !== 1) {
+                quantity = $('input[name=quantity]').val();
+                console.log(quantity, 'interface');
+            }
+        }
+        var idProduct = $(this).attr('idproduct');
+        var url = $(this).attr('data-url');
+        console.log(idProduct, url);
+        // console.log('success');
+        // console.log(url);
+        // console.log(idProduct);
+        // swal({
+        //     title: "Added",
+        //     text: "Please check you cart",
+        //     icon: "success",
+        //     button: "Close!",
+        // });   
+        jQuery.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                // '_token' : '{{ csrf_token() }}',
+                "quantity": quantity,
+                "idProduct": idProduct
+            },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                if (data['text'] != '') {
+                    swal({
+                        title: "Added",
+                        text: data['text'],
+                        icon: data['icon'],
+                        button: "Close!",
+                    });
+                    fetch_data();
+                    fetch_data_cart_in_cart();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                window.location.assign('http://127.0.0.1:8000/login');
+            }
+        });
+    });
+
+    function number_format(number, decimals, dec_point, thousands_sep) {
+        // Strip all characters but numerical ones.
+        number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
+        var n = !isFinite(+number) ? 0 : +number,
+            prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+            sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+            dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+            s = '',
+            toFixedFix = function (n, prec) {
+                var k = Math.pow(10, prec);
+                return '' + Math.round(n * k) / k;
+            };
+        // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+        s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+        if (s[0].length > 3) {
+            s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+        }
+        if ((s[1] || '').length < prec) {
+            s[1] = s[1] || '';
+            s[1] += new Array(prec - s[1].length + 1).join('0');
+        }
+        return s.join(dec);
+    }
+
+    // $('.delete').on('click', function(e){
+    //    e.preventDefault();
+    //    console.log('vao dc r');
+    //    var idproduct = $(this).attr('idproduct');
+    //    var idcart = $(this).attr('idcart');
+    //    deletecart(idproduct, idcart);
+    //    fetch_data_cart_in_cart();
+    //    fetch_data();
+    // });
+
+    fetch_data_cart_in_cart();
+    fetch_data();
+
+    function fetch_data_cart_in_cart() {
+        $.ajax({
+            type: 'POST',
+            url: 'http://127.0.0.1:8000/cart/check_cart',
+            dataType: 'json',
+            success: function (data) {
                 console.log(data);
                 const checkdata = $.isEmptyObject(data);
-                if(checkdata != true) {
+                if (checkdata != true) {
                     var itemproduct = ``;
                     for (let index = 0; index < data.length; index++) {
                         itemproduct += `
@@ -398,7 +397,7 @@ Created: Colorib
                         <td class="cart__total">${number_format(data[index].price * data[index].quantity, 0, '.', '.')}</td>
                         <td class="cart__close"><span class="icon_close delete" idProduct="${data[index].idProduct}" idCart="${data[index].idCart}"></span></td>
                     </tr>
-                        `; 
+                        `;
                     }
                     $('.table-body').html(itemproduct);
                     $('.tip').text(data.length);
@@ -412,26 +411,26 @@ Created: Colorib
                     // proQty = $('.pro-qty');
                     // deleteproduct = $('.delete');
                     // registerEvents(proQty, deleteproduct);
-                } else if(checkdata == true){
+                } else if (checkdata == true) {
                     $('.table-body').html('');
                     $('.tip').text('0');
                 }
-             }
-           });
-        }
-        
-        function fetch_data() {
-            $.ajax({
-                type: 'POST',
-                url: "http://127.0.0.1:8000/cart/check_cart",
-                dataType: "json",
-                success:function(data) {
-                    console.log(data);
-                    const check = $.isEmptyObject(data);
-                    if(check != true) {
-                        var sum = ``;
-                        for (let index = 0; index < data.length; index++) {
-                            sum += `
+            }
+        });
+    }
+
+    function fetch_data() {
+        $.ajax({
+            type: 'POST',
+            url: "http://127.0.0.1:8000/cart/check_cart",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                const check = $.isEmptyObject(data);
+                if (check != true) {
+                    var sum = ``;
+                    for (let index = 0; index < data.length; index++) {
+                        sum += `
                             <li class="header__cart-item">
                                 <img src="http://127.0.0.1:8000/frontend/img/product/${data[index].image}" alt="" class="header__cart-img">
                                 <div class="header__cart-item-info">
@@ -455,131 +454,131 @@ Created: Colorib
                                             </div>
                                             </div>
                                             </li>`;
-                                        }
-                                    //    const para = document.createRange().createContextualFragment(sum);
-                                    //    document.getElementsByClassName('header_list')[0].appendChild(para);
-                                       $('.header__cart-list-item').html(sum);
-                                       $('.tip').text(data.length);
-
-                    } else {
-                        $('.header__cart-list-item').html('');
-                        $('.tip').text('0');
-                        console.log(data);
                     }
-                                    // deleteproduct = $('.delete');
-                                    // registerEventsHeader(deleteproduct);
-                                    // proQty = $('.pro-qty');
-                                    // deleteproduct = $('.delete');
-                }
-            })
-        }
-         
-        // setInterval(function(){
-        //     proQty = $('.pro-qty');
-        //     deleteproduct = $('.delete');
-        // }, 500);
+                    //    const para = document.createRange().createContextualFragment(sum);
+                    //    document.getElementsByClassName('header_list')[0].appendChild(para);
+                    $('.header__cart-list-item').html(sum);
+                    $('.tip').text(data.length);
 
-        // registerEvents(proQty, deleteproduct);
-        // registerEventsHeader(deleteproduct);
-        
-        // function registerEventsHeader(deleteproduct) {
-            // proQty.prepend('<span class="dec qtybtn">-</span>');
-            // proQty.append('<span class="inc qtybtn">+</span>');
-            // deleteproduct.on('click', function(e){
-            //     e.preventDefault();
-            //     console.log('header')
-            //     var idproduct = $(this).attr('idproduct');
-            //     var idcart = $(this).attr('idcart');
-            //     deletecart(idproduct, idcart);
-            //  });
-        // }
-
-        // function registerEvents(proQty, deleteproduct) {
-            // proQty.prepend('<span class="dec qtybtn">-</span>');
-            // proQty.append('<span class="inc qtybtn">+</span>');
-            // var arr = [];
-
-            // const proQty = $('.pro-qty');
-            // const deleteproduct = $('.header__cart-item-body');
-
-            $('body').on('click', '.delete' ,function(){
-                // e.preventDefault();
-                console.log('deleteproduct');
-                var idproduct = $(this).attr('idproduct');
-                console.log(idproduct);
-                var idcart = $(this).attr('idcart');
-                deletecart(idproduct, idcart);
-             });
-
-             $('body').on('click', '.qtybtn', function() {
-                // e.preventDefault();
-                var $button = $(this);
-                var oldValue = $button.parent().find('input').val();
-                if ($button.hasClass('inc')) {
-                    var newVal = parseFloat(oldValue) + 1;
                 } else {
-                    // Don't allow decrementing below zero
-                    if (oldValue > 0) {
-                        var newVal = parseFloat(oldValue) - 1;
-                    } else {
-                        newVal = 0;
-                    }
+                    $('.header__cart-list-item').html('');
+                    $('.tip').text('0');
+                    console.log(data);
                 }
-                $button.parent().find('input').val(newVal);
-                const quantity = $button.parent().find('input').val();
-                const idProduct = $button.parent().find('input').attr('idProduct');
-                const idCart = $button.parent().find('input').attr('idCart');
-                console.log(quantity, idProduct, idCart);
-                if(typeof idProduct !== "undefined" &&typeof idCart !== "undefined") {
-                    // console.log('da o trong');
-                    // arr = [quantity, idProduct, idCart];
-                    // if($.isEmptyObject(arr) != true) {
-                        updatecart(quantity, idProduct, idCart);
-                    // }
-                }
-            });
-        // }
+                // deleteproduct = $('.delete');
+                // registerEventsHeader(deleteproduct);
+                // proQty = $('.pro-qty');
+                // deleteproduct = $('.delete');
+            }
+        })
+    }
 
-        function updatecart(quantity, idProduct, idCart) {
-            $.ajax({
-                type: 'POST',
-                url: 'http://127.0.0.1:8000/cart/update_cart',
-                data: {
-                    'quantity': quantity,
-                    'idProduct': idProduct,
-                    'idCart': idCart
-                },
-                dataType: 'json',
-                success: function(data) {
-                    if(data != '') {
-                        console.log('success');
-                        fetch_data_cart_in_cart()
-                        fetch_data();
-                    } else {
-                        console.log('fail');
-                    }
-                }
-            })
-        }
+    // setInterval(function(){
+    //     proQty = $('.pro-qty');
+    //     deleteproduct = $('.delete');
+    // }, 500);
 
-        function deletecart(idproduct, idcart) {
-            $.ajax({
-                type: 'POST',
-                url: 'http://127.0.0.1:8000/cart/delete_cart',
-                data: {
-                    'idProduct': idproduct,
-                    'idCart': idcart
-                },
-                dataType: 'json',
-                success: function(data) {
-                    if(data != '') {
-                        console.log('success');
-                        fetch_data_cart_in_cart()
-                        fetch_data();
-                    } else {
-                        console.log('fail');
-                    }
-                } 
-            })
+    // registerEvents(proQty, deleteproduct);
+    // registerEventsHeader(deleteproduct);
+
+    // function registerEventsHeader(deleteproduct) {
+    // proQty.prepend('<span class="dec qtybtn">-</span>');
+    // proQty.append('<span class="inc qtybtn">+</span>');
+    // deleteproduct.on('click', function(e){
+    //     e.preventDefault();
+    //     console.log('header')
+    //     var idproduct = $(this).attr('idproduct');
+    //     var idcart = $(this).attr('idcart');
+    //     deletecart(idproduct, idcart);
+    //  });
+    // }
+
+    // function registerEvents(proQty, deleteproduct) {
+    // proQty.prepend('<span class="dec qtybtn">-</span>');
+    // proQty.append('<span class="inc qtybtn">+</span>');
+    // var arr = [];
+
+    // const proQty = $('.pro-qty');
+    // const deleteproduct = $('.header__cart-item-body');
+
+    $('body').on('click', '.delete', function () {
+        // e.preventDefault();
+        console.log('deleteproduct');
+        var idproduct = $(this).attr('idproduct');
+        console.log(idproduct);
+        var idcart = $(this).attr('idcart');
+        deletecart(idproduct, idcart);
+    });
+
+    $('body').on('click', '.qtybtn', function () {
+        // e.preventDefault();
+        var $button = $(this);
+        var oldValue = $button.parent().find('input').val();
+        if ($button.hasClass('inc')) {
+            var newVal = parseFloat(oldValue) + 1;
+        } else {
+            // Don't allow decrementing below zero
+            if (oldValue > 0) {
+                var newVal = parseFloat(oldValue) - 1;
+            } else {
+                newVal = 0;
+            }
         }
+        $button.parent().find('input').val(newVal);
+        const quantity = $button.parent().find('input').val();
+        const idProduct = $button.parent().find('input').attr('idProduct');
+        const idCart = $button.parent().find('input').attr('idCart');
+        console.log(quantity, idProduct, idCart);
+        if (typeof idProduct !== "undefined" && typeof idCart !== "undefined") {
+            // console.log('da o trong');
+            // arr = [quantity, idProduct, idCart];
+            // if($.isEmptyObject(arr) != true) {
+            updatecart(quantity, idProduct, idCart);
+            // }
+        }
+    });
+    // }
+
+    function updatecart(quantity, idProduct, idCart) {
+        $.ajax({
+            type: 'POST',
+            url: 'http://127.0.0.1:8000/cart/update_cart',
+            data: {
+                'quantity': quantity,
+                'idProduct': idProduct,
+                'idCart': idCart
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data != '') {
+                    console.log('success');
+                    fetch_data_cart_in_cart()
+                    fetch_data();
+                } else {
+                    console.log('fail');
+                }
+            }
+        })
+    }
+
+    function deletecart(idproduct, idcart) {
+        $.ajax({
+            type: 'POST',
+            url: 'http://127.0.0.1:8000/cart/delete_cart',
+            data: {
+                'idProduct': idproduct,
+                'idCart': idcart
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data != '') {
+                    console.log('success');
+                    fetch_data_cart_in_cart()
+                    fetch_data();
+                } else {
+                    console.log('fail');
+                }
+            }
+        })
+    }
 })(jQuery);

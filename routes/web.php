@@ -75,13 +75,7 @@ Route::get('/checkout', function () {
     return view('users.checkout');
 })->name('checkout');
 
-Route::get('/blog', function () {
-    return view('users.blog');
-})->name('blog');
-
-Route::get('/contact', function () {
-    return view('users.contact');
-})->name('contact');
+Route::get('/contact', [ShopController::class,'contact'])->name('contact');
 
 Route::get('/blog-details', function () {
     return view('users.blog-details');
@@ -187,7 +181,15 @@ Route::get('/forgotpassword', [UserController::class, 'forgotpw'])->name('forgot
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 Route::prefix('user')->group(function () {
+    // load infor user
     Route::get('/userpage',[UserController::class, 'show_form_user_page'])->name('user.page');
+
+    // update infor user
+    Route::post('/update-user',[UserController::class, 'updateUserInfor'])->name('user.update-infor');
+
+    // detail order
+    Route::get('/detail-order',[UserController::class, 'getDetailOrder'])->name('user.detail-order');
+
 });
 
 Route::prefix('cart')->group(function () {
@@ -197,3 +199,5 @@ Route::prefix('cart')->group(function () {
         Route::post('/update_cart', [ShopController::class, 'update_cart'])->name('update_cart');
         Route::post('/delete_cart',[ShopController::class, 'delete_cart'])->name('delete_cart');
 });
+
+Route::get('/branch', [ShopController::class, 'getProductByBranch'])->name('product-branch');
