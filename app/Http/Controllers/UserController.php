@@ -97,6 +97,7 @@ class UserController extends Controller
                 $us = 1;
                 $newUser->idUser = 'Us_' . $us;
                 $newUser->nameUser = $request->name;
+                $newUser->fullname = uniqid();
                 $newUser->email = $request->email;
                 $newUser->password = bcrypt($request->password);
                 $newUser->role = $request->role;
@@ -117,19 +118,21 @@ class UserController extends Controller
                 ]);
             } else {
                 $lastuser = DB::table('user')->get()->last()->idUser;
-                if ($lastuser != '' || $lastuser != null) {
-                    $data = explode('_', $lastuser);
-                    $newUser = new Customer();
-                    $newUser->idUser = 'Us_' . ++$data[1];
-                    $newUser->nameUser = $request->name;
-                    $newUser->email = $request->email;
-                    $newUser->password = bcrypt($request->password);
-                    $newUser->role = $request->role;
-                    $newUser->status = $request->status;
-                    // $newUser->email_verified_at = $timestamp;
-                    $newUser->save();
-                    $lastaccount = DB::table('account')->get()->last()->idAccount;
-                    if ($lastaccount != '' || $lastaccount != null) {
+
+                if($lastuser != '' || $lastuser != null) {
+                  $data = explode('_', $lastuser);
+                  $newUser = new Customer();
+                  $newUser->idUser = 'Us_'.++$data[1];
+                  $newUser->nameUser = $request->name;
+                  $newUser->fullname = uniqid();
+                  $newUser->email = $request->email;
+                  $newUser->password = bcrypt($request->password);
+                  $newUser->role = $request->role;
+                  $newUser->status = $request->status;
+                  // $newUser->email_verified_at = $timestamp;
+                  $newUser->save();
+                  $lastaccount = DB::table('account')->get()->last()->idAccount;
+                  if($lastaccount != '' || $lastaccount != null) {
                         $data = explode('_', $lastaccount);
                         $newAccount = Account::create([
                             'idAccount' => 'Ac_' . ++$data[1],

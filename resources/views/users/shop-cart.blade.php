@@ -80,21 +80,22 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="cart__btn">
-                        <a href="#">Continue Shopping</a>
+                        <a href="{{ route('redirectback') }}">Continue Shopping</a>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
+                {{-- <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="cart__btn update__btn">
                         <a href="#"><span class="icon_loading"></span> Update cart</a>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="discount__content">
                         <h6>Discount codes</h6>
-                        <form action="#">
-                            <input type="text" placeholder="Enter your coupon code">
+                        <span style="color: red" class="empty-cart"></span>
+                        <form class="form-discount">
+                            <input type="text" placeholder="Enter your coupon code" name="discount">
                             <button type="submit" class="site-btn">Apply</button>
                         </form>
                     </div>
@@ -103,10 +104,15 @@
                     <div class="cart__total__procced">
                         <h6>Cart total</h6>
                         <ul>
-                            <li>Subtotal <span>$ 750.0</span></li>
-                            <li>Total <span>$ 750.0</span></li>
+                            <li>Subtotal <span class="sub-total"></span></li>
+                            <li>Total <span class="total"></span></li>
                         </ul>
-                        <a href="#" class="primary-btn">Proceed to checkout</a>
+                        <form action="{{ route('checkout') }}" method="POST">
+                            @csrf
+                            <button class="primary-btn" type="submit" style="width: 100%">Proceed to checkout</button>
+                            <input type="text" placeholder="" name="discount" style="display: none">
+                            <input type="text" placeholder="" name="total" style="display: none">
+                        </form>
                     </div>
                 </div>
             </div>
