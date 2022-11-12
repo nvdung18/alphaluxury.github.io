@@ -151,10 +151,11 @@ class Revenue extends Model
         $total= ($productMoney+$deliveryCharges)-(float)(($productMoney * $discountPercent) / 100); //calculate total
 
         // update dailyrev, weeklyrev, monthlyrev
+        $nowDay=DB::table($this->weeklyTable)->orderBy('idDRevenue','desc')->limit(1)->get();
         DB::table($this->dailyTable)
         ->where('releaseDate',$nowDate)
         -> update([
-            'revenue' => $total,
+            'revenue' => ($total+$nowDay[0]->revenue),
             'quantity'=>$quantityOfProduct
         ]); // update dailyrev
 
