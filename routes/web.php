@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminTrademarkController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminReceiptController;
 use Laravel\Socialite\Facades\Socialite;
+use PhpParser\Node\Stmt\Echo_;
 
 use function PHPUnit\Framework\returnSelf;
 
@@ -71,9 +72,11 @@ Route::prefix('shop')->group(function () {
 
 Route::get('/shop-cart', [ShopController::class, 'show_shop_cart'])->name('shop-cart')->middleware('auth.roles');
 
-Route::get('/checkout', function () {
-    return view('users.checkout');
-})->name('checkout');
+Route::match(['get','post'],'/checkout',[ShopController::class, 'showcheckout'])->name('checkout')->middleware('auth.roles');
+
+Route::get('/blog', function () {
+    return view('users.blog');
+})->name('blog');
 
 Route::get('/contact', [ShopController::class,'contact'])->name('contact');
 
@@ -198,6 +201,10 @@ Route::prefix('cart')->group(function () {
         // Route::post('/check_cart_account', [ShopController::class, 'check_cart_account'])->name('checkcartaccount');
         Route::post('/update_cart', [ShopController::class, 'update_cart'])->name('update_cart');
         Route::post('/delete_cart',[ShopController::class, 'delete_cart'])->name('delete_cart');
+        Route::get('/previouspage', [ShopController::class, 'previouspage'])->name('redirectback');
+        Route::post('/discount',[ShopController::class, 'discount'])->name('discount');
 });
 
+Route::post('add_to_check_out', [ShopController::class, 'addcheckout'])->name('addcheckout');
+Route::get('/textorderdetails', [ShopController::class, 'textorderdetails'])->name('textorderdetails');
 Route::get('/branch', [ShopController::class, 'getProductByBranch'])->name('product-branch');

@@ -104,7 +104,7 @@ class AdminOrderController extends Controller
     public function updateStatus(Request $request)
     {
         $listStatus = array(
-            "Wait for comfirmation",
+            "Wait for confirmation",
             "Order confirmed",
             "Delivering",
             "Order deliveried"
@@ -146,12 +146,13 @@ class AdminOrderController extends Controller
 
                 // get last id of receipt to create new receipt
                 $lastIdReceipt = $listReceipt[$lengtListReeipt - 1]->idReceipt;
-                $lastIdReceipt = explode("recpt", $lastIdReceipt);
+                $lastIdReceipt = explode("recpt_", $lastIdReceipt);
+                // dd((int)$lastIdReceipt[1] + 1);
                 $num = (int)$lastIdReceipt[1] + 1;
                 if ($num <= 10) {
-                    $newIdReceipt = 'recpt0' . (string)$num;
+                    $newIdReceipt = 'recpt_0' . (string)$num;
                 } else {
-                    $newIdReceipt = 'recpt' . (string)$num;
+                    $newIdReceipt = 'recpt_' . (string)$num;
                 }
 
                 // create arr to contains information

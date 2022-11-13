@@ -152,6 +152,10 @@
         border-radius: 50px;
         text-align: center;
         padding: 12px 0 10px;
+
+        &:hover {
+            opacity: 0.8;
+        }
     }
 }
 
@@ -215,4 +219,8 @@
             top: 4px;
         }
     }
+}
+
+.site-btn:hover {
+    opacity: 0.8;
 }

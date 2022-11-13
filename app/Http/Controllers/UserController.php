@@ -38,8 +38,8 @@ class UserController extends Controller
         $this->order = new UserOrder();
     }
 
-    public function check(Request $request)
-    {
+    public function check(Request $request){
+
     }
 
     public function user_registration_rules(array $data)
@@ -68,44 +68,42 @@ class UserController extends Controller
         return $validator;
     }
 
-    public function add(Request $request)
-    {
-        if ($request->isMethod('POST')) {
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    'name' => 'required|min:1|max:30',
-                    'email' => 'required|email',
-                    'password' => 'required|confirmed|min:3|max:16',
-                ]
-            );
+    public function add(Request $request) {
+        if($request->isMethod('POST')) {
+            $validator = Validator::make($request->all(),
+            [
+                'name'=>'required|min:1|max:30',
+                'email'=>'required|email',
+                'password'=>'required|confirmed|min:3|max:16',
+            ]);
             // $validator = $this->user_registration_rules($request->all());
-            if ($validator->fails()) {
+            if($validator->fails()) {
                 return redirect()->back()
                     ->withErrors($validator)
                     ->withInput();
             }
         }
         $user = DB::table('user')->where('email', '=', $request->email)->first();
-        $timestamp = date('Y-m-d H:i:s');
-        if (!$user) {
+        $timestamp=date('Y-m-d H:i:s');
+        if(!$user) {
             // $lastuser = DB::table('user')->get()->last()->idUser;
             $allus = DB::table('user')->get();
             $countallus = $allus->count();
-            if ($countallus == 0) {
+            if($countallus == 0) {
                 $newUser = new Customer();
                 $us = 1;
-                $newUser->idUser = 'Us_' . $us;
+                $newUser->idUser = 'Us_'.$us;
                 $newUser->nameUser = $request->name;
+                $newUser->fullname = uniqid();
                 $newUser->email = $request->email;
                 $newUser->password = bcrypt($request->password);
                 $newUser->role = $request->role;
                 $newUser->status = $request->status;
                 // $newUser->email_verified_at = $timestamp;
                 $newUser->save();
-
+                
                 $newAccount = Account::create([
-                    'idAccount' => 'Ac_' . $us,
+                    'idAccount' => 'Ac_'.$us,
                     'method' => 'Default',
                     'userName' => $newUser->nameUser,
                     'password' => $newUser->password,
@@ -117,32 +115,33 @@ class UserController extends Controller
                 ]);
             } else {
                 $lastuser = DB::table('user')->get()->last()->idUser;
-                if ($lastuser != '' || $lastuser != null) {
-                    $data = explode('_', $lastuser);
-                    $newUser = new Customer();
-                    $newUser->idUser = 'Us_' . ++$data[1];
-                    $newUser->nameUser = $request->name;
-                    $newUser->email = $request->email;
-                    $newUser->password = bcrypt($request->password);
-                    $newUser->role = $request->role;
-                    $newUser->status = $request->status;
-                    // $newUser->email_verified_at = $timestamp;
-                    $newUser->save();
-                    $lastaccount = DB::table('account')->get()->last()->idAccount;
-                    if ($lastaccount != '' || $lastaccount != null) {
+                if($lastuser != '' || $lastuser != null) {
+                  $data = explode('_', $lastuser);
+                  $newUser = new Customer();
+                  $newUser->idUser = 'Us_'.++$data[1];
+                  $newUser->nameUser = $request->name;
+                  $newUser->fullname = uniqid();
+                  $newUser->email = $request->email;
+                  $newUser->password = bcrypt($request->password);
+                  $newUser->role = $request->role;
+                  $newUser->status = $request->status;
+                  // $newUser->email_verified_at = $timestamp;
+                  $newUser->save();
+                  $lastaccount = DB::table('account')->get()->last()->idAccount;
+                  if($lastaccount != '' || $lastaccount != null) {
                         $data = explode('_', $lastaccount);
-                        $newAccount = Account::create([
-                            'idAccount' => 'Ac_' . ++$data[1],
-                            'method' => 'Default',
-                            'userName' => $newUser->nameUser,
-                            'password' => $newUser->password,
-                            'idUser' => $newUser->idUser
-                        ]);
-                    }
-                    return redirect()->route('register')->with([
-                        'message' => 'You did create a account successfully.',
+                         $newAccount = Account::create([
+                        'idAccount' => 'Ac_'.++$data[1],
+                        'method' => 'Default',
+                        'userName' => $newUser->nameUser,
+                        'password' => $newUser->password,
+                        'idUser' => $newUser->idUser
                     ]);
-                }
+                  }
+                  return redirect()->route('register')->with([
+                      'message' => 'You did create a account successfully.',
+                  ]);
+                } 
             }
         } else {
             return redirect()->route('register')->with([
@@ -151,8 +150,7 @@ class UserController extends Controller
         }
     }
 
-    public function showlogin()
-    {
+    public function showlogin(){
         if (Auth::check()) {
             return redirect()->route('home')->with([
                 'user' => Auth::user(),
@@ -161,13 +159,11 @@ class UserController extends Controller
         return view('users.login');
     }
 
-    public function forgotpw()
-    {
+    public function forgotpw(){
         return view('users.fotgotpw');
     }
 
-    public function checklogin(Request $request)
-    {
+    public function checklogin(Request $request){
         if ($request->isMethod('POST')) {
             $validator = Validator::make($request->all(), [
                 'nameUser' => 'required',
@@ -211,8 +207,7 @@ class UserController extends Controller
         }
     }
 
-    public function resetpasswordCallback(Request $request)
-    {
+    public function resetpasswordCallback(Request $request){
         $data = $request->email;
         $now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y');
         $title_mail = 'Recieve Password from Shopbanhangwatch.com' . '' . $now;
@@ -247,8 +242,7 @@ class UserController extends Controller
         }
     }
 
-    public function formresetpw(Request $request)
-    {
+    public function formresetpw(Request $request){
         $email = $request->input('email');
         $token = $request->input('token');
         return view('users.resetpw')->with([
@@ -257,15 +251,12 @@ class UserController extends Controller
         ]);
     }
 
-    public function newpassword(Request $request)
-    {
+    public function newpassword(Request $request){
         if ($request->isMethod('POST')) {
-            $validator = Validator::make(
-                $request->all(),
+            $validator = Validator::make($request->all(),
                 [
                     'password' => 'required|confirmed|min:3|max:16',
-                ]
-            );
+                ]);
             // $validator = $this->user_registration_rules($request->all());
             if ($validator->fails()) {
                 return redirect()->back()
@@ -280,6 +271,7 @@ class UserController extends Controller
                 $user->save();
                 return redirect()->back()->with('message', 'Reset Password Successful. Please try login again');
             }
+
         }
     }
 
