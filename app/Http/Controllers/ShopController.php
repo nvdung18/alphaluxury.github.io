@@ -490,7 +490,7 @@
                             'idAccount' => $account->idAccount,
                     ]);
                     $newarr = array(
-                        '1' => [$date, $time,'Wait for comfirmation']
+                        '1' => [$date, $time,'Wait for confirmation']
                     );
                     $listorder = $this->order->getlistorder();
                     if(count($listorder) == 0) {
@@ -562,7 +562,7 @@
                             'idAccount' => $account->idAccount,
                         ]);
                         $newarr = array(
-                            '1' => [$date, $time,'Wait for comfirmation']
+                            '1' => [$date, $time,'Wait for confirmation']
                         );
 
                         $listorder = $this->order->getlistorder();
