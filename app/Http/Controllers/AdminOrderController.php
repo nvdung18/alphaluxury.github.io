@@ -7,6 +7,8 @@ use App\Models\AdminOrder;
 use App\Models\Account;
 use App\Models\AdminReceipt;
 use App\Models\product;
+use App\Models\Revenue;
+use App\Http\Controllers\RevenueController;
 use Illuminate\Support\Arr;
 
 class AdminOrderController extends Controller
@@ -19,6 +21,8 @@ class AdminOrderController extends Controller
         $this->account = new Account();
         $this->product = new product();
         $this->receipt = new AdminReceipt();
+        $this->revenue = new Revenue();
+        $this->revController = new RevenueController();
     }
 
     // load all order paginate
@@ -27,7 +31,7 @@ class AdminOrderController extends Controller
         // dd(date("Y-m-d h:i:sa"));
         $listOrder = $this->order->getAllOrderPaginate();
         $listStatus = array(
-            "Wait for comfirmation",
+            "Wait for confirmation",
             "Order confirmed",
             "Delivering",
             "Order deliveried"
@@ -45,6 +49,7 @@ class AdminOrderController extends Controller
             array_push($listPayment, $this->order->getFormPayment($value[0]));
             array_push($listCheckout, $this->account->getCheckout($value[1]));
         }
+        // dd($listCheckout);
 
         return view('admins.order', compact('listOrder', 'listStatus', 'listPayment', 'listCheckout'));
     }
@@ -99,7 +104,7 @@ class AdminOrderController extends Controller
     public function updateStatus(Request $request)
     {
         $listStatus = array(
-            "Wait for comfirmation",
+            "Wait for confirmation",
             "Order confirmed",
             "Delivering",
             "Order deliveried"
@@ -113,7 +118,7 @@ class AdminOrderController extends Controller
         $time = date("h:i:sa");
         // dd($date,$time);
 
-        // get status from database
+        // get now status from database to insert status
         $order = $this->order->getOrderByID($request->idOrder);
         $statusNow = "";
         foreach ($order as $item) {
@@ -128,7 +133,7 @@ class AdminOrderController extends Controller
         }
 
         // check exits of staus
-        if ($statusNow->$maxKey[2] != $statusUpdate && $statusUpdate!=null) {
+        if ($statusNow->$maxKey[2] != $statusUpdate && $statusUpdate != null) {
             $statusNow = (array)$statusNow;
             array_push($statusNow, [$date, $time, $statusUpdate]);
 
@@ -141,26 +146,37 @@ class AdminOrderController extends Controller
 
                 // get last id of receipt to create new receipt
                 $lastIdReceipt = $listReceipt[$lengtListReeipt - 1]->idReceipt;
-                $lastIdReceipt = explode("recpt", $lastIdReceipt);
+                $lastIdReceipt = explode("recpt_", $lastIdReceipt);
+                // dd((int)$lastIdReceipt[1] + 1);
                 $num = (int)$lastIdReceipt[1] + 1;
-                if($num<=10){
-                    $newIdReceipt = 'recpt0' . (string)$num;
-                }else{
-                    $newIdReceipt = 'recpt' . (string)$num;
+                if ($num <= 10) {
+                    $newIdReceipt = 'recpt_0' . (string)$num;
+                } else {
+                    $newIdReceipt = 'recpt_' . (string)$num;
                 }
 
                 // create arr to contains information
-                $receiptArr=array(
-                    "idReceipt"=>$newIdReceipt,
-                    "releaseDate"=>date("Y-m-d h:i:s"),
-                    "idOrder"=>$request->idOrder
+                $receiptArr = array(
+                    "idReceipt" => $newIdReceipt,
+                    "releaseDate" => date("Y-m-d h:i:s"),
+                    "idOrder" => $request->idOrder
                 );
 
                 // add new receipt
                 $this->receipt->addNewReceipt($receiptArr);
-                // dd($day);
+
+                // add daily revenue, weekly revenue and monthly revenue
+                $exitdailyRev = $this->revController->checkDaiylyRevExists(); // check if today exists
+                if($exitdailyRev==null){
+                    //if today not exists, we crete new dailyrev, check weeklyrev and monthlyrev
+                    $idDailyRev=$this->revenue->createDailyRev(date("Y-m-d"));
+                    $this->revController->checkWeeklyRevExists($idDailyRev);
+                    $this->revController->checkMonthlyRevExists($idDailyRev);
+                }
+                $nowDate=date("Y-m-d"); //Check what day is today to update the revenue
+                $this->revenue->updateAllRevenue($nowDate,$order);
             }
-            $this->order->updateStatus($request->idOrder,$statusDetails);
+            $this->order->updateStatus($request->idOrder, $statusDetails);
         }
 
         // dd($statusDetails);

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /******************************************************************
 Template Name: Ashion
 Description: Ashion ecommerce template
@@ -491,17 +492,18 @@ ol {
       background: #414b57; }
     .select-box .option .radio {
       display: none; }
+    .select-box .option a {
+      font-size: 16px; }
   .select-box label {
     cursor: pointer; }
 
 .selected {
   background: #2f3640;
   border-radius: 8px;
-  margin-bottom: 8px;
   color: #f5f6fa;
   order: 0;
   bottom: -25px;
-  padding: 12px 12px 8px 12px;
+  padding: 8px 38px 8px 38px;
   cursor: pointer;
   text-align: center; }
   .selected::after {
@@ -3299,8 +3301,23 @@ ol {
     background: white;
     border: 1px solid #DDDDDD;
     border-top: none;
-    padding: 14px;
+    border-bottom: none;
+    padding: 14px; }
+  .order .order-bottom {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
     margin-bottom: 25px; }
+    .order .order-bottom .order-bottom-body {
+      display: flex;
+      flex-direction: column;
+      place-self: flex-end; }
+      .order .order-bottom .order-bottom-body .order-bottom_total {
+        font-size: 20px;
+        margin-bottom: 10px; }
+      .order .order-bottom .order-bottom-body .order-bottom_btn-order {
+        display: flex; }
+        .order .order-bottom .order-bottom-body .order-bottom_btn-order .btn-order-more {
+          border: 1px solid #DDDDDD; }
   .order .order-header-items {
     display: flex; }
     .order .order-header-items div {
@@ -3311,6 +3328,12 @@ ol {
     .order .order-product-item img {
       max-width: 140px;
       margin-right: 24px; }
+  .order .nav::before {
+    height: 0px !important; }
+  .order .nav::after {
+    height: 0px !important; }
+  .order .nav-status-order {
+    margin-top: 15px !important; }
 
 .changepassword {
   display: none;
@@ -3326,5 +3349,153 @@ ol {
     background-color: red;
     color: white;
     border: none; }
+
+.row-detail-order {
+  margin-top: 20px; }
+  .row-detail-order .btn-back-userpage {
+    display: flex;
+    justify-content: center; }
+    .row-detail-order .btn-back-userpage i {
+      text-align: center;
+      font-size: 25px; }
+    .row-detail-order .btn-back-userpage p {
+      text-align: center;
+      margin-bottom: 0;
+      position: relative;
+      top: 1px; }
+
+.order-detail {
+  animation: fadeIn ease-in 0.2s; }
+  .order-detail.active {
+    display: block; }
+  .order-detail .order-header {
+    background: #F6F6F6;
+    border: 1px solid #DDDDDD;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+  .order-detail .order-middle .order-infor {
+    border: 1px solid #DDDDDD;
+    padding: 15px;
+    display: flex; }
+    .order-detail .order-middle .order-infor .order-infor_address {
+      border-right: 1px solid #DDDDDD; }
+      .order-detail .order-middle .order-infor .order-infor_address p {
+        margin-bottom: 3px; }
+    .order-detail .order-middle .order-infor .order-infor_progress-status {
+      width: 100% !important; }
+      .order-detail .order-middle .order-infor .order-infor_progress-status .wrapper {
+        width: 330px;
+        font-family: 'Helvetica';
+        font-size: 14px; }
+      .order-detail .order-middle .order-infor .order-infor_progress-status .StepProgress {
+        position: relative;
+        padding-left: 45px;
+        list-style: none; }
+        .order-detail .order-middle .order-infor .order-infor_progress-status .StepProgress::before {
+          display: inline-block;
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 15px;
+          width: 10px;
+          height: 100%;
+          border-left: 2px solid #CCC; }
+        .order-detail .order-middle .order-infor .order-infor_progress-status .StepProgress-item {
+          position: relative;
+          counter-increment: list; }
+          .order-detail .order-middle .order-infor .order-infor_progress-status .StepProgress-item:not(:last-child) {
+            padding-bottom: 20px; }
+          .order-detail .order-middle .order-infor .order-infor_progress-status .StepProgress-item::before {
+            display: inline-block;
+            content: '';
+            position: absolute;
+            left: -30px;
+            height: 100%;
+            width: 10px; }
+          .order-detail .order-middle .order-infor .order-infor_progress-status .StepProgress-item::after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: 5px;
+            left: -35px;
+            width: 12px;
+            height: 12px;
+            border: 2px solid #CCC;
+            border-radius: 50%;
+            background-color: #FFF; }
+          .order-detail .order-middle .order-infor .order-infor_progress-status .StepProgress-item.is-done::before {
+            border-left: 2px solid green; }
+          .order-detail .order-middle .order-infor .order-infor_progress-status .StepProgress-item.is-done::after {
+            content: "✔";
+            font-size: 8px;
+            color: #FFF;
+            text-align: center;
+            border: 2px solid green;
+            background-color: green; }
+          .order-detail .order-middle .order-infor .order-infor_progress-status .StepProgress-item.current::before {
+            border-left: 2px solid green; }
+          .order-detail .order-middle .order-infor .order-infor_progress-status .StepProgress-item.current::after {
+            content: counter(list);
+            width: 18px;
+            height: 18px;
+            top: 0px;
+            left: -38px;
+            font-size: 11px;
+            text-align: center;
+            color: green;
+            border: 2px solid green;
+            background-color: white; }
+        .order-detail .order-middle .order-infor .order-infor_progress-status .StepProgress strong {
+          display: block; }
+  .order-detail .order-middle .order-products {
+    background: white;
+    border: 1px solid #DDDDDD;
+    border-top: none;
+    border-bottom: none;
+    padding: 14px; }
+  .order-detail .order-bottom {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px; }
+    .order-detail .order-bottom .order-bottom-body {
+      display: flex;
+      flex-direction: column;
+      place-self: flex-end; }
+      .order-detail .order-bottom .order-bottom-body .order-bottom_total {
+        font-size: 20px;
+        margin-bottom: 10px; }
+        .order-detail .order-bottom .order-bottom-body .order-bottom_total.total_ele {
+          font-size: 15px; }
+      .order-detail .order-bottom .order-bottom-body .order-bottom_btn-order {
+        display: flex; }
+        .order-detail .order-bottom .order-bottom-body .order-bottom_btn-order .btn-order-more {
+          border: 1px solid #DDDDDD; }
+  .order-detail .order-payment {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border: 1px solid #DDDDDD;
+    border-top: 0px;
+    margin-bottom: 25px; }
+    .order-detail .order-payment .order-payment-body {
+      display: flex;
+      place-self: flex-end; }
+      .order-detail .order-payment .order-payment-body p {
+        margin: 0;
+        font-size: 17px;
+        font-weight: 600;
+        margin-right: 10px; }
+  .order-detail .order-header-items {
+    display: flex; }
+    .order-detail .order-header-items div {
+      margin-right: 14px; }
+  .order-detail .order-product-item {
+    display: flex;
+    margin: 32px 0; }
+    .order-detail .order-product-item img {
+      max-width: 140px;
+      margin-right: 24px; }
 
 /*# sourceMappingURL=style.css.map */

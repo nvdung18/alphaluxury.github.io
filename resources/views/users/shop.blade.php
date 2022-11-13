@@ -6,7 +6,7 @@
     <meta name="description" content="Ashion Template">
     <meta name="keywords" content="Ashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>LWatch</title>
@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}" type="text/css">
@@ -49,88 +49,81 @@
                         <a href="#"><i class="fa fa-home"></i> Home</a>
                         <span>Shop</span>
                     </div>
-                    @php
-                        // if ($tag == 'men' || $tag == 'male') {
-                        //     # code...
-                        //     $tag = 'male';
-                        // } else {
-                        //     # code...
-                        //     $tag = 'female';
-                        // }
-                    @endphp
-                    <div class="find-panel col-lg-7 col-md-7">
-                        <div class="style-select col-md-7">
-                            <div class="select-box">
-                                <div class="options-container-branch">
-                                    @foreach ($listTrademark as $key => $item)
-                                        {{-- <option value="{{ $item->idTrademark }}">{{ $item->nameTrademark }}</option> --}}
-                                        {{-- href="{{ route('shop/watch-men/style'.'/'.$tag.'-'.'as') }}"> --}}
-                                        <a
-                                            href="{{ $price == null
-                                                ? route('shop.style-' . $tag . '-b', ['branch' => $item->idTrademark, 'type' => $tag])
-                                                : route('shop.style-' . $tag . '-bp', ['branch' => $item->idTrademark, 'type' => $tag, 'price' => $price]) }}">
-                                            <div class="option-branch">
-                                                <p>{{ $item->nameTrademark }}</p>
-                                            </div>
-                                        </a>
-                                    @endforeach
-                                    @if (isset($nameTrademark))
-                                        <a href="{{ $price == null 
-                                        ? route('shop.'.$tag)
-                                        : route('shop.style-' . $tag . '-p', ['type' => $tag, 'price' => $price]) }}">
-                                            <div class="option-branch">
-                                                <p class="text-center">--All--</p>
-                                            </div>
-                                        </a>
-                                    @endif
+                    @if ($tag != 'branch')
+                        <div class="find-panel col-lg-7 col-md-7">
+                            <div class="style-select col-md-7">
+                                <div class="select-box">
+                                    <div class="options-container-branch">
+                                        @foreach ($listTrademark as $key => $item)
+                                            <a
+                                                href="{{ $price == null
+                                                    ? route('shop.style-' . $tag . '-b', ['branch' => $item->idTrademark, 'type' => $tag])
+                                                    : route('shop.style-' . $tag . '-bp', ['branch' => $item->idTrademark, 'type' => $tag, 'price' => $price]) }}">
+                                                <div class="option-branch">
+                                                    <p>{{ $item->nameTrademark }}</p>
+                                                </div>
+                                            </a>
+                                        @endforeach
+                                        @if (isset($nameTrademark))
+                                            <a
+                                                href="{{ $price == null
+                                                    ? route('shop.' . $tag)
+                                                    : route('shop.style-' . $tag . '-p', ['type' => $tag, 'price' => $price]) }}">
+                                                <div class="option-branch">
+                                                    <p class="text-center">--All--</p>
+                                                </div>
+                                            </a>
+                                        @endif
+                                    </div>
+                                    <div class="selected-branch">
+                                        @if (empty($nameTrademark))
+                                            Branch
+                                        @else
+                                            {{ $nameTrademark }}
+                                        @endif
+                                    </div>
                                 </div>
-                                <div class="selected-branch">
-                                    @if (empty($nameTrademark))
-                                        Branch
-                                    @else
-                                        {{ $nameTrademark }}
-                                    @endif
+                            </div>
+                            <div class="style-select col-md-5">
+                                <div class="select-box">
+                                    <div class="options-container-price">
+                                        @php
+                                            // create arr price
+                                            $listPrice = ['< 7 triệu', '7 - 20 triệu', '20 -50 triệu', '50 - 200 triệu', '200 - 500 triệu', '> 500 triệu'];
+                                        @endphp
+                                        @foreach ($listPrice as $key => $value)
+                                            <a {{ $item->idTrademark }}
+                                                href="{{ $branch == null
+                                                    ? route('shop.style-' . $tag . '-p', ['type' => $tag, 'price' => $key + 1])
+                                                    : route('shop.style-' . $tag . '-bp', ['branch' => $branch, 'type' => $tag, 'price' => $key + 1]) }}">
+                                                <div class="option-price">
+                                                    <p>
+                                                        {{ $value }}</p>
+                                                </div>
+                                            </a>
+                                        @endforeach
+                                        @if (isset($price))
+                                            <a
+                                                href="{{ $branch == null
+                                                    ? route('shop.' . $tag)
+                                                    : route('shop.style-' . $tag . '-b', ['branch' => $branch, 'type' => $tag]) }}">
+                                                <div class="option-price">
+                                                    <p class="text-center">--All--</p>
+                                                </div>
+                                            </a>
+                                        @endif
+                                    </div>
+                                    <div class="selected-price">
+                                        @if (empty($price))
+                                            Price
+                                        @else
+                                            {{ $listPrice[$price - 1] }}
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="style-select col-md-5">
-                            <div class="select-box">
-                                <div class="options-container-price">
-                                    @php
-                                        // create arr price
-                                        $listPrice = ['< 7 triệu', '7 - 20 triệu', '20 -50 triệu', '50 - 200 triệu', '200 - 500 triệu', '> 500 triệu'];
-                                    @endphp
-                                    @foreach ($listPrice as $key => $value)
-                                        <a {{ $item->idTrademark }}
-                                            href="{{ $branch == null
-                                                ? route('shop.style-' . $tag . '-p', ['type' => $tag, 'price' => $key + 1])
-                                                : route('shop.style-' . $tag . '-bp', ['branch' => $branch, 'type' => $tag, 'price' => $key + 1]) }}">
-                                            <div class="option-price">
-                                                <p>
-                                                    {{ $value }}</p>
-                                            </div>
-                                        </a>
-                                    @endforeach
-                                    @if (isset($price))
-                                        <a href="{{ $branch == null 
-                                            ? route('shop.'.$tag)
-                                            : route('shop.style-' . $tag . '-b', ['branch' => $branch, 'type' => $tag]) }}">
-                                            <div class="option-price">
-                                                <p class="text-center">--All--</p>
-                                            </div>
-                                        </a>
-                                    @endif
-                                </div>
-                                <div class="selected-price">
-                                    @if (empty($price))
-                                        Price
-                                    @else
-                                        {{ $listPrice[$price - 1] }}
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>

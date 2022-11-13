@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 
 class User extends Model
 {
-    // use HasFactory;
+    use HasFactory;
+    protected $table='user';
     // /**
     //  * The attributes that are mass assignable.
     //  *
@@ -48,4 +50,23 @@ class User extends Model
     // public function setPasswordAttributes($password) {
     //     $this->attributes['password'] = Hash::make($password);
     // }
+
+    public function getUserInformation($idUser){
+        $infor=DB::table($this->table)->where('idUser','=',$idUser)->get();
+        return $infor;
+    }
+
+    // update infor user
+    public function updateInforUser($idUser,$arrInforUser){
+        // dd($arrInforUser);
+        $a=DB::table($this->table)
+        ->where('idUser','=',$idUser)
+        ->update([
+            'fullname'=>$arrInforUser['fullname'],
+            'gender'=>$arrInforUser['gender'],
+            'address'=>$arrInforUser['address'],
+            'phoneNumber'=>$arrInforUser['phoneNumber'],
+            'email'=>$arrInforUser['email']
+        ]);
+    }
 }

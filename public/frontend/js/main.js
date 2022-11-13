@@ -12,7 +12,7 @@ Created: Colorib
 // const { functions } = require("lodash");
 
 (function ($) {
-    
+
     $(window).on('load', function () {
         /*------------------
         Preloader
@@ -147,8 +147,8 @@ Created: Colorib
         Quantity change
     --------------------- */
     //Canvas Menu
-    
-    
+
+
     // var proQty = $('.pro-qty');
     // // proQty.prepend('<span class="dec qtybtn">-</span>');
     // // proQty.append('<span class="inc qtybtn">+</span>');
@@ -168,7 +168,7 @@ Created: Colorib
     //     $button.parent().find('input').val(newVal);
     // });
 
-        $(".canvas__open").on('click', function () {
+    $(".canvas__open").on('click', function () {
         $(".offcanvas-menu-wrapper").addClass("active");
         $(".offcanvas-menu-overlay").addClass("active");
     });
@@ -183,10 +183,10 @@ Created: Colorib
     const optionsContainerBranch = document.querySelector(".options-container-branch");
 
     const optionsListBranch = document.querySelectorAll(".option-branch");
-    
-    if(selectedBranch) {
+
+    if (selectedBranch) {
         selectedBranch.addEventListener("click", () => {
-                optionsContainerBranch.classList.toggle("active");
+            optionsContainerBranch.classList.toggle("active");
         });
 
     }
@@ -202,8 +202,8 @@ Created: Colorib
     const optionsContainerPrice = document.querySelector(".options-container-price");
 
     const optionsListPrice = document.querySelectorAll(".option-price");
-    
-    if(selectedPrice) {
+
+    if (selectedPrice) {
         selectedPrice.addEventListener("click", () => {
             optionsContainerPrice.classList.toggle("active");
         });
@@ -220,13 +220,13 @@ Created: Colorib
     const optionsContainer = document.querySelector(".options-container");
 
     const optionsList = document.querySelectorAll(".option");
-    
-    if(selected) {
+
+    if (selected) {
         selected.addEventListener("click", () => {
-        optionsContainer.classList.toggle("active");
+            optionsContainer.classList.toggle("active");
         });
     }
-    
+
     // optionsList.forEach(o => {
     //     o.addEventListener("click", () => {
     //     // selected.innerHTML = o.querySelector("label").innerHTML;
@@ -240,40 +240,40 @@ Created: Colorib
     });
 
 
-    $('.menu_item').on('click',function() {
-       const checkindex = $(this).attr('data-index');
-       const selected = $(this);
-    //    console.log($(this).navText);
-       var tag = 1;
-       if(checkindex == 1) {
-        $('.order').removeClass('active');
-        $('.changepassword').removeClass('active');
-        $('.form').addClass('active');
-        $("[data-index=1]").addClass('active');
-        $("[data-index=2]").removeClass('active');
-        $("[data-index=3]").removeClass('active');
+    $('.menu_item').on('click', function () {
+        const checkindex = $(this).attr('data-index');
+        const selected = $(this);
+        //    console.log($(this).navText);
+        var tag = 1;
+        if (checkindex == 1) {
+            $('.order').removeClass('active');
+            $('.changepassword').removeClass('active');
+            $('.form').addClass('active');
+            $("[data-index=1]").addClass('active');
+            $("[data-index=2]").removeClass('active');
+            $("[data-index=3]").removeClass('active');
 
-            } else if(checkindex == 2) {
-                $('.order').addClass('active');
-                $('.changepassword').removeClass('active');
-                $('.form').removeClass('active');
-                $("[data-index=2]").addClass('active');
-                $("[data-index=1]").removeClass('active');
-                $("[data-index=3]").removeClass('active');
+        } else if (checkindex == 2) {
+            $('.order').addClass('active');
+            $('.changepassword').removeClass('active');
+            $('.form').removeClass('active');
+            $("[data-index=2]").addClass('active');
+            $("[data-index=1]").removeClass('active');
+            $("[data-index=3]").removeClass('active');
 
-            } else if(checkindex == 3) {
-                $('.changepassword').addClass('active');
-                $('.order').removeClass('active');
-                $('.form').removeClass('active');
-                $("[data-index=2]").removeClass('active');
-                $("[data-index=1]").removeClass('active');
-                $("[data-index=3]").addClass('active');
+        } else if (checkindex == 3) {
+            $('.changepassword').addClass('active');
+            $('.order').removeClass('active');
+            $('.form').removeClass('active');
+            $("[data-index=2]").removeClass('active');
+            $("[data-index=1]").removeClass('active');
+            $("[data-index=3]").addClass('active');
 
-            }
-        });
-    
+        }
+    });
 
-        $(".btn-cart").on('click',function(e){
+
+    $(".btn-cart").on('click',function(e){
             //etc
             e.preventDefault(); 
             // console.log(1);
@@ -671,6 +671,4 @@ Created: Colorib
                     button: "Close!",
                 });   
         }
-
 })(jQuery);
-

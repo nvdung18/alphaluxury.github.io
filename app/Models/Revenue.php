@@ -21,26 +21,26 @@ class Revenue extends Model
 
     public function getAllDailyRevPaginate()
     {
-        $rev = DB::table($this->dailyTable)->paginate(10);
+        $rev = DB::table($this->dailyTable)->orderBy('idDRevenue','desc')->paginate(10);
         return $rev;
     }
 
     public function getAllWeeklyRevPaginate()
     {
-        $rev = DB::table($this->weeklyTable)->paginate(10);
+        $rev = DB::table($this->weeklyTable)->orderBy('idWRrevenue','desc')->paginate(10);
         return $rev;
     }
 
     public function getAllMonthlyRevPaginate()
     {
-        $rev = DB::table($this->monthlyTable)->paginate(10);
+        $rev = DB::table($this->monthlyTable)->orderBy('idMRevenue','desc')->paginate(10);
         return $rev;
     }
 
 
-    public function getFilterRev($date)
+    public function getFilterRev($date,$table)
     {
-        $rev = DB::table($this->dailyTable)->where('releaseDate', '=', $date)->paginate(10);
+        $rev = DB::table($table)->where('releaseDate', '=', $date)->paginate(10);
         return $rev;
     }
 
@@ -137,6 +137,46 @@ class Revenue extends Model
             return $rev;
             // dd($rev);   
         }
+    }
 
+    public function updateAllRevenue($nowDate,$order){
+        // get order detail to get quantity of product
+        $quantityOfProduct=DB::table('orderdetail')->where('idOrder','=',$order[0]->idOrder)->count();
+        
+        // get total money of this order by subtract product money and discount then plus deliveryCharges
+        $discount=DB::table('promocode')->where('idPromoCode','=',$order[0]->idPromoCode)->get();
+        $discountPercent=$discount[0]->discountPercent;
+        $deliveryCharges=$order[0]->deliveryCharges;
+        $productMoney=$order[0]->productMoney;
+        $total= ($productMoney+$deliveryCharges)-(float)(($productMoney * $discountPercent) / 100); //calculate total
+
+        // update dailyrev, weeklyrev, monthlyrev
+        $nowDay=DB::table($this->dailyTable)->orderBy('idDRevenue','desc')->limit(1)->get();
+        DB::table($this->dailyTable)
+        ->where('releaseDate',$nowDate)
+        -> update([
+            'revenue' => ($total+$nowDay[0]->revenue),
+            'quantity'=>$quantityOfProduct
+        ]); // update dailyrev
+
+        $nowWeeklyRev=DB::table($this->weeklyTable)->orderBy('idWRrevenue','desc')->limit(1)->get(); //check current week to update revenue for current week
+        $idNowWeeklyRev=$nowWeeklyRev[0]->idWRrevenue; //get id current week
+        DB::table($this->weeklyTable)
+        ->where('idWRrevenue',$idNowWeeklyRev)
+        -> update([
+            'revenue' => ($total+$nowWeeklyRev[0]->revenue),
+            'quantity'=>($quantityOfProduct+$nowWeeklyRev[0]->quantity)
+        ]); //update weeklyrev
+        
+        $nowMonthlyRev=DB::table($this->monthlyTable)->orderBy('idMRevenue','desc')->limit(1)->get(); //check current month to update revenue for current month
+        $idNowMonthlyRev=$nowMonthlyRev[0]->idMRevenue; //get id current month
+        DB::table($this->monthlyTable)
+        ->where('idMRevenue',$idNowMonthlyRev)
+        -> update([
+            'revenue' => ($total+$nowMonthlyRev[0]->revenue),
+            'quantity'=>($quantityOfProduct+$nowMonthlyRev[0]->quantity)
+        ]); //update monthlyrev
+
+        // dd($quantityOfProduct,($quantityOfProduct+$nowWeeklyRev[0]->quantity),($quantityOfProduct+$nowMonthlyRev[0]->quantity));
     }
 }

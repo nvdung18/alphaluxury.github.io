@@ -140,7 +140,8 @@
                                                             </select>
                                                         </div>
                                                         <button type="submit ml-3"
-                                                            class="btn btn-primary status-order_btn-confirm">Confirm</button>
+                                                            class="btn btn-primary status-order_btn-confirm"
+                                                            {{ $status == 'Order deliveried' ? 'disabled' : '' }}>Confirm</button>
                                                     </form>
                                                 </td>
                                                 <td>

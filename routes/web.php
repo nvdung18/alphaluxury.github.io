@@ -78,9 +78,7 @@ Route::get('/blog', function () {
     return view('users.blog');
 })->name('blog');
 
-Route::get('/contact', function () {
-    return view('users.contact');
-})->name('contact');
+Route::get('/contact', [ShopController::class,'contact'])->name('contact');
 
 Route::get('/blog-details', function () {
     return view('users.blog-details');
@@ -186,7 +184,15 @@ Route::get('/forgotpassword', [UserController::class, 'forgotpw'])->name('forgot
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 Route::prefix('user')->group(function () {
+    // load infor user
     Route::get('/userpage',[UserController::class, 'show_form_user_page'])->name('user.page');
+
+    // update infor user
+    Route::post('/update-user',[UserController::class, 'updateUserInfor'])->name('user.update-infor');
+
+    // detail order
+    Route::get('/detail-order',[UserController::class, 'getDetailOrder'])->name('user.detail-order');
+
 });
 
 Route::prefix('cart')->group(function () {
@@ -201,4 +207,4 @@ Route::prefix('cart')->group(function () {
 
 Route::post('add_to_check_out', [ShopController::class, 'addcheckout'])->name('addcheckout');
 Route::get('/textorderdetails', [ShopController::class, 'textorderdetails'])->name('textorderdetails');
-
+Route::get('/branch', [ShopController::class, 'getProductByBranch'])->name('product-branch');

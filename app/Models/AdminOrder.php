@@ -13,7 +13,7 @@ class AdminOrder extends Model
     protected $orderDetailTable = "orderdetail";
 
     public function getAllOrderPaginate(){
-        $order=DB::table($this->orderTable)->paginate(10);
+        $order=DB::table($this->orderTable)->orderBy('idOrder','desc')->paginate(10);
         return $order;
     }
 

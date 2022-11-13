@@ -141,14 +141,17 @@
             } else {
                 var arrRev = [];
                 var arrDate = [];
+                var arrQuantity= [];
                 console.log(1);
                 for (let i = 0; i < 31; i++) {
                     if (rev[i] != null) {
                         arrRev[i] = rev[i].revenue;
                         arrDate[i] = rev[i].releaseDate;
+                        arrQuantity[i]=rev[i].quantity;
                     } else {
                         arrRev[i] = 0;
-                        arrDate[i] = null;
+                        // arrDate[i] = null;
+                        arrQuantity[i]=0;
                     }
                 }
 
@@ -173,9 +176,6 @@
                         ['Month', 'Revenue', {
                             role: 'style'
                         }],
-                        // for (let i = 0; i < 4; i++) {
-                        //     console.log(1);
-                        // }
                         ['1', arrRev[0], ' stroke-width: 2;stroke-color: #5489e2; color: #76A7FA'],
                         ['2', arrRev[1], ' stroke-width: 2;stroke-color: #5489e2; color: #76A7FA'],
                         ['3', arrRev[2], ' stroke-width: 2;stroke-color: #5489e2; color: #76A7FA'],
@@ -206,7 +206,7 @@
                         ['28', arrRev[27], ' stroke-width: 2;stroke-color: #5489e2; color: #76A7FA'],
                         ['29', arrRev[28], ' stroke-width: 2;stroke-color: #5489e2; color: #76A7FA'],
                         ['30', arrRev[29], ' stroke-width: 2;stroke-color: #5489e2; color: #76A7FA'],
-                        ['31', arrRev[29], ' stroke-width: 2;stroke-color: #5489e2; color: #76A7FA'],
+                        ['31', arrRev[30], ' stroke-width: 2;stroke-color: #5489e2; color: #76A7FA'],
                     ]);
 
                     var options = {
@@ -228,6 +228,28 @@
                     chart.draw(data, options);
                 }
 
+                // table chart
+                google.charts.load('current', {'packages':['table']});
+                google.charts.setOnLoadCallback(drawTable);
+
+                function drawTable() {
+                    var data1 = new google.visualization.DataTable();
+                    data1.addColumn('string', 'Date');
+                    data1.addColumn('number', 'Revenue');
+                    data1.addColumn('number', 'Quantity');
+                    arrDate.forEach((element,index )=> {
+                        data1.addRows([
+                            [arrDate[index],  {v: arrRev[index]}, arrQuantity[index] ],
+                        ]);
+                    });
+                    
+                    var table = new google.visualization.Table(document.getElementById('table_div'));
+                    // data1.setCell(22, 2, 15, 'Fifteen', {style: 'font-style:bold; font-size:22px;'});
+                    table.draw(data1, {showRowNumber: true, width: '100%', height: '100%'});
+                }
+
+
+                console.log(arrRev);
             }
         }, false)
     </script>
