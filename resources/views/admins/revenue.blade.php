@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="{{ asset('frontend_admin/css/style.css') }}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('frontend_admin/images/favicon.ico') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/css/font-awesome.min.css') }}" type="text/css">
+    <!-- End layout styles -->
+    <link rel="stylesheet" href="{{ asset('frontend_admin/css/ad_style.css') }}">
 </head>
 
 <body>
@@ -50,33 +53,64 @@
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Hoverable Table</h4>
+                                    <div class="top-rev d-flex flex-row">
+                                        <h4 class="card-title col-md-9">Revenue Table</h4>
+                                        <div class="top-rev_filter col-md-3">
+                                            <form action="{{ route('ad.filter-revenue')}}" method="get">
+                                                <input type="text" name="table_filter" value="{{$tag}}" hidden>
+                                                <input type="date" class="filter-rev" name="filter_date_rev"
+                                                    id="">
+                                                <input type="submit" name="" id=""
+                                                    class="btn btn-success btn-filter-rev" value="Filter">
+                                            </form>
+                                        </div>
+                                    </div>
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Revenue</th>
-                                                <th scope="col">Quantity</th>
-                                                <th scope="col">Release Date</th>
-                                                <th scope="col">Detail</th>
+                                                <th scope="col" style="width: 10%">#</th>
+                                                <th scope="col" style="width: 20%">Revenue</th>
+                                                <th scope="col" style="width: 15%">Quantity</th>
+                                                <th scope="col" style="width: 22%">Release Date</th>
+                                                <th scope="col" style="width: 23%">Detail</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($listRev as $key => $item)
                                                 @if ($key < 8)
                                                     <tr>
-                                                        <th scope="row">{{$key+1}}</th>
-                                                        <td>{{ $item->revenue }}</td>
+                                                        <th scope="row">{{ $key + 1 }}</th>
+                                                        <td>@php
+                                                            echo number_format($item->revenue);
+                                                        @endphp</td>
                                                         <td>{{ $item->quantity }}</td>
-                                                        <td>{{ $item->created_at }}</td>
+                                                        <td>{{ $item->releaseDate }}</td>
                                                         <td>
-                                                            <div class="btn btn-primary">Detail</div>
+                                                            @if ($tag == 'day')
+                                                                <a href="#" class="btn-rev-more">
+                                                                    <div class="btn btn-primary">
+                                                                        Detail
+                                                                    </div>
+                                                                </a>
+                                                            @else
+                                                                <a class="btn-rev-more"
+                                                                    href="{{ $tag == 'week' 
+                                                                    ? route('ad.chart-weekly-revenue', ['position' => $item->position]) 
+                                                                    : route('ad.chart-monthly-revenue', ['position' => $item->position]) }}">
+                                                                    <div class="btn btn-primary">
+                                                                        Statistical
+                                                                    </div>
+                                                                </a>
+                                                            @endif
                                                         </td>
                                                     </tr>
                                                 @endif
                                             @endforeach
                                         </tbody>
                                     </table>
+                                </div>
+                                <div class="row col-lg-12 text-center d-flex justify-content-center mt-3">
+                                    {{ $listRev->links('parts.pagination') }}
                                 </div>
                             </div>
                         </div>
@@ -107,8 +141,9 @@
     <!-- Custom js for this page -->
     <script src="{{ asset('frontend_admin/js/dashboard.js') }}"></script>
     <script src="{{ asset('frontend_admin/js/todolist.js') }}"></script>
+    {{-- chart --}}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <!-- End custom js for this page -->
-    <script src=""></script>
 </body>
 
 </html>

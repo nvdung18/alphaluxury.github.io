@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Account extends Model
 {
@@ -20,5 +21,10 @@ class Account extends Model
         'password',
         'idUser'
     ];
+
+    public function getCheckout($idAccount){
+        $checkout=DB::table('checkout')->where('idAccount','=',$idAccount)->get();
+        return $checkout;
+    }
 
 }
