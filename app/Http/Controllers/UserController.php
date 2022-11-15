@@ -20,9 +20,15 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View as FacadesView;
 use Symfony\Component\Console\Input\Input;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\View\View as ViewView;
+use Spatie\FlareClient\View as FlareClientView;
+use Termwind\Components\Dd;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cookie;
 
+use function PHPUnit\Framework\returnSelf;
 use function PHPUnit\Framework\returnValueMap;
 
 class UserController extends Controller
@@ -36,10 +42,11 @@ class UserController extends Controller
         $this->countTrademark = $this->trademark->countTrademark();
         $this->user = new User();
         $this->order = new UserOrder();
+        $this->customer = new Customer();
     }
 
-    public function check(Request $request){
-
+    public function check(Request $request)
+    {
     }
 
     public function user_registration_rules(array $data)
@@ -68,31 +75,34 @@ class UserController extends Controller
         return $validator;
     }
 
-    public function add(Request $request) {
-        if($request->isMethod('POST')) {
-            $validator = Validator::make($request->all(),
-            [
-                'name'=>'required|min:1|max:30',
-                'email'=>'required|email',
-                'password'=>'required|confirmed|min:3|max:16',
-            ]);
+    public function add(Request $request)
+    {
+        if ($request->isMethod('POST')) {
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'name' => 'required|min:1|max:30',
+                    'email' => 'required|email',
+                    'password' => 'required|confirmed|min:3|max:16',
+                ]
+            );
             // $validator = $this->user_registration_rules($request->all());
-            if($validator->fails()) {
+            if ($validator->fails()) {
                 return redirect()->back()
                     ->withErrors($validator)
                     ->withInput();
             }
         }
         $user = DB::table('user')->where('email', '=', $request->email)->first();
-        $timestamp=date('Y-m-d H:i:s');
-        if(!$user) {
+        $timestamp = date('Y-m-d H:i:s');
+        if (!$user) {
             // $lastuser = DB::table('user')->get()->last()->idUser;
             $allus = DB::table('user')->get();
             $countallus = $allus->count();
-            if($countallus == 0) {
+            if ($countallus == 0) {
                 $newUser = new Customer();
                 $us = 1;
-                $newUser->idUser = 'Us_'.$us;
+                $newUser->idUser = 'Us_' . $us;
                 $newUser->nameUser = $request->name;
                 $newUser->fullname = uniqid();
                 $newUser->email = $request->email;
@@ -101,9 +111,9 @@ class UserController extends Controller
                 $newUser->status = $request->status;
                 // $newUser->email_verified_at = $timestamp;
                 $newUser->save();
-                
+
                 $newAccount = Account::create([
-                    'idAccount' => 'Ac_'.$us,
+                    'idAccount' => 'Ac_' . $us,
                     'method' => 'Default',
                     'userName' => $newUser->nameUser,
                     'password' => $newUser->password,
@@ -115,33 +125,33 @@ class UserController extends Controller
                 ]);
             } else {
                 $lastuser = DB::table('user')->get()->last()->idUser;
-                if($lastuser != '' || $lastuser != null) {
-                  $data = explode('_', $lastuser);
-                  $newUser = new Customer();
-                  $newUser->idUser = 'Us_'.++$data[1];
-                  $newUser->nameUser = $request->name;
-                  $newUser->fullname = uniqid();
-                  $newUser->email = $request->email;
-                  $newUser->password = bcrypt($request->password);
-                  $newUser->role = $request->role;
-                  $newUser->status = $request->status;
-                  // $newUser->email_verified_at = $timestamp;
-                  $newUser->save();
-                  $lastaccount = DB::table('account')->get()->last()->idAccount;
-                  if($lastaccount != '' || $lastaccount != null) {
+                if ($lastuser != '' || $lastuser != null) {
+                    $data = explode('_', $lastuser);
+                    $newUser = new Customer();
+                    $newUser->idUser = 'Us_' . ++$data[1];
+                    $newUser->nameUser = $request->name;
+                    $newUser->fullname = uniqid();
+                    $newUser->email = $request->email;
+                    $newUser->password = bcrypt($request->password);
+                    $newUser->role = $request->role;
+                    $newUser->status = $request->status;
+                    // $newUser->email_verified_at = $timestamp;
+                    $newUser->save();
+                    $lastaccount = DB::table('account')->get()->last()->idAccount;
+                    if ($lastaccount != '' || $lastaccount != null) {
                         $data = explode('_', $lastaccount);
-                         $newAccount = Account::create([
-                        'idAccount' => 'Ac_'.++$data[1],
-                        'method' => 'Default',
-                        'userName' => $newUser->nameUser,
-                        'password' => $newUser->password,
-                        'idUser' => $newUser->idUser
+                        $newAccount = Account::create([
+                            'idAccount' => 'Ac_' . ++$data[1],
+                            'method' => 'Default',
+                            'userName' => $newUser->nameUser,
+                            'password' => $newUser->password,
+                            'idUser' => $newUser->idUser
+                        ]);
+                    }
+                    return redirect()->route('register')->with([
+                        'message' => 'You did create a account successfully.',
                     ]);
-                  }
-                  return redirect()->route('register')->with([
-                      'message' => 'You did create a account successfully.',
-                  ]);
-                } 
+                }
             }
         } else {
             return redirect()->route('register')->with([
@@ -150,7 +160,8 @@ class UserController extends Controller
         }
     }
 
-    public function showlogin(){
+    public function showlogin()
+    {
         if (Auth::check()) {
             return redirect()->route('home')->with([
                 'user' => Auth::user(),
@@ -159,11 +170,13 @@ class UserController extends Controller
         return view('users.login');
     }
 
-    public function forgotpw(){
+    public function forgotpw()
+    {
         return view('users.fotgotpw');
     }
 
-    public function checklogin(Request $request){
+    public function checklogin(Request $request)
+    {
         if ($request->isMethod('POST')) {
             $validator = Validator::make($request->all(), [
                 'nameUser' => 'required',
@@ -190,15 +203,16 @@ class UserController extends Controller
                     Auth::user()->setRememberToken($user->remember_token);
                     Auth::loginUsingId($user->idUser, true);;
                     return redirect()->route('home');
-                } else if (Auth::user()->role != 1) {
-                    Auth::user()->tokens->each(function ($token, $key) {
-                        $token->delete();
-                    });
-                    Auth::logout();
-                    return redirect()->route('user.login')->with([
-                        'message' => "You cant access to use website"
-                    ]);
                 }
+                // else if (Auth::user()->role != 1) {
+                //     Auth::user()->tokens->each(function ($token, $key) {
+                //         $token->delete();
+                //     });
+                //     Auth::logout();
+                //     return redirect()->route('user.login')->with([
+                //         'message' => "You cant access to use website"
+                //     ]);
+                // }
             } else {
                 return redirect()->route('user.login')->with([
                     'message' => 'Account is not exist'
@@ -207,7 +221,8 @@ class UserController extends Controller
         }
     }
 
-    public function resetpasswordCallback(Request $request){
+    public function resetpasswordCallback(Request $request)
+    {
         $data = $request->email;
         $now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y');
         $title_mail = 'Recieve Password from Shopbanhangwatch.com' . '' . $now;
@@ -242,7 +257,8 @@ class UserController extends Controller
         }
     }
 
-    public function formresetpw(Request $request){
+    public function formresetpw(Request $request)
+    {
         $email = $request->input('email');
         $token = $request->input('token');
         return view('users.resetpw')->with([
@@ -251,12 +267,15 @@ class UserController extends Controller
         ]);
     }
 
-    public function newpassword(Request $request){
+    public function newpassword(Request $request)
+    {
         if ($request->isMethod('POST')) {
-            $validator = Validator::make($request->all(),
+            $validator = Validator::make(
+                $request->all(),
                 [
                     'password' => 'required|confirmed|min:3|max:16',
-                ]);
+                ]
+            );
             // $validator = $this->user_registration_rules($request->all());
             if ($validator->fails()) {
                 return redirect()->back()
@@ -271,7 +290,6 @@ class UserController extends Controller
                 $user->save();
                 return redirect()->back()->with('message', 'Reset Password Successful. Please try login again');
             }
-
         }
     }
 
@@ -341,5 +359,64 @@ class UserController extends Controller
         $tag = "home";
 
         return view('users.detail-order', compact('listProduct', 'listTrademark', 'countTrademark', 'tag', 'order', 'checkout', 'payment'));
+    }
+
+    public function loginadmin(Request $request)
+    {
+        $token = Cookie::get('token');
+        if (isset($token) && $token != null) {
+            return redirect()->route('admin')->with([
+                'admin' => json_decode($token)
+            ]);
+        }
+        return view('parts_admin.login');
+    }
+
+    public function checkloginadmin(Request $request)
+    {
+        if ($request->isMethod('POST')) {
+
+            $validator = Validator::make($request->all(), [
+                'nameUser' => 'required|min:1',
+                'password' => 'required:|min:1',
+                'remember' => 'nullable'
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+            $remember = $request->remember;
+            $tk = $request->nameUser;
+            $mk = Hash('md5', $request->password);
+            $adminlogin = Customer::where('nameUser', '=', $tk)->where('password', '=', $mk)->where('role', '=', 2)->first();
+            if ($adminlogin) {
+                if ($remember == 'on') {
+                    // $response = new Response();
+                    // $response->withCookie(cookie('token', json_encode($adminlogin), time() + 86400), '/');
+                    $cookie = Cookie::make('token', json_encode($adminlogin), time() + 86400);
+                    return response()->redirectToRoute('admin')
+                        ->withCookie($cookie);
+                } else {
+                    return redirect()->route('admin', ['status' => 'notsave'])->with([
+                        'admin' => json_encode($adminlogin)
+                    ]);
+                }
+            } else {
+                return redirect()->route('loginadmin')->with([
+                    'message' => 'Failed Username or Password'
+                ]);
+            }
+        }
+    }
+
+
+    public function logoutadmin(Request $request)
+    {
+        $cookie = Cookie::make('token', null, time() + 1000);
+        return response()->redirectToRoute('admin')
+            ->withCookie($cookie);
     }
 }

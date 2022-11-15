@@ -368,4 +368,8 @@ textarea {
   text-decoration: none;
   color: aliceblue; }
 
+.notification-login-admin {
+  padding: 2px;
+  top: -12px; }
+
 /*# sourceMappingURL=ad_style.css.map */

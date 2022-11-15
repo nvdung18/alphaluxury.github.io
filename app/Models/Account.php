@@ -26,5 +26,4 @@ class Account extends Model
         $checkout=DB::table('checkout')->where('idAccount','=',$idAccount)->get();
         return $checkout;
     }
-
 }
