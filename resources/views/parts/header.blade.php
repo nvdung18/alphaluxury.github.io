@@ -93,7 +93,10 @@
                         @endif
                     </div>
                     <ul class="header__right__widget">
-                        <li><span class="icon_search search-switch"></span></li>
+                        <li>
+                            {{-- <input type="text"> --}}
+                            <span class="icon_search search-switch"></span>
+                        </li>
                         <li>
                             <div>
                                 {{-- <a href="{{ asset('') }}"></a> --}}

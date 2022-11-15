@@ -79,7 +79,7 @@
                                         <tr>
                                             <th style="width: 10%">ID ORDER</th>
                                             <th style="width: 20%">RECIPIENT</th>
-                                            <th style="width: 15%">TOTAL</th>
+                                            <th style="width: 15%">TOTAL PRODUCT</th>
                                             <th style="width: 15%">FORM PAYMENT</th>
                                             <th style="width: 40%">STATUS</th>
                                             <th></th>

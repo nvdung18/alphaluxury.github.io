@@ -63,6 +63,8 @@ Route::prefix('shop')->group(function () {
                 Route::get('/style/{type}-{branch}-price-{price}', [ShopController::class, 'getFilterProduct'])->name('style-women-bp');
             });
         });
+
+        Route::get('/search', [ShopController::class, 'searchProductByName'])->name('search-product');
     });
 });
 
@@ -208,3 +210,7 @@ Route::prefix('cart')->group(function () {
 Route::post('add_to_check_out', [ShopController::class, 'addcheckout'])->name('addcheckout');
 Route::get('/textorderdetails', [ShopController::class, 'textorderdetails'])->name('textorderdetails');
 Route::get('/branch', [ShopController::class, 'getProductByBranch'])->name('product-branch');
+
+Route::get('/admin-login', function(){
+    return view('parts_admin.login');
+});

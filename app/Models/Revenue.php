@@ -156,7 +156,7 @@ class Revenue extends Model
         ->where('releaseDate',$nowDate)
         -> update([
             'revenue' => ($total+$nowDay[0]->revenue),
-            'quantity'=>$quantityOfProduct
+            'quantity'=>($quantityOfProduct+$nowDay[0]->quantity)
         ]); // update dailyrev
 
         $nowWeeklyRev=DB::table($this->weeklyTable)->orderBy('idWRrevenue','desc')->limit(1)->get(); //check current week to update revenue for current week

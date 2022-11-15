@@ -158,7 +158,7 @@
                                         </div>
                                         <div class="order-bottom_total total_ele">
                                             Discount:
-                                            <strong>{{ number_format($item['discountPercent']) }}Đ</strong>
+                                            <strong>{{ number_format($item['discountPercent']) }}%</strong>
                                         </div>
                                         <div class="order-bottom_total">
                                             Total:

@@ -48,6 +48,9 @@
                                     </div>
                                     <div>Quantity: {{ $item2->quantity }}</div>
                                     <div>Price: {{ number_format($item2->quantity * $item2->price) }}</div>
+                                    @if ($item2->discountPercent != 0)
+                                        <div>Discount: {{ $item2->discountPercent }}%</div>
+                                    @endif
                                 </div>
                             </div>
                         @endif
