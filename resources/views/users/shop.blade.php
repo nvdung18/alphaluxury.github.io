@@ -49,7 +49,7 @@
                         <a href="#"><i class="fa fa-home"></i> Home</a>
                         <span>Shop</span>
                     </div>
-                    @if ($tag != 'branch')
+                    @if ($tag != 'branch' && $tag!="search")
                         <div class="find-panel col-lg-7 col-md-7">
                             <div class="style-select col-md-7">
                                 <div class="select-box">

@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}" type="text/css">
@@ -45,7 +45,7 @@
                         <a href="#">{{ $tag }}’s </a>
                         <span>{{ $productdetails->nameProduct }}</span>
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
     </div>
@@ -59,16 +59,19 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__left product__thumb nice-scroll">
                             <a class="pt active" href="#product-1">
-                                <img src="{{ asset('frontend/img/product/'.$productdetails->image) }}" alt="No Image">
+                                <img src="{{ asset('frontend/img/product/' . $productdetails->image) }}"
+                                    alt="No Image">
                             </a>
                             <a class="pt" href="#product-2">
-                                @if ($product['nameImgDetail1'] != null || $product['nameImgDetail1'] != '')
-                                <img src="{{ asset('frontend/img/product/'.$product['nameImgDetail1']) }}" alt="No Image">
+                                @if (isset(explode('.',explode('/',$product['nameImgDetail1'])[2])[1]))
+                                    <img src="{{ asset('frontend/img/product/' . $product['nameImgDetail1']) }}"
+                                        alt="No Image">
                                 @endif
                             </a>
                             <a class="pt" href="#product-3">
-                                @if ($product['nameImgDetail2'] != null || $product['nameImgDetail2'] != '')
-                                <img src="{{ asset('frontend/img/product/'.$product['nameImgDetail2']) }}" alt="No Image">
+                                @if (isset(explode('.',explode('/',$product['nameImgDetail2'])[2])[1]))
+                                    <img src="{{ asset('frontend/img/product/' . $product['nameImgDetail2']) }}"
+                                        alt="No Image">
                                 @endif
                             </a>
                             {{-- <a class="pt" href="#product-4">
@@ -78,14 +81,16 @@
                         <div class="product__details__slider__content">
                             <div class="product__details__pic__slider owl-carousel">
                                 <img data-hash="product-1" class="product__big__img"
-                                    src="{{ asset('frontend/img/product/'.$productdetails->image) }}" alt="No Image">
-                                @if ($product['nameImgDetail1'] != null || $product['nameImgDetail1'] != '')
-                                <img data-hash="product-2" class="product__big__img"
-                                    src="{{ asset('frontend/img/product/'.$product['nameImgDetail1']) }}" alt="No Image">
+                                    src="{{ asset('frontend/img/product/' . $productdetails->image) }}" alt="No Image">
+                                @if (isset(explode('.',explode('/',$product['nameImgDetail1'])[2])[1]))
+                                    <img data-hash="product-2" class="product__big__img"
+                                        src="{{ asset('frontend/img/product/' . $product['nameImgDetail1']) }}"
+                                        alt="No Image">
                                 @endif
-                                @if ($product['nameImgDetail2'] != null || $product['nameImgDetail2'] != '')
-                                <img data-hash="product-3" class="product__big__img"
-                                    src="{{ asset('frontend/img/product/'.$product['nameImgDetail2']) }}" alt="No Image">
+                                @if (isset(explode('.',explode('/',$product['nameImgDetail2'])[2])[1]))
+                                    <img data-hash="product-3" class="product__big__img"
+                                        src="{{ asset('frontend/img/product/' . $product['nameImgDetail2']) }}"
+                                        alt="No Image">
                                 @endif
                                 {{-- <img data-hash="product-4" class="product__big__img"
                                     src="{{ asset('frontend/img/product/details/thumb-4.jpg') }}" alt=""> --}}
@@ -95,8 +100,10 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="product__details__text">
-                        <h3>{{ $productdetails->nameProduct }}<span>Brand: {{ $productdetails->nameTrademark }}</span></h3>
-                        <div class="product__details__price"> {{ number_format($productdetails->price, 0 ,".", ".") }} VND<span> {{ number_format(12630000, 0, ".", ".") }}VND</span></div>
+                        <h3>{{ $productdetails->nameProduct }}<span>Brand: {{ $productdetails->nameTrademark }}</span>
+                        </h3>
+                        <div class="product__details__price"> {{ number_format($productdetails->price, 0, '.', '.') }}
+                            VND<span> {{ number_format(12630000, 0, '.', '.') }}VND</span></div>
                         <p>{{ $productdetails->description }}</p>
                         <div class="product__details__button">
                             <div class="quantity">
@@ -107,7 +114,9 @@
                                     <span class="inc qtybtn">+</span>
                                 </div>
                             </div>
-                            <a href="#" class="cart-btn btn-cart" idproduct={{ $productdetails->idProduct }} data-url="{{ route('add_product_to_cart') }}"><span class="icon_bag_alt"></span> Add to cart</a>
+                            <a href="#" class="cart-btn btn-cart" idproduct={{ $productdetails->idProduct }}
+                                data-url="{{ route('add_product_to_cart') }}"><span class="icon_bag_alt"></span> Add to
+                                cart</a>
                             <ul>
                                 <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                                 <li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
@@ -127,7 +136,8 @@
                     <div class="product__details__tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-1" role="tab">Write a review</a>
+                                <a class="nav-link" data-toggle="tab" href="#tabs-1" role="tab">Write a
+                                    review</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Reviews ( 2
@@ -138,7 +148,8 @@
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <h6>Write a review</h6>
                                 <textarea class="review-product" id="" style="width: 100%;" placeholder="Enter a product review..."></textarea>
-                                <button type="button" class="btn btn-outline-secondary send-review">Send review</button>
+                                <button type="button" class="btn btn-outline-secondary send-review">Send
+                                    review</button>
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <h6>Reviews ( 2 )</h6>
@@ -163,32 +174,34 @@
                         <h5>RELATED PRODUCTS</h5>
                     </div>
                 </div>
-                @for ($i = 0; $i < 4; $i++)
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="{{ asset('frontend/img/product/88RUE_DU_RHONE/SP02.jpg') }}">
-                                <div class="label new">New</div>
-                                <ul class="product__hover">
-                                    <li><a href="{{ asset('frontend/img/product/related/rp-1.jpg') }}" class="image-popup"><span
-                                                class="arrow_expand"></span></a></li>
-                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Buttons tweed blazer</a></h6>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                @php
+                    $relateProductNumber = 0;
+                @endphp
+                @foreach ($relatedProduct as $key => $item)
+                    @if ($productdetails->idProduct != $item->idProduct && $relateProductNumber<4)
+                        @php
+                            $relateProductNumber++;
+                        @endphp
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg"
+                                    data-setbg="{{ asset('frontend/img/product/'.$item->image) }}">
+                                    <div class="label new">New</div>
+                                    <ul class="product__hover">
+                                        <li><a href="{{ asset('frontend/img/product/related/rp-1.jpg') }}"
+                                                class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="#"><span class="icon_search"></span></a></li>
+                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
                                 </div>
-                                <div class="product__price">$ 59.0</div>
+                                <div class="product__item__text">
+                                    <h6><a href="#">{{$item->nameProduct}}</a></h6>
+                                    <div class="product__price">{{number_format($item->price)}}</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endfor
+                    @endif
+                @endforeach
             </div>
         </div>
     </section>

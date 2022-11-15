@@ -131,7 +131,13 @@ class ShopController extends Controller
             ->get()
             ->first();
         $product = json_decode($productdetails->detailsImg, true);
-        return view('users.product-details', compact('listProduct', 'listTrademark', 'countTrademark', 'tag', 'productdetails', 'product'));
+
+        // get product related
+        $relatedProduct = DB::table('product')->where('idTrademark', '=', $productdetails->idTrademark)->get();
+        // $a=2;
+        // $b=explode('/',$product['nameImgDetail1']);
+        // dd(explode('.',explode('/',$product['nameImgDetail1'])[2])[1]);
+        return view('users.product-details', compact('listProduct', 'listTrademark', 'countTrademark', 'tag', 'productdetails', 'product', 'relatedProduct'));
     }
 
     public function show_shop_cart(Request $request)
@@ -671,5 +677,12 @@ class ShopController extends Controller
                 'success' => 'Order has been placed'
             ]);
         }
+    }
+
+    public function searchProductByName(Request $request){
+        // dd($request->all());
+        $listProduct=$this->product->searchProductByName($request->key);
+        $tag='search';
+        return view('users.shop', compact('listProduct', 'tag'), ['listTrademark' => $this->listTrademark, 'countTrademark' => $this->countTrademark]);
     }
 }

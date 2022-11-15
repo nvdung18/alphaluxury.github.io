@@ -55,6 +55,7 @@
                                 <div class="card-body">
                                     @if ($tag == 'week')
                                         <div id="piechart" style="width: 100%; height: 500px;"></div>
+                                        <div id="table_div"></div>
                                     @else
                                         <div id="chart_div" style="width: 100%; height: 500px;"></div>
                                         <div id="table_div"></div>
@@ -106,13 +107,16 @@
 
                 var arrRev = [];
                 var arrDate = [];
+                var arrQuantity = [];
                 for (let i = 0; i < 7; i++) {
                     if (rev[i] != null) {
                         arrRev[i] = rev[i].revenue;
                         arrDate[i] = rev[i].releaseDate;
+                        arrQuantity[i]=rev[i].quantity;
                     } else {
                         arrRev[i] = 0;
-                        arrDate[i] = null;
+                        // arrDate[i] = null;
+                        arrQuantity[i]=0;
                     }
                 }
 
@@ -138,6 +142,27 @@
                     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
                     chart.draw(data, options);
                 }
+
+                // table chart
+                google.charts.load('current', {'packages':['table']});
+                google.charts.setOnLoadCallback(drawTable);
+
+                function drawTable() {
+                    var data1 = new google.visualization.DataTable();
+                    data1.addColumn('string', 'Date');
+                    data1.addColumn('number', 'Revenue');
+                    data1.addColumn('number', 'Quantity');
+                    arrDate.forEach((element,index )=> {
+                        data1.addRows([
+                            [arrDate[index],  {v: arrRev[index]}, arrQuantity[index] ],
+                        ]);
+                    });
+                    
+                    var table = new google.visualization.Table(document.getElementById('table_div'));
+                    // data1.setCell(22, 2, 15, 'Fifteen', {style: 'font-style:bold; font-size:22px;'});
+                    table.draw(data1, {showRowNumber: true, width: '100%', height: '100%'});
+                }
+                console.log(arrRev);
             } else {
                 var arrRev = [];
                 var arrDate = [];

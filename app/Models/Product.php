@@ -143,4 +143,10 @@ class product extends Model
         $deleted = DB::table($this->table)->where('idProduct', '=', $idProduct)->delete();
     }
 
+    public function searchProductByName($key){
+        $listProduct= DB::table($this->table)->where('nameProduct', 'like', '%'.$key.'%')->paginate(9);
+
+        return $listProduct;
+    }
+
 }

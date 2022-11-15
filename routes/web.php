@@ -63,6 +63,8 @@ Route::prefix('shop')->group(function () {
                 Route::get('/style/{type}-{branch}-price-{price}', [ShopController::class, 'getFilterProduct'])->name('style-women-bp');
             });
         });
+
+        Route::get('/search', [ShopController::class, 'searchProductByName'])->name('search-product');
     });
 });
 

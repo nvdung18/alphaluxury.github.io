@@ -158,7 +158,9 @@
                                                     Promotion
                                                 </td>
                                                 <td>
-                                                    {{ $promotionProduct }}
+                                                    @php
+                                                        echo number_format($promotionProduct)
+                                                    @endphp
                                                 </td>
                                             </tr>
                                             <tr>
@@ -175,7 +177,7 @@
                                                 </td>
                                                 <td>
                                                     @php
-                                                        echo number_format($item->productMoney+$promotionProduct+$item->deliveryCharges);
+                                                        echo number_format(($item->productMoney+$item->deliveryCharges)-$promotionProduct);
                                                     @endphp
                                                 </td>
                                             </tr>
