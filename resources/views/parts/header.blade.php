@@ -7,7 +7,7 @@
                     <a href="{{ route('home') }}"><img src="{{ asset('frontend/img/AlphaLogo.png') }}" alt=""></a>
                 </div>
             </div>
-            <div class="col-xl-7 col-lg-7">
+            <div class="col-xl-6 col-lg-6">
                 <nav class="header__menu">
                     <ul>
                         <li class="{{ $tag == 'home' ? 'active' : '' }}"><a href="{{ route('home') }}">Home</a></li>
@@ -46,7 +46,7 @@
                     </ul>
                 </nav>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 <div class="header__right">
                     <div class="header__right__auth">
                         @if (Auth::check())

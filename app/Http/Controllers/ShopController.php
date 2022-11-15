@@ -528,6 +528,8 @@ class ShopController extends Controller
                 $newarr = array(
                     '1' => [$date, $time, 'Wait for confirmation']
                 );
+                $getCheckout = DB::table('checkout')->get()->last();
+                print_r($getCheckout);
                 $listorder = $this->order->getlistorder();
                 if (count($listorder) == 0) {
                     $order = Order::create([
@@ -540,7 +542,8 @@ class ShopController extends Controller
                         'totalMoney' => trim($request->totalnew),
                         'idAccount' => $account->idAccount,
                         'idPayment' => trim($payment),
-                        'idPromoCode' => trim($request->promoCode)
+                        'idPromoCode' => trim($request->promoCode),
+                        'idCheckout' => trim($getCheckout->idCheckout)
                     ]);
                 } else {
                     $lastorder = $this->order->getlastorder();
@@ -549,6 +552,9 @@ class ShopController extends Controller
                     if ((intval($count[1]) + 1) < 10) {
                         $value = str_pad(intval($count[1]) + 1, 2, "0", STR_PAD_LEFT);
                     }
+                    $getCheckout = DB::table('checkout')->get()->last();
+                    print_r($getCheckout);
+
                     $order = Order::create([
                         'idOrder' => 'ord_' . $value,
                         'status'  => json_encode($newarr),
@@ -559,7 +565,8 @@ class ShopController extends Controller
                         'totalMoney' => trim($request->totalnew),
                         'idAccount' => $account->idAccount,
                         'idPayment' => trim($payment),
-                        'idPromoCode' => trim($request->promoCode)
+                        'idPromoCode' => trim($request->promoCode),
+                        'idCheckout' => trim($getCheckout->idCheckout)
                     ]);
                 }
 
@@ -600,6 +607,8 @@ class ShopController extends Controller
                 $newarr = array(
                     '1' => [$date, $time, 'Wait for confirmation']
                 );
+                $getCheckout = DB::table('checkout')->get()->last();
+                print_r($getCheckout);
 
                 $listorder = $this->order->getlistorder();
                 if (count($listorder) == 0) {
@@ -613,7 +622,8 @@ class ShopController extends Controller
                         'totalMoney' => trim($request->totalnew),
                         'idAccount' => $account->idAccount,
                         'idPayment' => trim($payment),
-                        'idPromoCode' => trim($request->promoCode)
+                        'idPromoCode' => trim($request->promoCode),
+                        'idCheckout' => trim($getCheckout->idCheckout)
                     ]);
                 } else {
                     $lastorder = $this->order->getlastorder();
@@ -622,6 +632,8 @@ class ShopController extends Controller
                     if ((intval($count[1]) + 1) < 10) {
                         $value = str_pad(intval($count[1]) + 1, 2, "0", STR_PAD_LEFT);
                     }
+                    $getCheckout = DB::table('checkout')->get()->last();
+                    print_r($getCheckout);
                     $order = Order::create([
                         'idOrder' => 'ord_' . $value,
                         'status'  => json_encode($newarr),
@@ -632,7 +644,8 @@ class ShopController extends Controller
                         'totalMoney' => trim($request->totalnew),
                         'idAccount' => $account->idAccount,
                         'idPayment' => trim($payment),
-                        'idPromoCode' => trim($request->promoCode)
+                        'idPromoCode' => trim($request->promoCode),
+                        'idCheckout' => trim($getCheckout->idCheckout)
                     ]);
                 }
 
@@ -657,8 +670,6 @@ class ShopController extends Controller
             }
 
             $idcart = $product_in_cart[0]->idCart;
-            // print($idcart);
-            // die();
             $deleted = DB::table('cartdetail')->where('idCart', '=', $idcart)->delete();
 
 

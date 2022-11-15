@@ -24,7 +24,8 @@ class Order extends Model
         'totalMoney',
         'idAccount',
         'idPayment',
-        'idPromoCode'
+        'idPromoCode',
+        'idCheckout'
     ];
 
     public function getlistorder()

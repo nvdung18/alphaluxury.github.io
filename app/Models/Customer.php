@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+
 
 class Customer extends Authenticatable
 {
@@ -60,5 +62,19 @@ class Customer extends Authenticatable
 
     public function setPasswordAttributes($password) {
         $this->attributes['password'] = Hash::make($password);
+    }
+
+    public function checklogin($name, $pw) {
+       $check = DB::table('user')->where('nameUser','=',$name)
+                                 ->where('password','=',$pw)
+                                 ->where('role','=',2)
+                                 ->get()
+                                 ->first();
+        
+       if(!isset($check)) {
+          return null;
+       } else {
+           return $check;
+       }
     }
 }
