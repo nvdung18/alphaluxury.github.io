@@ -666,7 +666,6 @@ class ShopController extends Controller
             $idcart = $product_in_cart[0]->idCart;
             $deleted = DB::table('cartdetail')->where('idCart', '=', $idcart)->delete();
 
-
             return redirect()->back()->withErrors([
                 'success' => 'Order has been placed'
             ]);
