@@ -3350,6 +3350,9 @@ ol {
     color: white;
     border: none; }
 
+.notification-user-pass {
+  padding: 0px; }
+
 .row-detail-order {
   margin-top: 20px; }
   .row-detail-order .btn-back-userpage {
