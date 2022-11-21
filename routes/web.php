@@ -190,6 +190,8 @@ Route::prefix('user')->group(function () {
     // update infor user
     Route::post('/update-user',[UserController::class, 'updateUserInfor'])->name('user.update-infor');
 
+    Route::post('/update-password',[UserController::class, 'updatePassword'])->name('user.updatePassword');
+
     // detail order
     Route::get('/detail-order',[UserController::class, 'getDetailOrder'])->name('user.detail-order');
 

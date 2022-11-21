@@ -7,6 +7,8 @@
     <meta name="keywords" content="Ashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Personel Page</title>
 
     <!-- Google Font -->
@@ -84,7 +86,8 @@
                             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-all"
                                 role="tab" aria-controls="nav-home" aria-selected="true">All</a>
                             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-wait"
-                                role="tab" aria-controls="nav-profile" aria-selected="false">Wait for confirmation</a>
+                                role="tab" aria-controls="nav-profile" aria-selected="false">Wait for
+                                confirmation</a>
                             <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
                                 href="#nav-confirmed" role="tab" aria-controls="nav-contact"
                                 aria-selected="false">Order confirmed</a>
@@ -98,16 +101,16 @@
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-all" role="tabpanel"
-                            aria-labelledby="nav-home-tab">@include('parts.order', ['statusCheck' => "All"])
+                            aria-labelledby="nav-home-tab">@include('parts.order', ['statusCheck' => 'All'])
                         </div>
-                        <div class="tab-pane fade" id="nav-wait" role="tabpanel"
-                            aria-labelledby="nav-profile-tab">@include('parts.order', ['statusCheck' => "Wait for confirmation"])</div>
+                        <div class="tab-pane fade" id="nav-wait" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            @include('parts.order', ['statusCheck' => 'Wait for confirmation'])</div>
                         <div class="tab-pane fade" id="nav-confirmed" role="tabpanel"
-                            aria-labelledby="nav-contact-tab">@include('parts.order', ['statusCheck' => "Order confirmed"])</div>
+                            aria-labelledby="nav-contact-tab">@include('parts.order', ['statusCheck' => 'Order confirmed'])</div>
                         <div class="tab-pane fade" id="nav-delivering" role="tabpanel"
-                            aria-labelledby="nav-contact-tab">@include('parts.order', ['statusCheck' => "Delivering"])</div>
+                            aria-labelledby="nav-contact-tab">@include('parts.order', ['statusCheck' => 'Delivering'])</div>
                         <div class="tab-pane fade" id="nav-deliveried" role="tabpanel"
-                            aria-labelledby="nav-contact-tab">@include('parts.order', ['statusCheck' => "Order deliveried"])</div>
+                            aria-labelledby="nav-contact-tab">@include('parts.order', ['statusCheck' => 'Order deliveried'])</div>
                     </div>
                     {{-- @php
                         $nowIdOrder = '';
@@ -188,18 +191,25 @@
                     <label for="" class="label_form">
                         Change Password
                     </label>
-                    <form>
+                    <form action="{{ route('user.updatePassword') }}" method="POST">
+                        @csrf
+                        @if (session('messagepassword'))
+                            <input type="hidden" name="messagepassword" value="{{ session('messagepassword') }}">
+                            <span class="alert alert-danger notification-user-pass" style="color: red;">
+                                {{ session('messagepassword') }}
+                            </span>
+                        @endif
                         <div class="form-group">
                             <label for="username">New Password</label>
-                            <input type="text" class="form-control" id=""
+                            <input type="password" class="form-control" id=""
                                 placeholder="Enter New Password" name="password">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Confirm Password</label>
-                            <input type="text" class="form-control" id=""
+                            <input type="password" class="form-control" id=""
                                 placeholder="Confirm New Password " name="password_confirmation">
                         </div>
-                        <button type="submit" class="btn btn-primary btn_form">Submit</button>
+                        <button type="submit" class="btn btn-primary btn_form">ChangePassword</button>
                     </form>
                 </div>
             </div>
@@ -218,24 +228,9 @@
     <script src="{{ asset('frontend/js/owl.carousel.min.js ') }}"></script>
     <script src="{{ asset('frontend/js/jquery.nicescroll.min.js ') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
-    <script type="text/javascript">
-        // const myform = document.querySelector('.form');
-        // const myorder = document.querySelector('.order');
-
-        // console.log(myform);
-        // // console.log(myform,myorder);
-
-        // function ReloadOrder() {
-        //     myform.classList.remove('active');
-        //     myorder.classList.add('active');
-        //     console.log(1);
-        // }
-        // function ReloadProfile() {
-        //     // myform.classList.add('active');
-        //     myorder.classList.remove('active');
-        //     console.log(2);
-        // }
-    </script>
+    {{-- <script type="text/javascript">
+    console.log('123123');
+    </script> --}}
 </body>
 
 </html>
