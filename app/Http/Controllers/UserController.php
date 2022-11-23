@@ -420,4 +420,28 @@ class UserController extends Controller
         return response()->redirectToRoute('admin')
             ->withCookie($cookie);
     }
+
+    public function updatePassword(Request $request) {
+        if ($request->isMethod('POST')) {
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'password' => 'required|confirmed|min:3|max:16',
+                ]
+            );
+            // $validator = $this->user_registration_rules($request->all());
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+            $idUser = Auth::user()->idUser;
+            $user = Customer::where('idUser', '=', $idUser)->get()->first();
+            $user->password = bcrypt($request->password);
+            $user->save();
+            return redirect()->back()->with([
+                'messagepassword' => 'Updated Password Successful'
+            ]);
+        }
+    }
 }

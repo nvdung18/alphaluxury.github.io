@@ -457,7 +457,7 @@ Created: Colorib
                     // registerEvents(proQty, deleteproduct);
                 } else if(checkdata == true){
                     $('.table-body').html('');
-                    $('.tip').text('0');
+                    $('.tip').text(0);
                     $('.sub-total').text('');
                     $('.total').text('');
                 }
@@ -466,12 +466,12 @@ Created: Colorib
         }
         
         function fetch_data() {
+            // console.log('ok');
             $.ajax({
                 type: 'POST',
                 url: "http://127.0.0.1:8000/cart/check_cart",
                 dataType: "json",
                 success:function(data) {
-                    console.log(data);
                     const check = $.isEmptyObject(data);
                     if(check != true) {
                         var sum = ``;
@@ -699,5 +699,14 @@ Created: Colorib
                     icon: "success",
                     button: "Close!",
                 });   
+        }
+
+        if(typeof $('input[name=messagepassword]').val() !== "undefined") {
+            $('.changepassword').addClass('active');
+            $('.order').removeClass('active');
+            $('.form').removeClass('active');
+            $("[data-index=2]").removeClass('active');
+            $("[data-index=1]").removeClass('active');
+            $("[data-index=3]").addClass('active');
         }
 })(jQuery);
