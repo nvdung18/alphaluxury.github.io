@@ -42,14 +42,14 @@ class AdminOrderController extends Controller
         $listCheckout = array();
         $listPayment = array();
         foreach ($listOrder as $key => $item) {
-            array_push($listIdRP, [$item->idPayment, $item->idAccount]);
+            array_push($listIdRP, [$item->idPayment, $item->idCheckout]);
         }
 
         foreach ($listIdRP as $key => $value) {
             array_push($listPayment, $this->order->getFormPayment($value[0]));
             array_push($listCheckout, $this->account->getCheckout($value[1]));
         }
-        // dd($listCheckout);
+        // dd($listIdRP);
 
         return view('admins.order', compact('listOrder', 'listStatus', 'listPayment', 'listCheckout'));
     }
@@ -76,9 +76,9 @@ class AdminOrderController extends Controller
             $idPayment = $item->idPayment;
             $idPromoCode = $item->idPromoCode;
         }
-
         // get product information, checkout information, promocode and form payment
-        $checkout = $this->account->getCheckout($idAccount);
+        $checkout = $this->account->getCheckout($order[0]->idCheckout);
+        // dd($checkout);
         $payment = $this->order->getFormPayment($idPayment);
         $promotion = $this->order->getPromoCodeById($idPromoCode);
         $listInforProduct = array();

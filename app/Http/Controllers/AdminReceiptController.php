@@ -35,7 +35,7 @@ class AdminReceiptController extends Controller
         $listCheckout = array();
         $listPayment = array();
         foreach ($listOrder as $key => $item) {
-            array_push($listIdRP, [$item[0]->idPayment, $item[0]->idAccount]);
+            array_push($listIdRP, [$item[0]->idPayment, $item[0]->idCheckout]);
         }
         foreach ($listIdRP as $key => $value) {
             array_push($listPayment, $this->order->getFormPayment($value[0]));
