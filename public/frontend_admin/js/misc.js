@@ -21,9 +21,10 @@ var lightColor = getComputedStyle(document.body).getPropertyValue('--light');
     //Active class can be hard coded directly in html file also as required
 
     function addActiveClass(element) {
+      // console.log(current);
       if (current === "") {
         //for root url
-        if (element.attr('href').indexOf("index.html") !== -1) {
+        if (element.attr('href').indexOf("index.blade.php") !== -1) {
           element.parents('.nav-item').last().addClass('active');
           if (element.parents('.sub-menu').length) {
             element.closest('.collapse').addClass('show');
@@ -34,6 +35,7 @@ var lightColor = getComputedStyle(document.body).getPropertyValue('--light');
         //for other url
         if (element.attr('href').indexOf(current) !== -1) {
           element.parents('.nav-item').last().addClass('active');
+          console.log(current);
           if (element.parents('.sub-menu').length) {
             element.closest('.collapse').addClass('show');
             element.addClass('active');
@@ -48,6 +50,7 @@ var lightColor = getComputedStyle(document.body).getPropertyValue('--light');
     var current = location.pathname.split("/").slice(-1)[0].replace(/^\/|\/$/g, '');
     $('.nav li a', sidebar).each(function() {
       var $this = $(this);
+      // console.log($this);
       addActiveClass($this);
     })
 

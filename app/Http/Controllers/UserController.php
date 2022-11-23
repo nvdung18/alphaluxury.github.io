@@ -397,6 +397,7 @@ class UserController extends Controller
                     // $response = new Response();
                     // $response->withCookie(cookie('token', json_encode($adminlogin), time() + 86400), '/');
                     $cookie = Cookie::make('token', json_encode($adminlogin), time() + 86400);
+                    // dd(Cookie::get('token'));
                     return response()->redirectToRoute('admin')
                         ->withCookie($cookie);
                 } else {

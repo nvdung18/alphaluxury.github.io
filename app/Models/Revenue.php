@@ -179,4 +179,13 @@ class Revenue extends Model
 
         // dd($quantityOfProduct,($quantityOfProduct+$nowWeeklyRev[0]->quantity),($quantityOfProduct+$nowMonthlyRev[0]->quantity));
     }
+
+    public function getLastWeekRev(){
+        $weekRev=DB::table($this->weeklyTable)->orderBy('idWRrevenue','desc')->first();
+        return $weekRev;
+    }
+    public function getLastDayRev(){
+        $daykRev=DB::table($this->dailyTable)->orderBy('idDRevenue','desc')->first();
+        return $daykRev;
+    }
 }

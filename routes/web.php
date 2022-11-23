@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminTrademarkController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminReceiptController;
+use App\Http\Controllers\AdminDasboard;
 use Laravel\Socialite\Facades\Socialite;
 use PhpParser\Node\Stmt\Echo_;
 
@@ -92,9 +93,7 @@ Route::get('/test', function () {
 })->name('test');
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', function () {
-        return view('admins.index');
-    })->name('admin')->middleware('admin.role');
+    Route::get('/dashboard', [AdminDasboard::class,'loadDashboard'])->name('admin')->middleware('admin.role');
     Route::name('ad.')->group(function () {
     
         // revenue

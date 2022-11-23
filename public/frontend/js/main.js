@@ -230,7 +230,7 @@ Created: Colorib
     const selected = document.querySelector(".selected");
     const optionsContainer = document.querySelector(".options-container");
 
-    const optionsList = document.querySelectorAll(".option");
+    const option = document.querySelectorAll(".option");
 
     if (selected) {
         selected.addEventListener("click", () => {
@@ -238,12 +238,30 @@ Created: Colorib
         });
     }
 
+    option.forEach(o => {
+        o.addEventListener("click", () => {
+            selected.innerHTML = o.querySelector("label").innerHTML;
+            optionsContainer.classList.remove("active");
+        });
+    });
+    // const selected = document.querySelector(".selected");
+    // const optionsContainer = document.querySelector(".options-container");
+
+    // const optionsList = document.querySelectorAll(".option");
+
+    // if (selected) {
+    //     selected.addEventListener("click", () => {
+    //         optionsContainer.classList.toggle("active");
+    //     });
+    // }
+
     // optionsList.forEach(o => {
     //     o.addEventListener("click", () => {
     //     // selected.innerHTML = o.querySelector("label").innerHTML;
     //     // optionsContainer.classList.remove("active");
     //     });
     // });
+    
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
