@@ -213,9 +213,9 @@ class ShopController extends Controller
                     'text' => 'Success Please Check Your Cart'
                 ]);
             } else {
-                $cartlast = DB::table('cart')->get()->last();
-                $data = explode('_', $cartlast->idCart);
-                $datapl = ++$data[1];
+                // $cartlast = DB::table('cart')->get()->last();
+                // $data = explode('_', $cartlast->idCart);
+                // $datapl = ++$data[1];
                 $account = DB::table('user')
                     ->join('account', 'user.idUser', '=', 'account.idUser')
                     ->where('user.idUser', '=', $idUser)
@@ -228,10 +228,10 @@ class ShopController extends Controller
                     ->first();
 
                 if (!isset($checkcart) || $checkcart == null) {
-                    $addpd = DB::table('cart')->insert([
-                        'idCart' => 'Cart_' . $datapl,
-                        'idAccount' => $account->idAccount
-                    ]);
+                    // $addpd = DB::table('cart')->insert([
+                    //     'idCart' => 'Cart_' . $datapl,
+                    //     'idAccount' => $account->idAccount
+                    // ]);
                     $cartAc = DB::table('cart')
                         ->where('idAccount', '=', $account->idAccount)
                         ->get()
