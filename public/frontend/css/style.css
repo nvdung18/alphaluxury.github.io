@@ -3425,7 +3425,7 @@ ol {
             border-left: 2px solid green; }
           .order-detail .order-middle .order-infor .order-infor_progress-status .StepProgress-item.is-done::after {
             content: "✔";
-            font-size: 8px;
+            font-size: 7px;
             color: #FFF;
             text-align: center;
             border: 2px solid green;
