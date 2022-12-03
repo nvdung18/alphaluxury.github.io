@@ -41,10 +41,9 @@
                                 <p style="font-size: 20px;">
                                     Manage <strong style="margin-left: 2px;"> Order</strong>
                                 </p>
-                                <div class="style-select ">
+                                {{-- <div class="style-select ">
                                     <div class="select-box">
                                         <div class="options-container-branch">
-                                            {{-- @foreach ($listTrademark as $key => $item) --}}
                                             <a href="">
                                                 <div class="option-branch">
                                                     <p>dsafdsaf</p>
@@ -55,23 +54,12 @@
                                                     <p>dsafdsaf</p>
                                                 </div>
                                             </a>
-                                            {{-- @endforeach --}}
-                                            {{-- @if (isset($nameTrademark))
-                                                <a
-                                                    href="{{ $price == null
-                                                        ? route('shop.' . $tag)
-                                                        : route('shop.style-' . $tag . '-p', ['type' => $tag, 'price' => $price]) }}">
-                                                    <div class="option-branch">
-                                                        <p class="text-center">--All--</p>
-                                                    </div>
-                                                </a>
-                                            @endif --}}
                                         </div>
                                         <div class="selected-branch">
                                             sdfasdf
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="card-body ">
                                 <table id='books' cellpadding='10px' style="text-align: left;">

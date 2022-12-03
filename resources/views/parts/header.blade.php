@@ -52,7 +52,7 @@
                 <div class="header__right">
                     <div class="header__right__auth">
                         @if (Auth::check())
-                            <div class="select-box">
+                            <div class="select-box" style="z-index: 200">
                                 <div class="options-container">
                                     <a href="{{ route('user.page') }}">
                                         <div class="option">
