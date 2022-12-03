@@ -119,7 +119,24 @@ class UserController extends Controller
                     'password' => $newUser->password,
                     'idUser' => $newUser->idUser
                 ]);
+                
+                
 
+                $all_us_ac = DB::table('user')
+                ->join('account', 'user.idUser', '=', 'account.idUser')
+                ->where('user.idUser', '=', $newUser->idUser)
+                ->select('user.*', 'account.*')
+                ->get()
+                ->first();
+
+                $firstcart = DB::table('cart')->get();
+                $i = 1;
+                if(count($firstcart) == 0) {
+                    $firstcart = DB::table('cart')->insert([
+                        'idCart' => 'Cart_' . $i,
+                        'idAccount' => $all_us_ac->idAccount
+                    ]);
+                }
                 return redirect()->route('register')->with([
                     'message' => 'You did create a account successfully.',
                 ]);
@@ -148,6 +165,26 @@ class UserController extends Controller
                             'idUser' => $newUser->idUser
                         ]);
                     }
+
+                    $all_us_ac = DB::table('user')
+                    ->join('account', 'user.idUser', '=', 'account.idUser')
+                    ->where('user.idUser', '=', $newUser->idUser)
+                    ->select('user.*', 'account.*')
+                    ->get()
+                    ->first();
+
+                    $cartlast = DB::table('cart')->get()->last();
+                    $data = explode('_', $cartlast->idCart);
+                    $datapl = ++$data[1];
+                    
+                    $firstcart = DB::table('cart')->get();
+                    if(count($firstcart) != 0) {
+                        $addpd = DB::table('cart')->insert([
+                            'idCart' => 'Cart_' . $datapl,
+                            'idAccount' => $all_us_ac->idAccount
+                        ]);
+                    }
+
                     return redirect()->route('register')->with([
                         'message' => 'You did create a account successfully.',
                     ]);
