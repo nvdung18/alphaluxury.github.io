@@ -147,7 +147,7 @@
                                                         src="{{$value->detailsImg!=null ? asset('frontend/img/product/' . $imgDetailArr['nameImgDetail2']):'' }}"
                                                         alt="" style="width: 20%">
                                                     <input type="hidden" name="img_p_old_dt2"
-                                                        value="{{$value->detailsImg!=null ? $imgDetailArr['nameImgDetail1']:'' }}">
+                                                        value="{{$value->detailsImg!=null ? $imgDetailArr['nameImgDetail2']:'' }}">
                                                     <input type="file" name="imageProduct_details2" id=""
                                                         class="form-control" placeholder=""
                                                         aria-describedby="helpId">

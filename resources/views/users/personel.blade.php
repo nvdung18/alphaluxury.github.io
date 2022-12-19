@@ -43,7 +43,7 @@
                     <li class="menu_item" data-index="2">My Order</li>
                     <li class="menu_item" data-index="3">Change Password</li>
                 </ul>
-                <div class="form col-lg-10 active">
+                <div class="form col-lg-10 active fix_similar">
                     <label for="" class="label_form">
                         My Profile
                     </label>
@@ -81,24 +81,24 @@
                 </div>
                 <div class="order col-lg-10">
                     <nav class="nav-status-order">
-                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-all"
+                        <div class="nav nav-tabs nav_menu_order" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link nav_menu active" id="nav-home-tab" data-toggle="tab" href="#nav-all"
                                 role="tab" aria-controls="nav-home" aria-selected="true">All</a>
-                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-wait"
+                            <a class="nav-item nav-link nav_menu" id="nav-profile-tab" data-toggle="tab" href="#nav-wait"
                                 role="tab" aria-controls="nav-profile" aria-selected="false">Wait for
                                 confirmation</a>
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                            <a class="nav-item nav-link nav_menu" id="nav-contact-tab" data-toggle="tab"
                                 href="#nav-confirmed" role="tab" aria-controls="nav-contact"
                                 aria-selected="false">Order confirmed</a>
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                            <a class="nav-item nav-link nav_menu" id="nav-contact-tab" data-toggle="tab"
                                 href="#nav-delivering" role="tab" aria-controls="nav-contact"
                                 aria-selected="false">Delivering</a>
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                            <a class="nav-item nav-link nav_menu" id="nav-contact-tab" data-toggle="tab"
                                 href="#nav-deliveried" role="tab" aria-controls="nav-contact"
                                 aria-selected="false">Order deliveried</a>
                         </div>
                     </nav>
-                    <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-content position_bottom" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-all" role="tabpanel"
                             aria-labelledby="nav-home-tab">@include('parts.order', ['statusCheck' => 'All'])
                         </div>

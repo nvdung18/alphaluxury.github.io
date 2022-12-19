@@ -3246,7 +3246,8 @@ ol {
     width: 1500px; } }
 .user_page {
   box-shadow: 0px 5px 10px rgba(91, 91, 91, 0.1);
-  position: relative; }
+  position: relative;
+  background: #f5f5f5; }
 
 .menu {
   list-style-type: none; }
@@ -3345,6 +3346,30 @@ ol {
 
 .notification-user-pass {
   padding: 0px; }
+
+.fix_similar {
+  background: #ffffff;
+  border: 1px solid #04030312;
+  border-radius: 6px;
+  margin: 30px 0; }
+
+.position_bottom {
+  position: relative;
+  bottom: 40px; }
+
+.nav_menu_order {
+  border-radius: 4px;
+  background: #FFF;
+  border: 1px solid #DDDDDD; }
+
+.nav_menu {
+  border: 0px !important;
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important; }
+
+.nav_menu.active {
+  color: red !important;
+  border-bottom: 4px solid red !important; }
 
 .row-detail-order {
   margin-top: 20px; }
