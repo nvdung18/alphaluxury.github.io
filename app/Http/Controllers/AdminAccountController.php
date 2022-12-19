@@ -19,3 +19,4 @@ class AdminAccountController extends Controller
         return view('admins.account',compact('listAcc'));
     }
 }
+    
