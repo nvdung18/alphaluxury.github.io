@@ -68,7 +68,7 @@
                                                 <td>{{ $item->fullname }}</td>
                                                 <td>
                                                     <div class="btn-action">
-                                                        <a href="" class="btn-p-detail"> <i
+                                                        <a href="{{ route('ad.employee-detail', ['idAcc'=>$item->idAccount]) }}" class="btn-p-detail"> <i
                                                                 class="mdi mdi-account-card-details" title="details">
                                                             </i>
                                                         </a>
