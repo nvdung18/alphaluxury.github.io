@@ -43,8 +43,8 @@
                                 href="{{ route('shop.women') }}">Women's</a>
                         </li>
                         <li class="{{ $tag == 'men' ? 'active' : '' }}"><a href="{{ route('shop.men') }}">Men's</a></li>
-                        <li class="{{ $tag == 'contact' ? 'active' : '' }}"><a
-                                href="{{ route('contact', ['tag' => 'contact']) }}">Contact</a></li>
+                        {{-- <li class="{{ $tag == 'contact' ? 'active' : '' }}"><a
+                                href="{{ route('contact', ['tag' => 'contact']) }}">Contact</a></li> --}}
                     </ul>
                 </nav>
             </div>
