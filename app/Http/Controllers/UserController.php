@@ -401,11 +401,14 @@ class UserController extends Controller
     public function loginadmin(Request $request)
     {
         $token = Cookie::get('token');
+        // $cookienew = Cookie::make('tokennot', '', time() + 1000);
+        // response()->redirectToRoute('loginadmin')->withCookie($cookienew);
         if (isset($token) && $token != null) {
             return redirect()->route('admin')->with([
                 'admin' => json_decode($token)
             ]);
         }
+        // return response()->redirectToRoute('loginadmin')->withCookie($cookienew);
         return view('parts_admin.login');
     }
 
@@ -438,9 +441,13 @@ class UserController extends Controller
                     return response()->redirectToRoute('admin')
                         ->withCookie($cookie);
                 } else {
-                    return redirect()->route('admin', ['status' => 'notsave'])->with([
-                        'admin' => json_encode($adminlogin)
-                    ]);
+                    // return redirect()->route('admin', ['status' => 'notsave'])->with([
+                    //     'admin' => json_encode($adminlogin)
+                    // ]);
+                    $cookienew = Cookie::make('tokennot', json_encode($adminlogin), time() + 86400);
+                    // dd($cookienew);
+                    return response()->redirectToRoute('admin',['status' => 'notsave'])
+                    ->withCookie($cookienew);
                 }
             } else {
                 return redirect()->route('loginadmin')->with([

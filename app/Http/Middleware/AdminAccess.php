@@ -18,6 +18,7 @@ class AdminAccess
     public function handle(Request $request, Closure $next)
     { 
         $token = Cookie::get('token');
+        // $tokennot = Cookie::get('tokennot');
         if(isset($request->status)) {
             return $next($request);
         }

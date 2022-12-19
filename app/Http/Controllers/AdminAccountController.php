@@ -25,3 +25,4 @@ class AdminAccountController extends Controller
         return view('admins.details-inforCus');
     }
 }
+    
