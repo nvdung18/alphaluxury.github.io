@@ -166,7 +166,7 @@ class AdminShopController extends Controller
         return $nameTrademark;
     }
 
-    // delete product
+    // edit product
     public function editProduct(Request $request)
     {
         $product = $this->product->getProductById($request->idProduct);
@@ -229,6 +229,7 @@ class AdminShopController extends Controller
             'nameImgDetail2'=>$nameImgDetail2
         );
         $detailsImg=json_encode($imgDetailArr);
+        // dd($detailsImg);
 
         // create arr contains information of product to insert into database
         $productArr = array(

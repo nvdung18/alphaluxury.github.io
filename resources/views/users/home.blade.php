@@ -153,7 +153,7 @@
     </section>
 
     {{-- Banner Section Begin --}}
-    <section class="banner set-bg" data-setbg="{{ asset('frontend/img/banner/women-day.jpg') }}">
+    <section class="banner set-bg" data-setbg="{{ asset('frontend/img/banner/2000-xmas-2022psd.png') }}">
     </section>
     {{-- Banner section end --}}
 
@@ -163,17 +163,20 @@
             <div class="row">
                 <div class="col-lg-6 p-0">
                     <div class="discount__pic">
-                        <img src="{{ asset('frontend/img/discount.jpg') }}" alt="">
+                        <img src="{{ asset('frontend/img/longines13.png') }}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 p-0">
                     <div class="discount__text">
                         <div class="discount__text__title">
                             <span>Discount</span>
-                            <h2>Summer 2019</h2>
+                            <h2>Winter 2022</h2>
                             <h5><span>Sale</span> 50%</h5>
                         </div>
-                        <div class="discount__countdown" id="countdown-time">
+                        <div class="discount__text__slogan">
+                            <p style="font-size: 17px; font-weight: 600;">Luxury and Elegant</p>
+                        </div>
+                        {{-- <div class="discount__countdown" id="countdown-time">
                             <div class="countdown__item">
                                 <span>22</span>
                                 <p>Days</p>
@@ -190,7 +193,7 @@
                                 <span>05</span>
                                 <p>Sec</p>
                             </div>
-                        </div>
+                        </div> --}}
                         <a href="#">Shop now</a>
                     </div>
                 </div>
@@ -206,7 +209,7 @@
                     <div class="services__item">
                         <i class="fa fa-car"></i>
                         <h6>Free Shipping</h6>
-                        <p>For all oder over $99</p>
+                        <p>For all oder</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
