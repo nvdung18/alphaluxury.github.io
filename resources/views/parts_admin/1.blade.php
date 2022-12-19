@@ -80,7 +80,7 @@
             <div class="collapse" id="acc">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Employee</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('ad.acc-customer') }}">Customer</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Customer</a></li>
                 </ul>
             </div>
         </li>
