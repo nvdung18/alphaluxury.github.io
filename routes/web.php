@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminAccount;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\HomeController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\AdminTrademarkController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminReceiptController;
 use App\Http\Controllers\AdminDasboard;
+use App\Http\Controllers\AdminAccountController;
 use Laravel\Socialite\Facades\Socialite;
 use PhpParser\Node\Stmt\Echo_;
 
@@ -156,6 +158,14 @@ Route::prefix('admin')->group(function () {
             Route::get('/', [AdminReceiptController::class,'getAllReceiptPaginate'])->name('receipt');
 
             Route::get('/details', [AdminReceiptController::class,'getAllReceiptPaginate'])->name('receipt-details');
+        });
+
+        // account
+        Route::prefix('account')->group(function () {
+
+            Route::get('/employee', [AdminAccountController::class,'getAllAccountCus'])->name('acc-employee');
+
+            Route::get('/customer', [AdminAccountController::class,'getAllAccountCus'])->name('acc-customer');
         });
     });
 });

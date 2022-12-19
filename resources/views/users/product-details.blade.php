@@ -42,7 +42,9 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
                         <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-                        <a href="#">{{ $tag }}’s </a>
+                        @if ($tag != 'home')
+                            <a href="#">{{ $tag }} </a>
+                        @endif
                         <span>{{ $productdetails->nameProduct }}</span>
                     </div>
                 </div>
@@ -63,13 +65,13 @@
                                     alt="No Image">
                             </a>
                             <a class="pt" href="#product-2">
-                                @if (isset(explode('.',explode('/',$product['nameImgDetail1'])[2])[1]))
+                                @if (isset(explode('.', explode('/', $product['nameImgDetail1'])[2])[1]))
                                     <img src="{{ asset('frontend/img/product/' . $product['nameImgDetail1']) }}"
                                         alt="No Image">
                                 @endif
                             </a>
                             <a class="pt" href="#product-3">
-                                @if (isset(explode('.',explode('/',$product['nameImgDetail2'])[2])[1]))
+                                @if (isset(explode('.', explode('/', $product['nameImgDetail2'])[2])[1]))
                                     <img src="{{ asset('frontend/img/product/' . $product['nameImgDetail2']) }}"
                                         alt="No Image">
                                 @endif
@@ -82,12 +84,12 @@
                             <div class="product__details__pic__slider owl-carousel">
                                 <img data-hash="product-1" class="product__big__img"
                                     src="{{ asset('frontend/img/product/' . $productdetails->image) }}" alt="No Image">
-                                @if (isset(explode('.',explode('/',$product['nameImgDetail1'])[2])[1]))
+                                @if (isset(explode('.', explode('/', $product['nameImgDetail1'])[2])[1]))
                                     <img data-hash="product-2" class="product__big__img"
                                         src="{{ asset('frontend/img/product/' . $product['nameImgDetail1']) }}"
                                         alt="No Image">
                                 @endif
-                                @if (isset(explode('.',explode('/',$product['nameImgDetail2'])[2])[1]))
+                                @if (isset(explode('.', explode('/', $product['nameImgDetail2'])[2])[1]))
                                     <img data-hash="product-3" class="product__big__img"
                                         src="{{ asset('frontend/img/product/' . $product['nameImgDetail2']) }}"
                                         alt="No Image">
@@ -103,7 +105,9 @@
                         <h3>{{ $productdetails->nameProduct }}<span>Brand: {{ $productdetails->nameTrademark }}</span>
                         </h3>
                         <div class="product__details__price"> {{ number_format($productdetails->price, 0, '.', '.') }}
-                            VND<span> {{ number_format(12630000, 0, '.', '.') }}VND</span></div>
+                            VND
+                            {{-- <span> {{ number_format(12630000, 0, '.', '.') }}VND</span> --}}
+                        </div>
                         <p>{{ $productdetails->description }}</p>
                         <div class="product__details__button">
                             <div class="quantity">
@@ -117,10 +121,10 @@
                             <a href="#" class="cart-btn btn-cart" idproduct={{ $productdetails->idProduct }}
                                 data-url="{{ route('add_product_to_cart') }}"><span class="icon_bag_alt"></span> Add to
                                 cart</a>
-                            <ul>
+                            {{-- <ul>
                                 <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                                 <li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
-                            </ul>
+                            </ul> --}}
                         </div>
                         <div class="product__details__widget">
                             <ul>
@@ -134,7 +138,10 @@
                 </div>
                 <div class="col-lg-12">
                     <div class="product__details__tab">
-                        <ul class="nav nav-tabs" role="tablist">
+                        <section class="banner set-bg"
+                            data-setbg="{{ asset('frontend/img/banner/2000-xmas-2022psd.png') }}">
+                        </section>
+                        {{-- <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-1" role="tab">Write a
                                     review</a>
@@ -143,8 +150,8 @@
                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Reviews ( 2
                                     )</a>
                             </li>
-                        </ul>
-                        <div class="tab-content">
+                        </ul> --}}
+                        {{-- <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <h6>Write a review</h6>
                                 <textarea class="review-product" id="" style="width: 100%;" placeholder="Enter a product review..."></textarea>
@@ -164,7 +171,7 @@
                                     nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
                                     quis, sem.</p>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -178,14 +185,14 @@
                     $relateProductNumber = 0;
                 @endphp
                 @foreach ($relatedProduct as $key => $item)
-                    @if ($productdetails->idProduct != $item->idProduct && $relateProductNumber<4)
+                    @if ($productdetails->idProduct != $item->idProduct && $relateProductNumber < 4)
                         @php
                             $relateProductNumber++;
                         @endphp
                         <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg"
-                                    data-setbg="{{ asset('frontend/img/product/'.$item->image) }}">
+                                    data-setbg="{{ asset('frontend/img/product/' . $item->image) }}">
                                     <div class="label new">New</div>
                                     <ul class="product__hover">
                                         <li><a href="{{ asset('frontend/img/product/related/rp-1.jpg') }}"
@@ -195,8 +202,8 @@
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6><a href="#">{{$item->nameProduct}}</a></h6>
-                                    <div class="product__price">{{number_format($item->price)}}</div>
+                                    <h6><a href="#">{{ $item->nameProduct }}</a></h6>
+                                    <div class="product__price">{{ number_format($item->price) }}</div>
                                 </div>
                             </div>
                         </div>
