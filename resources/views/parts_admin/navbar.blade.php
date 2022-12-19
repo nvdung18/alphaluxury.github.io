@@ -29,7 +29,20 @@
                     </div>
                     @php
                         // $admin=json_encode($admin);
-                        $admin = json_decode(Cookie::get('token'));
+                        // $admin = json_decode(Cookie::get('token'));
+                        // $admin = [];
+                        if (json_decode(Cookie::get('token')) != '' || json_decode(Cookie::get('token')) != null) {
+                            $admin = json_decode(Cookie::get('token'));
+                            // dd($admin->fullname);
+                        } else {
+                            $admin = json_decode(Cookie::get('tokennot'));
+                            // dd($admin->fullname);
+                        }
+                        // print_r($admin->fullname);
+                        // dd($admin->fullname);
+                        
+                        // $admin = json_decode(Cookie::get('tokennot'));
+                        // dd($admin->fullname);
                     @endphp
                     <div class="nav-profile-text">
                         <p class="mb-1 text-black">{{ $admin->fullname }}</p>
