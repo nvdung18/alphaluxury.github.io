@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
+    <title>Alpha Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('frontend_admin/vendors/mdi/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend_adminvendors/css/vendor.bundle.base.css') }}">
@@ -42,12 +42,6 @@
                                 <p style="font-size: 20px;">
                                     Manage <strong style="margin-left: 2px;"> Product</strong>
                                 </p>
-                                <!-- 	 <button onclick="loadMore()" class="btn btn-primary">Load more</button>  -->
-                                {{-- <c:if test="${sessionScope.p=!NULL}"> --}}
-                                <button id="btn-add" type="reset" class="btn btn-primary start-btn "
-                                    value="add">Add
-                                    new product</button>
-                                {{-- </c:if> --}}
                             </div>
                             <div class="card-body">
                                 <table id='books' cellpadding='10px' style="text-align: left;">
@@ -85,7 +79,7 @@
                                 </div>
                             </div>
                             <div class="row col-lg-12 text-center d-flex justify-content-center mt-3">
-                                {{-- {{ $listProduct->links('parts.pagination') }} --}}
+                                {{ $listAcc->links('parts.pagination') }}
                             </div>
                         </div>
                         <!-- </div> -->
@@ -120,24 +114,6 @@
     <script src="{{ asset('frontend_admin/js/dashboard.js') }}"></script>
     <script src="{{ asset('frontend_admin/js/todolist.js') }}"></script>
     <!-- End custom js for this page -->
-    <script type="text/javascript">
-        $('#btn-add')
-            .click(
-                function() {
-                    $('.modal-box').toggleClass("show-modal");
-                    $('.start-btn').toggleClass("show-modal");
-                    $('.wr-popup').toggleClass("wr-add-popup");
-                    /*  console.log("Add"); */
-                    // var b = "1";
-                    // document.getElementById("t-btn").innerHTML += `<label for="" style="padding-left: 30px; font-size: 18px;">${b}</label>`
-                });
-        // active cancle button
-        $('.cancel').click(function() {
-            $('.modal-box').toggleClass("show-modal");
-            $('.start-btn').toggleClass("show-modal");
-            $('.wr-popup').toggleClass("wr-add-popup");
-        });
-    </script>
 </body>
 
 </html>

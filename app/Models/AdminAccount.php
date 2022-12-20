@@ -13,7 +13,7 @@ class AdminAccount extends Model
     protected $userTable="user";
 
     public function getAllAccountCus(){
-        $listAcc=DB::table($this->accTable)->join('user','account.idUser','=','user.idUser')->where('user.role','=','1')->get();
+        $listAcc=DB::table($this->accTable)->join('user','account.idUser','=','user.idUser')->where('user.role','=','1')->paginate(10);
         return $listAcc;
     }
 

@@ -236,32 +236,47 @@ textarea {
 
 // Details product
 .detail-p{
-	.detail-p__elebasic{
-		display: flex !important;
+
+	// .detail-p__elebasic{
+	// 	display: flex !important;
 		
-		.detail-p__elebasic__img{
-			width: 32%;
-		}
+	// 	.detail-p__elebasic__img{
+	// 		width: 100% !important;
+	// 	}
 	
-	}
-	.details-p-middel{
-		margin-top: 20px;
-		display: flex;
-		flex-direction: column;
-		.detail-p__imgDetails__d{
-			width: 32%;
-		}
-	}
+	// }
+	// .details-p-middel{
+	// 	margin-top: 20px;
+	// 	display: flex;
+	// 	flex-direction: column;
+	// 	.detail-p__imgDetails__d{
+	// 		width: 32%;
+	// 	}
+	// }
+
 	.details-p-bottom{
 		margin-top: 20px;
 
-		.details-p__more__text{
-			display: flex;
-			p{
-				margin-left: 5px;
-				font-size: 16px;
-			}
+		.input-group-prepend{
+			border: 2px solid rgb(235, 237, 242);
 		}
+		.form-control{
+			background: border-box;
+		}
+
+		.input-description{
+			height: 100%;
+		}
+		.text-area-description{
+			height: 120px;
+		}
+		// .details-p__more__text{
+		// 	display: flex;
+		// 	p{
+		// 		margin-left: 5px;
+		// 		font-size: 16px;
+		// 	}
+		// }
 	}
 }
 

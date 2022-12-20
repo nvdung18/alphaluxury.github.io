@@ -98,7 +98,7 @@
                                 aria-selected="false">Order deliveried</a>
                         </div>
                     </nav>
-                    <div class="tab-content position_bottom" id="nav-tabContent">
+                    <div class="tab-content position_bottom" id="nav-tabContent" style="margin-top: 50px">
                         <div class="tab-pane fade show active" id="nav-all" role="tabpanel"
                             aria-labelledby="nav-home-tab">@include('parts.order', ['statusCheck' => 'All'])
                         </div>
