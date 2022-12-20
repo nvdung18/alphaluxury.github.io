@@ -450,6 +450,30 @@ class ShopController extends Controller
         return view('users.checkout', compact('tag', 'listTrademark', 'countTrademark', 'discount', 'total', 'product_in_cart', 'all_us_ac', 'prcode', 'product_of_us'));
     }
 
+    public function execPostRequest($url, $data)
+    {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt(
+            $ch,
+            CURLOPT_HTTPHEADER,
+            array(
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($data)
+            )
+        );
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+        //execute post
+        $result = curl_exec($ch);
+        //close connection
+        curl_close($ch);
+        return $result;
+    }
+
+
     public function addcheckout(Request $request)
     {
         $fullname = '';
@@ -669,6 +693,51 @@ class ShopController extends Controller
                 }
             }
 
+            if ($payment == 'pm_02') {
+                $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
+                $partnerCode = 'MOMOBKUN20180529';
+                $accessKey = 'klm05TvNBzhg7h7j';
+                $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
+                $orderInfo = "Thanh toán qua MoMo";
+                $amount = trim($request->totalnew);
+                $orderId = time() . "";
+                $redirectUrl = "http://127.0.0.1:8000/checkout";
+                $ipnUrl = "http://127.0.0.1:8000/checkout";
+                $extraData = "";
+
+                $requestId = time() . "";
+                $requestType = "payWithATM";
+                //before sign HMAC SHA256 signature
+                $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
+                $signature = hash_hmac("sha256", $rawHash, $secretKey);
+                $data = array(
+                    'partnerCode' => $partnerCode,
+                    'partnerName' => "Test",
+                    "storeId" => "MomoTestStore",
+                    'requestId' => $requestId,
+                    'amount' => $amount,
+                    'orderId' => $orderId,
+                    'orderInfo' => $orderInfo,
+                    'redirectUrl' => $redirectUrl,
+                    'ipnUrl' => $ipnUrl,
+                    'lang' => 'vi',
+                    'extraData' => $extraData,
+                    'requestType' => $requestType,
+                    'signature' => $signature
+                );
+                $result = $this->execPostRequest($endpoint, json_encode($data));
+                $jsonResult = json_decode($result, true);  // decode json
+                $idcart = $product_in_cart[0]->idCart;
+                $deleted = DB::table('cartdetail')->where('idCart', '=', $idcart)->delete();
+
+                return redirect()->to($jsonResult['payUrl'])->withErrors([  
+                      'success' => 'Order has been placed'
+                ]);
+                //Just a example, please check more in there
+
+                // header('Location: ' . $jsonResult['payUrl']);
+            }
+
             $idcart = $product_in_cart[0]->idCart;
             $deleted = DB::table('cartdetail')->where('idCart', '=', $idcart)->delete();
 
@@ -678,10 +747,12 @@ class ShopController extends Controller
         }
     }
 
-    public function searchProductByName(Request $request){
+
+    public function searchProductByName(Request $request)
+    {
         // dd($request->all());
-        $listProduct=$this->product->searchProductByName($request->key);
-        $tag='search';
+        $listProduct = $this->product->searchProductByName($request->key);
+        $tag = 'search';
         return view('users.shop', compact('listProduct', 'tag'), ['listTrademark' => $this->listTrademark, 'countTrademark' => $this->countTrademark]);
     }
 }

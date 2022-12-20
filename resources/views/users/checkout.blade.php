@@ -226,9 +226,9 @@
                                     <input type="checkbox" id="check-payment" name="payment" value="pm_01">
                                     <span class="checkmark"></span>
                                 </label>
-                                <label for="paypal">
-                                    PayPal
-                                    <input type="checkbox" id="paypal" name="payment" value="pm_02">
+                                <label for="momo">
+                                    Momo
+                                    <input type="checkbox" id="momo" name="payment" value="pm_02">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
