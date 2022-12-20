@@ -203,23 +203,16 @@ textarea {
   border-color: #0d0d0d;
   color: #ffffff; }
 
-.detail-p .detail-p__elebasic {
-  display: flex !important; }
-  .detail-p .detail-p__elebasic .detail-p__elebasic__img {
-    width: 32%; }
-.detail-p .details-p-middel {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column; }
-  .detail-p .details-p-middel .detail-p__imgDetails__d {
-    width: 32%; }
 .detail-p .details-p-bottom {
   margin-top: 20px; }
-  .detail-p .details-p-bottom .details-p__more__text {
-    display: flex; }
-    .detail-p .details-p-bottom .details-p__more__text p {
-      margin-left: 5px;
-      font-size: 16px; }
+  .detail-p .details-p-bottom .input-group-prepend {
+    border: 2px solid #ebedf2; }
+  .detail-p .details-p-bottom .form-control {
+    background: border-box; }
+  .detail-p .details-p-bottom .input-description {
+    height: 100%; }
+  .detail-p .details-p-bottom .text-area-description {
+    height: 120px; }
 
 .lb-trademark {
   margin: 0 !important; }
@@ -371,5 +364,11 @@ textarea {
 .notification-login-admin {
   padding: 2px;
   top: -12px; }
+
+.details-infor .card-infor {
+  padding: 20px; }
+  .details-infor .card-infor .form-control {
+    border: 0;
+    background: aliceblue; }
 
 /*# sourceMappingURL=ad_style.css.map */

@@ -163,9 +163,9 @@ Route::prefix('admin')->group(function () {
         // account
         Route::prefix('account')->group(function () {
 
-            Route::get('/employee', [AdminAccountController::class,'getAllAccountCus'])->name('acc-employee');
-
             Route::get('/customer', [AdminAccountController::class,'getAllAccountCus'])->name('acc-customer');
+
+            Route::get('/customer/detail-infor', [AdminAccountController::class,'getDetailInforCus'])->name('employee-detail');
         });
     });
 });

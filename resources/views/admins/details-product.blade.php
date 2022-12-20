@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
+    <title>Alpha Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('frontend_admin/vendors/mdi/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend_adminvendors/css/vendor.bundle.base.css') }}">
@@ -56,12 +56,39 @@
                                 <div class="card">
                                     <div class="card-body detail-p">
                                         @foreach ($product as $key => $item)
-                                            <div class="detail-p__elebasic details-p-top">
-                                                {{-- <div class="detail-p__elebasic__img col-md-4"> --}}
+                                            <table id='books' cellpadding='10px' style="text-align: left;">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 33%">IMAGE MAIN</th>
+                                                        <th style="width: 33%">IMAGE 1</th>
+                                                        <th style="width: 33%">IMAGE 2</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><img class="detail-p__elebasic__img "
+                                                                src="{{ asset('frontend/img/product/' . $item->image) }}"
+                                                                alt="" style="width: 100%"></td>
+                                                        @if ($item->detailsImg != null)
+                                                            <div class="details-p-middel details-p__imgDetails">
+                                                                @php
+                                                                    $imgDetailArr = json_decode($item->detailsImg, true);
+                                                                @endphp
+                                                                <td><img class="detail-p__imgDetails__d "
+                                                                        src="{{ asset('frontend/img/product/' . $imgDetailArr['nameImgDetail1']) }}"
+                                                                        alt="" style="width: 100%"></td>
+                                                                <td> <img class="detail-p__imgDetails__d "
+                                                                        src="{{ asset('frontend/img/product/' . $imgDetailArr['nameImgDetail2']) }}"
+                                                                        alt="" style="width: 100%"></td>
+                                                            </div>
+                                                        @endif
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            {{-- <div class="detail-p__elebasic details-p-top">
                                                 <img class="detail-p__elebasic__img "
                                                     src="{{ asset('frontend/img/product/' . $item->image) }}"
                                                     alt="">
-                                                {{-- </div> --}}
                                                 <div class="detail-p__elebasic__infor ">
                                                     <div class="detail-p__elebasic__name">
                                                         <h4 class="card-title">Name: {{ $item->nameProduct }}</h4>
@@ -91,9 +118,69 @@
                                                         src="{{ asset('frontend/img/product/' . $imgDetailArr['nameImgDetail2']) }}"
                                                         alt="">
                                                 </div>
-                                            @endif
+                                            @endif --}}
                                             <div class="details-p__more details-p-bottom">
-                                                <div class="detail-p__more__description-qunatity">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1">Name
+                                                            Product</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="NameProduct"
+                                                        aria-label="NameProduct" aria-describedby="basic-addon1"
+                                                        value="{{ $item->nameProduct }}" disabled>
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1">Price</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Price"
+                                                        aria-label="Price" aria-describedby="basic-addon1"
+                                                        value="@php echo number_format($item->price); @endphp" disabled>
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1">Type</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Type"
+                                                        aria-label="Type" aria-describedby="basic-addon1"
+                                                        value="{{ $item->type }}" disabled>
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"
+                                                            id="basic-addon1">Trademark</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Trademark"
+                                                        aria-label="Trademark" aria-describedby="basic-addon1"
+                                                        value="{{ $nameTrademark }}" disabled>
+                                                </div>
+
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"
+                                                            id="basic-addon1">Quantity</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Quantity"
+                                                        aria-label="Quantity" aria-describedby="basic-addon1"
+                                                        value="{{ $item->quantity }}" disabled>
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"
+                                                            id="basic-addon1">Sale</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Sale"
+                                                        aria-label="Sale" aria-describedby="basic-addon1"
+                                                        value="{{ $item->sale }}" disabled>
+                                                </div>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text input-description">Description</span>
+                                                    </div>
+                                                    <textarea class="form-control text-area-description" aria-label="Description" disabled>{{$item->description}}</textarea>
+                                                </div>
+
+                                                {{-- <div class="detail-p__more__description-qunatity">
                                                     <h4 class="card-title details-p__more__text">Quantity: <p
                                                             class="font-weight-normal">{{ $item->quantity }}</p>
                                                     </h4>
@@ -108,7 +195,7 @@
                                                     <h4 class="card-title details-p__more__text">QuantitySold: <p
                                                             class="font-weight-normal">{{ $item->quantitySold }}</p>
                                                     </h4>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         @endforeach
                                     </div>

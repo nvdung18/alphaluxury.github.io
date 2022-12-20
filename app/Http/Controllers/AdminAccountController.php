@@ -15,8 +15,14 @@ class AdminAccountController extends Controller
     }
     public function getAllAccountCus(){
         $listAcc=$this->acc->getAllAccountCus();
-        // dd($acc);
+        // dd($listAcc);
         return view('admins.account',compact('listAcc'));
+    }
+
+    public function getDetailInforCus(Request $request){
+        $acc=$this->acc->getAccountByID($request->idAcc);
+        // dd($acc[0]->nameUser);
+        return view('admins.details-inforCus',compact('acc'));
     }
 }
     
