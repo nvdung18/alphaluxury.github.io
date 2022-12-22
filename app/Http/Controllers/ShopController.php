@@ -33,6 +33,7 @@ class ShopController extends Controller
         $this->checkout = new Checkout();
         $this->order = new Order();
         $this->payment = new Payment();
+        $this->messageuser = '';
     }
     public function getProductMaleP(Request $request) //get product male paginate
     {
@@ -540,6 +541,13 @@ class ShopController extends Controller
             // dd(count($listcheckout));
             $datetime = date("Y-m-d h:i:sa");
 
+            if ($payment == 'pm_02') {
+                if (intval(trim($request->totalnew)) > 50000000) {
+                    return redirect()->back()->withErrors([
+                        'success' => 'Only paid less than 50 million VND'
+                    ]);
+                } 
+            }
             if (count($listcheckout) == 0) {
                 $checkout = Checkout::create([
                     'idCheckout' => 'Cko_01',
@@ -727,11 +735,14 @@ class ShopController extends Controller
                 );
                 $result = $this->execPostRequest($endpoint, json_encode($data));
                 $jsonResult = json_decode($result, true);  // decode json
+
                 $idcart = $product_in_cart[0]->idCart;
                 $deleted = DB::table('cartdetail')->where('idCart', '=', $idcart)->delete();
 
-                return redirect()->to($jsonResult['payUrl'])->withErrors([  
-                      'success' => 'Order has been placed'
+                // dd($jsonResult['resultCode']);
+
+                return redirect()->to($jsonResult['payUrl'])->withErrors([
+                    'success' => 'Order has been placed'
                 ]);
                 //Just a example, please check more in there
 
