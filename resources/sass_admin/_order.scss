@@ -189,3 +189,17 @@
         transition: all 0.4s;
     }
 }
+
+
+.card-header {
+	.right-header {
+		.field-receipt,.field-order{
+			border: 1px solid gainsboro;
+			border-radius: 5px;
+			background: white;
+			.input-search-order,.input-search-receipt{
+				width: 500px;
+			}
+		}
+	}
+}

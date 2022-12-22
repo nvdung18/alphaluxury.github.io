@@ -30,4 +30,8 @@ class Payment extends Model
     //                         ]);
     // }
 
+    public function getAllPayment(){
+        $payment = DB::table('payment')->get(); 
+        return $payment;
+    }
 }

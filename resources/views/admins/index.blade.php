@@ -79,6 +79,28 @@
                   </div>
                 </div>
               </div>
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-primary card-img-holder text-white">
+                  <div class="card-body">
+                    <img src="{{asset('frontend_admin/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image" />
+                    <h4 class="font-weight-normal mb-3">Payment after arrival of goods  <i class="mdi mdi-cart mdi-24px float-right"></i>
+                    </h4>
+                    <h2 class="mb-5">{{number_format($listPayment[0]->totalPayment)}}</h2>
+                    <h6 class="card-text">Increased by 5%</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-primary card-img-holder text-white">
+                  <div class="card-body">
+                    <img src="{{asset('frontend_admin/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image" />
+                    <h4 class="font-weight-normal mb-3 d-flex">Payment Momo  <img src="{{ asset('frontend_admin/images/logo-momo-png-1.png') }}" alt="" class="float-right" style="width: 9%; margin-left: 10px;">
+                    </h4>
+                    <h2 class="mb-5">{{number_format($listPayment[1]->totalPayment)}}</h2>
+                    <h6 class="card-text">Increased by 5%</h6>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!-- content-wrapper ends -->

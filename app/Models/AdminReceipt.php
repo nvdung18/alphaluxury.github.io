@@ -25,7 +25,17 @@ class AdminReceipt extends Model
     }
 
     public function getAllReceiptPagiante(){
-        $receipt=DB::table($this->table)->paginate(10);
+        $receipt=DB::table($this->table)->orderBy('idReceipt','desc')->paginate(10);
         return $receipt;
+    }
+
+    public function getReceiptByDate($date){
+        $receipt=DB::table($this->table)->where('releaseDate','like',$date.'%')->paginate(10);
+        return $receipt;
+    }
+    
+    public function searchReceiptByID($key){
+        $listReceipt=DB::table($this->table)->where('idReceipt','like','%'.$key.'%')->paginate(10);
+        return $listReceipt;
     }
 }

@@ -49,4 +49,16 @@ class AdminOrder extends Model
                 'status' => $statusDetails,
             ]);
     }
+
+    // filter
+    public function getOrderByDate($date){
+        $order=DB::table($this->orderTable)->where('deliveryTime','like',$date.'%')->orderBy('idOrder','desc')->paginate(10);
+        return $order;
+    }
+
+    // search
+    public function searchOrderByID($key){
+        $listOrder= DB::table($this->orderTable)->where('idOrder', 'like', '%'.$key.'%')->paginate(10);
+        return $listOrder;
+    }
 }

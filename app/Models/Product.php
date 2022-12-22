@@ -144,9 +144,9 @@ class product extends Model
     }
 
     public function searchProductByName($key){
-        $listProduct= DB::table($this->table)->where('nameProduct', 'like', '%'.$key.'%')->paginate(9);
-
+        $listProduct= DB::table($this->table)->where('nameProduct', 'like', '%'.$key.'%')->orWhere('idProduct', 'like', '%'.$key.'%')->paginate(9);
         return $listProduct;
     }
+
 
 }

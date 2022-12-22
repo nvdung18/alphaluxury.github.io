@@ -1,14 +1,4 @@
-
-
-
-
-
-
-
-
-<p>
-
-</p><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -48,9 +38,32 @@
                     <div class="container wr-manage">
                         <div class="card">
                             <div class="card-header d-flex justify-content-between justify-content">
-                                <p style="font-size: 20px;">
-                                    Manage <strong style="margin-left: 2px;"> Order</strong>
-                                </p>
+                                <div class="right-header d-flex">
+                                    <p style="font-size: 20px;  margin-right: 20px;">
+                                        Manage <strong style="margin-left: 2px;"> Order</strong>
+                                    </p>
+                                    <div class="search-field field-order d-none d-md-block ">
+                                        <form class="d-flex align-items-center h-100" action="{{ route('ad.search-order') }}" method="GET">
+                                            {{-- <input type="text" name="" id=""> --}}
+                                            <div class="input-group">
+                                                <div class="input-group-prepend bg-transparent">
+                                                    <button type="submit" style="border: 0px; padding: 0px;"><i class="input-group-text border-0 mdi mdi-magnify"></i></button>
+                                                    {{-- <i class="input-group-text border-0 mdi mdi-magnify"></i> --}}
+                                                </div>
+                                                <input type="text" class="form-control bg-transparent border-0 input-search-order" placeholder="Search" name="input_search_order">
+                                                {{-- <button type="submit"><i class="input-group-text border-0 mdi mdi-magnify"></i></button> --}}
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="top-rev_filter col-md-3">
+                                    <form action="{{ route('ad.filter-order')}}" method="get">
+                                        <input type="date" class="filter-rev" name="filter_date_order"
+                                            id="">
+                                        <input type="submit" name="" id=""
+                                            class="btn btn-success btn-filter-rev" value="Filter">
+                                    </form>
+                                </div>
                                 {{-- <div class="style-select ">
                                     <div class="select-box">
                                         <div class="options-container-branch">
@@ -89,7 +102,7 @@
                                                 <td>{{ $item->idOrder }}</td>
                                                 <td>{{ $listCheckout[$key][0]->recipientName }}</td>
                                                 <td>@php
-                                                    echo number_format($item->deliveryCharges + $item->productMoney);
+                                                    echo number_format($item->totalMoney);
                                                 @endphp </td>
                                                 <td>{{ $listPayment[$key][0]->namePayment }}</td>
                                                 <td>
@@ -144,7 +157,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="btn-action">
-                                                        <a href="{{ route('ad.details-order', ['idOrder' => $item->idOrder]) }}"
+                                                        <a href="{{ route('ad.details-order', ['idOrder' => $item->idOrder,'tag'=>'order']) }}"
                                                             class="btn-p-detail"> <i
                                                                 class="mdi mdi-account-card-details" title="details">
                                                             </i>

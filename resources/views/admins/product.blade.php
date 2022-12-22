@@ -39,9 +39,24 @@
                         <!-- <div class="row"> -->
                         <div class="card">
                             <div class="card-header d-flex justify-content-between justify-content">
-                                <p style="font-size: 20px;">
-                                    Manage <strong style="margin-left: 2px;"> Product</strong>
-                                </p>
+                                <div class="right-header d-flex">
+                                    <p style="font-size: 20px; margin-right: 20px;">
+                                        Manage <strong style="margin-left: 2px;"> Product</strong>
+                                    </p>
+                                    <div class="search-field field-product d-none d-md-block ">
+                                        <form class="d-flex align-items-center h-100" action="{{ route('ad.search-product') }}" method="GET">
+                                            {{-- <input type="text" name="" id=""> --}}
+                                            <div class="input-group">
+                                                <div class="input-group-prepend bg-transparent">
+                                                    <button type="submit" style="border: 0px; padding: 0px;"><i class="input-group-text border-0 mdi mdi-magnify"></i></button>
+                                                    {{-- <i class="input-group-text border-0 mdi mdi-magnify"></i> --}}
+                                                </div>
+                                                <input type="text" class="form-control bg-transparent border-0 input-search-product" placeholder="Search" name="input_search_product">
+                                                {{-- <button type="submit"><i class="input-group-text border-0 mdi mdi-magnify"></i></button> --}}
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                                 <!-- 	 <button onclick="loadMore()" class="btn btn-primary">Load more</button>  -->
                                 {{-- <c:if test="${sessionScope.p=!NULL}"> --}}
                                 <button id="btn-add" type="reset" class="btn btn-primary start-btn "
@@ -54,9 +69,10 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 10%">#</th>
+                                            <th style="width: 15%">ID PRODUCT</th>
                                             <th style="width: 30%">NAME</th>
                                             <th style="width: 30%; padding-left: 58px">IMAGE</th>
-                                            <th style="width: 30%">PRICE</th>
+                                            <th style="width: 25%">PRICE</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -64,6 +80,7 @@
                                         @foreach ($listProduct as $key => $item)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
+                                                <td>{{ $item->idProduct }}</td>
                                                 <td>{{ $item->nameProduct }}</td>
                                                 <td><img class="card-img"
                                                         src="{{ asset('frontend/img/product/' . $item->image) }}"

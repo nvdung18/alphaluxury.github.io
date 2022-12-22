@@ -217,6 +217,13 @@ textarea {
 .lb-trademark {
   margin: 0 !important; }
 
+.card-header .right-header .field-product {
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  background: white; }
+  .card-header .right-header .field-product .input-search-product {
+    width: 500px; }
+
 .status-order {
   display: flex; }
   .status-order .status-order_btn-confirm {
@@ -347,6 +354,13 @@ textarea {
     right: 10px;
     top: 6px;
     transition: all 0.4s; }
+
+.card-header .right-header .field-receipt, .card-header .right-header .field-order {
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  background: white; }
+  .card-header .right-header .field-receipt .input-search-order, .card-header .right-header .field-receipt .input-search-receipt, .card-header .right-header .field-order .input-search-order, .card-header .right-header .field-order .input-search-receipt {
+    width: 500px; }
 
 .top-rev_filter form {
   display: flex;

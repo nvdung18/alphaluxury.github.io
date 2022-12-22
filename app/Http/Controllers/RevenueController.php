@@ -17,8 +17,8 @@ class RevenueController extends Controller
         $exitdailyRev=$this->checkDaiylyRevExists();
         if($exitdailyRev==null){
             $idDailyRev=$this->revenue->createDailyRev(date("Y-m-d"));
-            $this->checkWeeklyRevExists($idDailyRev);
             $this->checkMonthlyRevExists($idDailyRev);
+            $this->checkWeeklyRevExists($idDailyRev);
         }
         $listRev=$this->revenue->getAllDailyRevPaginate();
         
@@ -71,13 +71,20 @@ class RevenueController extends Controller
 
     public function checkMonthlyRevExists($position){
         $nowDate=date("Y-m-d");
+        // dd($nowDate);
         $rev=$this->revenue->getAllMonthlyRevPaginate();
         if($rev->first()==null){
             $this->revenue->createMonthlyRev($nowDate,$position);
         }else{
-            // if day=01 => new month
-            $day=date("d");
-            if($day=="01"){
+            // if current day=01 or month+=1 => new month
+            $currentDay=date("d");
+            $currentMonth=date('m');
+
+            // to check what month is last month and compare with current month
+            $lastMonthRev=$this->revenue->getLastMonthRev();
+            $lastMonth=date("m",strtotime($lastMonthRev->releaseDate));
+
+            if($currentDay=="01"||$currentMonth!=$lastMonth){
                 $this->revenue->createMonthlyRev($nowDate,$position);
             }
         }

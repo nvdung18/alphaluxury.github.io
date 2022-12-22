@@ -87,7 +87,7 @@
                                                         <td>{{ $item->releaseDate }}</td>
                                                         <td>
                                                             @if ($tag == 'day')
-                                                                <a href="#" class="btn-rev-more">
+                                                                <a href="{{ route('ad.filter-receipt', ['filter_date_receipt'=>$item->releaseDate]) }}" class="btn-rev-more" target="_blank">
                                                                     <div class="btn btn-primary">
                                                                         Detail
                                                                     </div>

@@ -120,6 +120,13 @@
         }
     }
 
+    .order-cancel{
+        .btn-cancel-order{
+            margin-top: 58px;
+        }
+    }
+
+
     .nav::before{
         height: 0px !important;
     }
@@ -187,3 +194,9 @@
     border-bottom: 4px solid red !important;
 }
 
+// swal2 notification cancel order
+.swal2-actions{
+    .swal2-cancel{
+        margin-right: 5px;
+    }
+}
