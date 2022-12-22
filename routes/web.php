@@ -126,6 +126,8 @@ Route::prefix('admin')->group(function () {
             Route::post('/edit', [AdminShopController::class,'confirmEdit'])->name('edit-product');
 
             Route::get('/delete', [AdminShopController::class,'deleteProduct'])->name('delete-product');
+
+            Route::get('/search-product', [AdminShopController::class,'searchProduct'])->name('search-product');
         });
 
         // trademark
@@ -140,16 +142,21 @@ Route::prefix('admin')->group(function () {
             Route::get('/delete', [AdminTrademarkController::class,'deleteTrademark'])->name('delete-trademark');
 
             Route::post('/add', [AdminTrademarkController::class,'addTrademark'])->name('add-trademark');
-        });
 
+        });
+        
         // order
         Route::prefix('order')->group(function () {
-
+            
             Route::get('/', [AdminOrderController::class,'getAllOrderPaginate'])->name('order');
-
+            
             Route::get('/details', [AdminOrderController::class,'getDetailsOrder'])->name('details-order');
-
+            
             Route::post('/update-order', [AdminOrderController::class,'updateStatus'])->name('update-order');
+            
+            Route::get('/filter-order', [AdminOrderController::class,'filterOrder'])->name('filter-order');
+            
+            Route::get('/search-order', [AdminOrderController::class,'searchOrder'])->name('search-order');
         });
 
         // receipt
@@ -158,6 +165,10 @@ Route::prefix('admin')->group(function () {
             Route::get('/', [AdminReceiptController::class,'getAllReceiptPaginate'])->name('receipt');
 
             Route::get('/details', [AdminReceiptController::class,'getAllReceiptPaginate'])->name('receipt-details');
+
+            Route::get('/filter-receipt', [AdminReceiptController::class,'filterReceipt'])->name('filter-receipt');
+
+            Route::get('/search-receipt', [AdminReceiptController::class,'searchReceipt'])->name('search-receipt');
         });
 
         // account
@@ -167,6 +178,22 @@ Route::prefix('admin')->group(function () {
 
             Route::get('/customer/detail-infor', [AdminAccountController::class,'getDetailInforCus'])->name('employee-detail');
         });
+
+        // promocode
+        Route::prefix('promo-code')->group(function () {
+
+            Route::get('/', [AdminShopController::class,'getAllPromocode'])->name('promocode');
+
+            Route::get('/edit', [AdminShopController::class,'editTrademark'])->name('edit-promocode');
+
+            Route::post('/edit', [AdminShopController::class,'confirmEdit'])->name('edit-promocode');
+
+            Route::get('/delete', [AdminShopController::class,'deletePromocode'])->name('delete-promocode');
+
+            Route::post('/add', [AdminShopController::class,'addPromocode'])->name('add-promocode');
+
+        });
+
     });
 });
 
@@ -206,6 +233,8 @@ Route::prefix('user')->group(function () {
     // detail order
     Route::get('/detail-order',[UserController::class, 'getDetailOrder'])->name('user.detail-order');
 
+    // cancel order
+    Route::get('/cancel-order',[UserController::class, 'cancelOrder'])->name('user.cancel-order');
 });
 
 Route::prefix('cart')->group(function () {

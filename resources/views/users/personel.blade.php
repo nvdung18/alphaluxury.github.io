@@ -82,10 +82,11 @@
                 <div class="order col-lg-10">
                     <nav class="nav-status-order">
                         <div class="nav nav-tabs nav_menu_order" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link nav_menu active" id="nav-home-tab" data-toggle="tab" href="#nav-all"
-                                role="tab" aria-controls="nav-home" aria-selected="true">All</a>
-                            <a class="nav-item nav-link nav_menu" id="nav-profile-tab" data-toggle="tab" href="#nav-wait"
-                                role="tab" aria-controls="nav-profile" aria-selected="false">Wait for
+                            <a class="nav-item nav-link nav_menu active" id="nav-home-tab" data-toggle="tab"
+                                href="#nav-all" role="tab" aria-controls="nav-home" aria-selected="true">All</a>
+                            <a class="nav-item nav-link nav_menu" id="nav-profile-tab" data-toggle="tab"
+                                href="#nav-wait" role="tab" aria-controls="nav-profile"
+                                aria-selected="false">Wait for
                                 confirmation</a>
                             <a class="nav-item nav-link nav_menu" id="nav-contact-tab" data-toggle="tab"
                                 href="#nav-confirmed" role="tab" aria-controls="nav-contact"
@@ -227,6 +228,9 @@
     <script src="{{ asset('frontend/js/owl.carousel.min.js ') }}"></script>
     <script src="{{ asset('frontend/js/jquery.nicescroll.min.js ') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
+    <!-- Modernizr JS -->
+    <script src="js/modernizr-2.6.2.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- <script type="text/javascript">
     console.log('123123');
     </script> --}}

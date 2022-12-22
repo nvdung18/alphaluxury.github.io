@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Promocode;
 use App\Models\Trademark;
 use GuzzleHttp\Psr7\UploadedFile;
 use Illuminate\Support\Str;
@@ -16,6 +17,7 @@ class AdminShopController extends Controller
     {
         $this->product = new Product();
         $this->trademark = new Trademark();
+        $this->promocode= new Promocode();
         // $this->adShop=new AdminShopController();
     }
 
@@ -255,5 +257,35 @@ class AdminShopController extends Controller
         // dd($request->all());
         $this->product->deleteProduct($request->idProduct);
         return redirect()->route('ad.product');
+    }
+
+    public function searchProduct(Request $request){
+        // dd($request->input_search_product);
+        $listProduct = $this->product->searchProductByName($request->input_search_product);
+        // dd($listProduct);
+        $listTrademark = $this->trademark->getAllTrademark();
+        return view('admins.product', compact('listProduct', 'listTrademark'));
+    }
+
+    public function getAllPromocode(){
+        $listPromocode=$this->promocode->getAllPromocode();
+        return view('admins.promocode',compact('listPromocode'));
+    }
+
+    public function addPromocode(Request $request){
+        // create arr contains information of trademark to insert into database
+        $promocodeArr = array(
+            'idPromoCode' => $request->promocode,
+            'description' => $request->description,
+            'discountPercent'=>$request->discount_percent
+        );
+
+        $this->promocode->addPromocode($promocodeArr);
+        return redirect()->route('ad.promocode');
+    }
+
+    public function deletePromocode(Request $request){
+        $this->promocode->deletePromocode($request->idPromocode);
+        return redirect()->route('ad.promocode');
     }
 }

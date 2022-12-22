@@ -3322,6 +3322,8 @@ ol {
     .order .order-product-item img {
       max-width: 140px;
       margin-right: 24px; }
+  .order .order-cancel .btn-cancel-order {
+    margin-top: 58px; }
   .order .nav::before {
     height: 0px !important; }
   .order .nav::after {
@@ -3370,6 +3372,9 @@ ol {
 .nav_menu.active {
   color: red !important;
   border-bottom: 4px solid red !important; }
+
+.swal2-actions .swal2-cancel {
+  margin-right: 5px; }
 
 .row-detail-order {
   margin-top: 20px; }

@@ -72,6 +72,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{ route('ad.promocode') }}">
+                <span class="menu-title">Promo-code</span>
+                <i class="mdi mdi-percent menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#acc" aria-expanded="false" aria-controls="acc">
                 <span class="menu-title">Account</span>
                 <i class="menu-arrow"></i>

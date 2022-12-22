@@ -38,9 +38,32 @@
                     <div class="container wr-manage">
                         <div class="card">
                             <div class="card-header d-flex justify-content-between justify-content">
-                                <p style="font-size: 20px;">
-                                    Manage <strong style="margin-left: 2px;"> Receipt</strong>
-                                </p>
+                                <div class="right-header d-flex">
+                                    <p style="font-size: 20px;  margin-right: 20px;">
+                                        Manage <strong style="margin-left: 2px;"> Receipt</strong>
+                                    </p>
+                                    <div class="search-field field-receipt d-none d-md-block ">
+                                        <form class="d-flex align-items-center h-100" action="{{ route('ad.search-receipt') }}" method="GET">
+                                            {{-- <input type="text" name="" id=""> --}}
+                                            <div class="input-group">
+                                                <div class="input-group-prepend bg-transparent">
+                                                    <button type="submit" style="border: 0px; padding: 0px;"><i class="input-group-text border-0 mdi mdi-magnify"></i></button>
+                                                    {{-- <i class="input-group-text border-0 mdi mdi-magnify"></i> --}}
+                                                </div>
+                                                <input type="text" class="form-control bg-transparent border-0 input-search-receipt" placeholder="Search" name="input_search_receipt">
+                                                {{-- <button type="submit"><i class="input-group-text border-0 mdi mdi-magnify"></i></button> --}}
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="top-rev_filter col-md-3">
+                                    <form action="{{ route('ad.filter-receipt')}}" method="get">
+                                        <input type="date" class="filter-rev" name="filter_date_receipt"
+                                            id="">
+                                        <input type="submit" name="" id=""
+                                            class="btn btn-success btn-filter-rev" value="Filter">
+                                    </form>
+                                </div>
                             </div>
                             <div class="card-body ">
                                 <table id='books' cellpadding='10px' style="text-align: left;">
@@ -59,20 +82,21 @@
                                             <tr>
                                                 <td>{{ $item->idReceipt }}</td>
                                                 <td>{{ $listCheckout[$key][0]->recipientName }}</td>
-                                                @foreach ($listOrder as $key => $value)
+                                                @foreach ($listOrder as $key1 => $value)
                                                     @if ($value[0]->idOrder == $item->idOrder)
                                                         <td>
                                                             @php
-                                                                echo number_format($value[0]->deliveryCharges + $value[0]->productMoney);
+                                                                echo number_format($value[0]->totalMoney);
                                                             @endphp
                                                         </td>
                                                     @endif
                                                 @endforeach
+                                                {{-- <td>{{$key}}</td> --}}
                                                 <td>{{ $listPayment[$key][0]->namePayment }}</td>
                                                 <td>{{ $item->releaseDate }}</td>
                                                 <td>
                                                     <div class="btn-action">
-                                                        <a href="{{ route('ad.details-order', ['idOrder'=>$item->idOrder]) }}" class="btn-p-detail"> <i
+                                                        <a href="{{ route('ad.details-order', ['idOrder'=>$item->idOrder,'tag'=>'receipt','idReceipt'=>$item->idReceipt]) }}" class="btn-p-detail"> <i
                                                                 class="mdi mdi-account-card-details" title="details">
                                                             </i>
                                                         </a>

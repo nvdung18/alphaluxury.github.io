@@ -110,15 +110,20 @@ class Revenue extends Model
     public function getChartMonth($position){
         $monthRev = DB::table($this->monthlyTable)->where('position','=',$position)->get();
         
-        // get month and then check next month if exists or not 
+        // get the month and then check next month if it exists or not 
         $d=date_parse_from_format('Y-m-d',$monthRev[0]->releaseDate);
         $month=$d["month"];
-        $nextMonth=$month+1;
-        // $a="07";
-        // check next month if exists or not
-        $dailyRev=DB::table($this->dailyTable)->whereRaw("releaseDate REGEXP '[0-9]+.-$nextMonth-01$'")->get();
+        if($month!=12){
+            $nextMonth=$month+1;
+        }else{
+            $nextMonth=1;
+        }
 
-        if ($dailyRev->first()==null) {
+        // check next month if it exists or not
+        $exitNextMonth=DB::table($this->monthlyTable)->whereRaw("releaseDate REGEXP '[0-9]+.-$nextMonth-[0-9]+$'")->get();
+        // $dailyRev=DB::table($this->dailyTable)->whereRaw("releaseDate REGEXP '[0-9]+.-$nextMonth-01$'")->get();
+
+        if ($exitNextMonth->first()==null) {
             # code...
             $lastRow=DB::table($this->dailyTable)
             ->select(DB::raw('*'))
@@ -132,7 +137,7 @@ class Revenue extends Model
             return $rev;
         }else{
             $btStart=$position;
-            $btEnd=$dailyRev[0]->idDRevenue;
+            $btEnd=$exitNextMonth[0]->position-1; // -1 because will not take current day's sales (current position)
             $rev=DB::table($this->dailyTable)->whereRaw("idDRevenue BETWEEN $btStart AND $btEnd")->get();
             return $rev;
             // dd($rev);   
@@ -187,5 +192,9 @@ class Revenue extends Model
     public function getLastDayRev(){
         $daykRev=DB::table($this->dailyTable)->orderBy('idDRevenue','desc')->first();
         return $daykRev;
+    }
+    public function getLastMonthRev(){
+        $monthRev=DB::table($this->monthlyTable)->orderBy('idMRevenue','desc')->first();
+        return $monthRev;
     }
 }
