@@ -692,13 +692,25 @@ Created: Colorib
 
         // const noti = {!! json_encode($success) !!};
         // console.log($('input[name=messageorder]').val());
-        if(typeof $('input[name=messageorder]').val() !== "undefined" ) {
+        if(typeof $('input[name=messageorder]').val() !== "undefined" && $('input[name=messageorder]').val() == 'Order has been placed') {
              swal({
                     title: "Success",
-                    text: "Order Success",
+                    text: $('input[name=messageorder]').val(),
                     icon: "success",
-                    button: "Close!",
-                });   
+                    button: true,
+                })
+                .then((willHome) => {
+                    if (willHome) {
+                        window.location.assign('http://127.0.0.1:8000/');
+                    } 
+                  });
+        } else if(typeof $('input[name=messageorder]').val() !== "undefined" && $('input[name=messageorder]').val() == 'Only paid less than 50 million VND') {
+            swal({
+                title: "Error",
+                text: $('input[name=messageorder]').val(),
+                icon: "error",
+                button: "Close!",
+            });   
         }
 
         if(typeof $('input[name=messagepassword]').val() !== "undefined") {
