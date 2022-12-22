@@ -58,8 +58,15 @@ class AdminOrderController extends Controller
     public function getDetailsOrder(Request $request)
     {
         $idOrder = $request->idOrder;
+        $tag=$request->tag;
         $order = $this->order->getOrderByID($idOrder);
         $detailsOrder = $this->order->getDetailsOrder($idOrder);
+
+        if(isset($request->idReceipt)){
+            $idReceipt=$request->idReceipt;
+        }else{
+            $idReceipt=null;
+        }
 
         /* get id account to get checkout of the receipient and get id product to get the infor of product
             get idPayment to get form payment and idPromocode to get promotion
@@ -97,7 +104,7 @@ class AdminOrderController extends Controller
         }
         // $product=
         // dd($promotionProduct);
-        return view('admins.details-order', compact('idOrder', 'order', 'detailsOrder', 'checkout', 'listInforProduct', 'payment', 'promotionProduct'));
+        return view('admins.details-order', compact('idOrder', 'order', 'detailsOrder', 'checkout', 'listInforProduct', 'payment', 'promotionProduct','tag','idReceipt'));
     }
 
     // update status
@@ -182,5 +189,60 @@ class AdminOrderController extends Controller
         // dd($statusDetails);
 
         return redirect()->route('ad.order');
+    }
+
+    public function filterOrder(Request $request){
+        // dd(date("Y-m-d h:i:sa"));
+        $listOrder = $this->order->getOrderByDate($request->filter_date_order);
+        // dd($listOrder);
+        $listStatus = array(
+            "Wait for confirmation",
+            "Order confirmed",
+            "Delivering",
+            "Order deliveried"
+        );
+        // dd($listStatus);
+        // get recipient and form payment
+        $listIdRP = array();
+        $listCheckout = array();
+        $listPayment = array();
+        foreach ($listOrder as $key => $item) {
+            array_push($listIdRP, [$item->idPayment, $item->idCheckout]);
+        }
+
+        foreach ($listIdRP as $key => $value) {
+            array_push($listPayment, $this->order->getFormPayment($value[0]));
+            array_push($listCheckout, $this->account->getCheckout($value[1]));
+        }
+        // dd($listIdRP);
+
+        return view('admins.order', compact('listOrder', 'listStatus', 'listPayment', 'listCheckout'));
+    }
+
+    public function searchOrder(Request $request){
+        $listOrder = $this->order->searchOrderByID($request->input_search_order);
+        
+        $listStatus = array(
+            "Wait for confirmation",
+            "Order confirmed",
+            "Delivering",
+            "Order deliveried"
+        );
+        // dd($listStatus);
+        // get recipient and form payment
+        $listIdRP = array();
+        $listCheckout = array();
+        $listPayment = array();
+        foreach ($listOrder as $key => $item) {
+            array_push($listIdRP, [$item->idPayment, $item->idCheckout]);
+        }
+
+        foreach ($listIdRP as $key => $value) {
+            array_push($listPayment, $this->order->getFormPayment($value[0]));
+            array_push($listCheckout, $this->account->getCheckout($value[1]));
+        }
+        // dd($listIdRP);
+
+        return view('admins.order', compact('listOrder', 'listStatus', 'listPayment', 'listCheckout'));
     }
 }

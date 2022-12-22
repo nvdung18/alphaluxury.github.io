@@ -222,7 +222,7 @@
                                     </span>
                                     @endif
                                 <label for="check-payment">
-                                    Cheque payment
+                                    Payment after arrival of goods
                                     <input type="checkbox" id="check-payment" name="payment" value="pm_01">
                                     <span class="checkmark"></span>
                                 </label>

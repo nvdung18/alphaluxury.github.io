@@ -755,4 +755,5 @@ class ShopController extends Controller
         $tag = 'search';
         return view('users.shop', compact('listProduct', 'tag'), ['listTrademark' => $this->listTrademark, 'countTrademark' => $this->countTrademark]);
     }
+
 }

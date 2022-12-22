@@ -33,7 +33,7 @@
         <div class="user-details">
           <div class="input-box">
             <span class="details">Email</span>
-            <input type="email" placeholder="Enter your password" name="email">
+            <input type="email" placeholder="Enter your email" name="email">
             @if ($errors->has('email'))
             <span class="alert alert-danger" style="color: red;">
             {{ $errors->first('email') }}

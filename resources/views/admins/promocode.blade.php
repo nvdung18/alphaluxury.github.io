@@ -39,52 +39,38 @@
                         <div class="card">
                             <div class="card-header d-flex justify-content-between justify-content">
                                 <p style="font-size: 20px;">
-                                    Manage <strong style="margin-left: 2px;"> Trademark</strong>
+                                    Manage <strong style="margin-left: 2px;"> Promo-code</strong>
                                 </p>
                                 <button id="btn-add" type="reset" class="btn btn-primary start-btn "
                                     value="add">Add
-                                    new trademark</button>
+                                    new promo-code</button>
                             </div>
                             <div class="card-body ">
                                 <table id='books' cellpadding='10px' style="text-align: left;">
                                     <thead>
                                         <tr>
                                             <th style="width: 20%">#</th>
-                                            <th style="width: 20%">ID TRADEMARK</th>
-                                            <th style="width: 30%">NAME</th>
-                                            <th style="width: 30%">NUMBER OF PRODUCTS AVAILABLE</th>
+                                            <th style="width: 20%">#ID PROMO-CODE</th>
+                                            <th style="width: 40%">DESCRIPTION</th>
+                                            <th style="width: 20%">DISCOUNT PERCENT</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($listTrademark as $key => $item)
+                                        @foreach ($listPromocode as $key => $item)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
-                                                <td>{{ $item->idTrademark }}</td>
-                                                <td>{{ $item->nameTrademark }}</td>
-                                                @php
-                                                    $checkNumOfPro = false;
-                                                @endphp
-                                                @foreach ($numOfProducts as $value)
-                                                    @if ($item->idTrademark == $value->idTrademark)
-                                                        <td>{{ $value->numofproducts }}</td>
-                                                        @php
-                                                            $checkNumOfPro = true;
-                                                            break;
-                                                        @endphp
-                                                    @endif
-                                                @endforeach
-                                                @if ($checkNumOfPro == false)
-                                                    <td>0</td>
-                                                @endif
+                                                <td>{{ $item->idPromoCode }}</td>
+                                                <td>{{ $item->description }}</td>
+                                                <td>{{ $item->discountPercent }}</td>
                                                 <td>
                                                     <div class="btn-action">
-                                                        <a href="{{ route('ad.edit-trademark', ['idTrademark' => $item->idTrademark]) }}"
+                                                        <a href="{{ route('ad.edit-promocode', ['idPromocode' => $item->idPromoCode]) }}"
                                                             class="btn-p-edit"> <i class="mdi mdi-tooltip-edit"
                                                                 title="edit">
                                                             </i>
                                                         </a>
-                                                        <a href="{{ route('ad.delete-trademark', ['idTrademark' => $item->idTrademark]) }}"
+                                                        <a href="{{ route('ad.delete-promocode', ['idPromocode' => $item->idPromoCode]) }}"
                                                             class="btn-p-delete"> <i class="mdi mdi-delete"
                                                                 title="delete"></i>
                                                         </a>
@@ -101,7 +87,7 @@
                                 </div>
                             </div>
                             <div class="row col-lg-12 text-center d-flex justify-content-center mt-3">
-                                {{ $listTrademark->links('parts.pagination') }}
+                                {{ $listPromocode->links('parts.pagination') }}
                             </div>
                         </div>
                     </div>
@@ -122,20 +108,30 @@
         <div class="center modal-box">
             <div id="t-btn">
                 <label for="" style="padding-left: 30px; font-size: 18px;">Add
-                    Trademark</label>
+                    Promocode</label>
             </div>
 
             <!--cancle button-->
             <div><i class="fa fa-times cancel"></i></div>
 
             <div class="form_container" id="ct-form">
-                <form name="form" action="{{ route('ad.add-trademark') }}" method="POST"
+                <form name="form" action="{{ route('ad.add-promocode') }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     <!-- name,image input box-->
                     <div class="form_wrap">
                         <div class="form_item">
-                            <label>Name</label> <input type="text" name="nameTrademark" autocomplete="off">
+                            <label>Promo-code</label> <input type="text" name="promocode" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form_wrap">
+                        <div class="form_item">
+                            <label>Description</label> <input type="text" name="description" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form_wrap">
+                        <div class="form_item">
+                            <label>Discount percent</label> <input type="number" name="discount_percent" autocomplete="off">
                         </div>
                     </div>
                     <!--submit button-->

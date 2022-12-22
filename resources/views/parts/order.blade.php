@@ -12,7 +12,7 @@
                     <div class="order-header-items">
                         <div>
                             <div class="uppercase font-bold">Order ID:
-                                <strong>{{ $item->idOrder }}</strong>
+                                <strong id="value-idOrder">{{ $item->idOrder }}</strong>
                             </div>
                         </div>
                         <div>
@@ -51,6 +51,16 @@
                                     @if ($item2->discountPercent != 0)
                                         <div>Discount: {{ $item2->discountPercent }}%</div>
                                     @endif
+                                    <div class="order-cancel">
+                                        @if ($nowStatusOrder == 'Wait for confirmation' || $nowStatusOrder == 'Order confirmed')
+                                            {{-- <input type="text" name="input-idOrder" id="" class="" hidden value="{{$item->idOrder}}"> --}}
+                                            <a href="#" class="mr-3 btn btn-warning btn-cancel-order">Cancel
+                                                order</a>
+                                            {{-- <a href="{{ route('user.cancel-order', ['idOrder' => $item->idOrder]) }}"
+                                                class="mr-3 btn btn-warning btn-cancel-order">Cancel
+                                                order</a> --}}
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         @endif
@@ -121,6 +131,19 @@
                                         </div>
                                         <div>Quantity: {{ $item2->quantity }}</div>
                                         <div>Price: {{ number_format($item2->quantity * $item2->price) }}</div>
+                                        @if ($item2->discountPercent != 0)
+                                            <div>Discount: {{ $item2->discountPercent }}%</div>
+                                        @endif
+                                        <div class="order-cancel">
+                                            @if ($nowStatusOrder == 'Wait for confirmation' || $nowStatusOrder == 'Order confirmed')
+                                                {{-- <input type="text" name="input-idOrder" id="" class="" hidden value="{{$item->idOrder}}"> --}}
+                                                <a href="#" class="mr-3 btn btn-warning btn-cancel-order">Cancel
+                                                    order</a>
+                                                {{-- <a href="{{ route('user.cancel-order', ['idOrder' => $item->idOrder]) }}"
+                                                class="mr-3 btn btn-warning btn-cancel-order">Cancel
+                                                order</a> --}}
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             @endif

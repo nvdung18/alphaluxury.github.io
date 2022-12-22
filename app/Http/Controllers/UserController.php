@@ -488,4 +488,11 @@ class UserController extends Controller
             ]);
         }
     }
+
+    // cancel order
+    public function cancelOrder(Request $request){
+        // dd(1);
+        $this->order->cancelOrder($request->idOrder);
+        return redirect()->back();
+    }
 }

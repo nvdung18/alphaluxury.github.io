@@ -53,4 +53,8 @@ class UserOrder extends Model
 
         return $payment;
     }
+
+    public function cancelOrder($idOrder){
+        $cancel=DB::table($this->orderTable)->where('idOrder', '=', $idOrder)->delete();
+    }
 }

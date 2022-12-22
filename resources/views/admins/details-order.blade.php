@@ -37,8 +37,13 @@
                     <!-- <div class="wr-ct-manage"> -->
                     <div class="container wr-manage">
                         <div class="page-header">
-                            <h3 class="page-title" style="font-size: 25px">Detail Order
-                                #{{ $idOrder }}</h3>
+                            @if ($tag == 'order')
+                                <h3 class="page-title" style="font-size: 25px">Detail Order
+                                    #{{ $idOrder }}</h3>
+                            @else
+                                <h3 class="page-title" style="font-size: 25px">Detail Receipt
+                                    #{{ $idReceipt }}</h3>
+                            @endif
                         </div>
                         <div class="row details-order">
                             <div class="col-lg-12 grid-margin stretch-card">
@@ -126,11 +131,11 @@
                                 <table id='books' cellspacing="0" cellpadding="5" style="text-align: left;"
                                     border="1">
                                     <!-- <thead>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead> -->
+            <tr>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead> -->
                                     @foreach ($order as $item)
                                         <tbody>
                                             <tr>
@@ -159,7 +164,7 @@
                                                 </td>
                                                 <td>
                                                     @php
-                                                        echo number_format($promotionProduct)
+                                                        echo number_format($promotionProduct);
                                                     @endphp
                                                 </td>
                                             </tr>
@@ -177,7 +182,7 @@
                                                 </td>
                                                 <td>
                                                     @php
-                                                        echo number_format(($item->productMoney+$item->deliveryCharges)-$promotionProduct);
+                                                        echo number_format($item->productMoney + $item->deliveryCharges - $promotionProduct);
                                                     @endphp
                                                 </td>
                                             </tr>
@@ -187,7 +192,7 @@
                                                 </td>
                                                 <td>
                                                     @foreach ($payment as $value)
-                                                        {{$value->namePayment}}
+                                                        {{ $value->namePayment }}
                                                     @endforeach
                                                 </td>
                                             </tr>
