@@ -1,6 +1,9 @@
 ## Database
 
 We use mysql for this project, here is my database link: https://github.com/nvdung18/mysql.github.io/blob/main/watch_shop_db.sql
+Admin account:
+- username: admin
+- password: 123
 
 ## About Laravel
 
